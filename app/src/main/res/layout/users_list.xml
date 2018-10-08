@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="usersListViewModel"
+            type="ru.bulat.mukhutdinov.mvvm.usersList.ui.border.UsersListViewModel" />
+    </data>
+
+    <androidx.recyclerview.widget.RecyclerView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/users"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        app:usersListViewModel="@{usersListViewModel}"
+        tools:listitem="@layout/users_item">
+
+    </androidx.recyclerview.widget.RecyclerView>
+</layout>

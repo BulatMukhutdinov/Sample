@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="icon_thumbnail_size">64dp</dimen>
+    <dimen name="icon_size">200dp</dimen>
+
+    <dimen name="edit_text_width">80dp</dimen>
+
+    <dimen name="size1x">8dp</dimen>
+    <dimen name="size2x">16dp</dimen>
+    <dimen name="size4x">32dp</dimen>
+</resources>

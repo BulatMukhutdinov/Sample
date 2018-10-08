@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@id/usersListFragment">
+
+    <fragment
+        android:id="@+id/usersListFragment"
+        android:label="UserListFragment"
+        android:name="ru.bulat.mukhutdinov.mvvm.usersList.ui.UsersListFragment"
+        tools:layout="@layout/users_list">
+        <action
+            android:id="@+id/action_usersListFragment_to_userFragment"
+            app:destination="@id/userFragment"
+            app:enterAnim="@anim/nav_enter_anim"
+            app:exitAnim="@anim/nav_exit_anim"
+            app:popEnterAnim="@anim/nav_pop_enter_anim"
+            app:popExitAnim="@anim/nav_pop_exit_anim" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/userFragment"
+        android:label="UserFragment"
+        android:name="ru.bulat.mukhutdinov.mvvm.user.ui.UserFragment"
+        tools:layout="@layout/user_wrapper" />
+    <argument
+        android:defaultValue=""
+        android:name="USER_ID_EXTRA"
+        app:argType="string" />
+</navigation>
