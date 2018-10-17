@@ -8,14 +8,13 @@ import org.kodein.di.generic.bind
 import org.kodein.di.generic.factory
 import org.kodein.di.generic.instance
 import org.kodein.di.generic.singleton
-import ru.bulat.mukhutdinov.mvvm.common.db.MvvmDatabase
-import ru.bulat.mukhutdinov.mvvm.common.di.ViewModelFactory
+import ru.bulat.mukhutdinov.mvvm.infrastructure.common.db.MvvmDatabase
+import ru.bulat.mukhutdinov.mvvm.infrastructure.common.di.ViewModelFactory
 import ru.bulat.mukhutdinov.mvvm.user.db.UserDao
 import ru.bulat.mukhutdinov.mvvm.user.gateway.UserLocalGateway
 import ru.bulat.mukhutdinov.mvvm.user.gateway.UserRoomGateway
 import ru.bulat.mukhutdinov.mvvm.user.ui.UserAndroidViewModel
-import ru.bulat.mukhutdinov.mvvm.user.ui.contract.UserView
-import ru.bulat.mukhutdinov.mvvm.user.ui.contract.UserViewModel
+import ru.bulat.mukhutdinov.mvvm.user.ui.UserViewModel
 
 object UserInjectionModule {
 
@@ -30,21 +29,16 @@ object UserInjectionModule {
         }
 
         bind<UserViewModel>() with factory { userId: String, fragment: Fragment ->
-            val userViewModel = ViewModelProviders
-                .of(fragment, UserViewModelFactory(context as UserView, userId, instance()))
+            return@factory ViewModelProviders
+                .of(fragment, UserViewModelFactory(userId, instance()))
                 .get(UserAndroidViewModel::class.java)
-
-            userViewModel.view = context as UserView
-
-            return@factory userViewModel
         }
     }
 
-    private class UserViewModelFactory(private val view: UserView,
-                                       private val userId: String,
+    private class UserViewModelFactory(private val userId: String,
                                        private val userLocalGateway: UserLocalGateway) : ViewModelFactory() {
 
         override fun viewModel(): ViewModel =
-            UserAndroidViewModel(view, userId, userLocalGateway)
+            UserAndroidViewModel(userId, userLocalGateway)
     }
 }

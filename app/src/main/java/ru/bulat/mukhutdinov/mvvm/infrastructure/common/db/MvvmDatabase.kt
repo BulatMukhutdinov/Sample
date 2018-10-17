@@ -1,4 +1,4 @@
-package ru.bulat.mukhutdinov.mvvm.common.db
+package ru.bulat.mukhutdinov.mvvm.infrastructure.common.db
 
 import androidx.room.Database
 import androidx.room.RoomDatabase

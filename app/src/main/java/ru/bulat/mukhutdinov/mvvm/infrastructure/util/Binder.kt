@@ -1,4 +1,4 @@
-package ru.bulat.mukhutdinov.mvvm.util
+package ru.bulat.mukhutdinov.mvvm.infrastructure.util
 
 import androidx.databinding.BindingAdapter
 import androidx.lifecycle.Observer
@@ -10,7 +10,7 @@ import de.hdodenhof.circleimageview.CircleImageView
 import ru.bulat.mukhutdinov.mvvm.R
 import ru.bulat.mukhutdinov.mvvm.usersList.ui.adapter.UserDiffUtilCallback
 import ru.bulat.mukhutdinov.mvvm.usersList.ui.adapter.UsersAdapter
-import ru.bulat.mukhutdinov.mvvm.usersList.ui.border.UsersListViewModel
+import ru.bulat.mukhutdinov.mvvm.usersList.ui.UsersListViewModel
 
 @BindingAdapter("android:src")
 fun bind(view: CircleImageView, url: String?) {

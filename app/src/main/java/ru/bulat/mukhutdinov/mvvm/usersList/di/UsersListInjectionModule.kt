@@ -9,11 +9,10 @@ import org.kodein.di.generic.bind
 import org.kodein.di.generic.instance
 import org.kodein.di.generic.scoped
 import org.kodein.di.generic.singleton
-import ru.bulat.mukhutdinov.mvvm.common.di.ViewModelFactory
+import ru.bulat.mukhutdinov.mvvm.infrastructure.common.di.ViewModelFactory
 import ru.bulat.mukhutdinov.mvvm.user.gateway.UserLocalGateway
 import ru.bulat.mukhutdinov.mvvm.usersList.ui.UsersListAndroidViewModel
-import ru.bulat.mukhutdinov.mvvm.usersList.ui.border.UsersListView
-import ru.bulat.mukhutdinov.mvvm.usersList.ui.border.UsersListViewModel
+import ru.bulat.mukhutdinov.mvvm.usersList.ui.UsersListViewModel
 
 object UsersListInjectionModule {
 
@@ -21,19 +20,18 @@ object UsersListInjectionModule {
 
         bind<UsersListViewModel>() with scoped(AndroidLifecycleScope<Fragment>()).singleton {
             val usersListViewModel = ViewModelProviders
-                .of(context, UsersListViewModelFactory(context as UsersListView, instance()))
+                .of(context, UsersListViewModelFactory(instance()))
                 .get(UsersListAndroidViewModel::class.java)
 
-            usersListViewModel.view = context as UsersListView
+            usersListViewModel.lifecycleOwner = context
 
             return@singleton usersListViewModel
         }
     }
 
-    private class UsersListViewModelFactory(private val view: UsersListView,
-                                    private val userLocalGateway: UserLocalGateway) : ViewModelFactory() {
+    private class UsersListViewModelFactory(private val userLocalGateway: UserLocalGateway) : ViewModelFactory() {
 
         override fun viewModel(): ViewModel =
-            UsersListAndroidViewModel(view, userLocalGateway)
+            UsersListAndroidViewModel(userLocalGateway)
     }
 }

@@ -3,7 +3,7 @@ package ru.bulat.mukhutdinov.mvvm.usersList.ui.adapter
 import androidx.recyclerview.widget.RecyclerView
 import ru.bulat.mukhutdinov.mvvm.databinding.UsersItemBinding
 import ru.bulat.mukhutdinov.mvvm.user.model.User
-import ru.bulat.mukhutdinov.mvvm.usersList.ui.border.UsersListViewModel
+import ru.bulat.mukhutdinov.mvvm.usersList.ui.UsersListViewModel
 
 class UserViewHolder(private val binding: UsersItemBinding) :
     RecyclerView.ViewHolder(binding.root) {

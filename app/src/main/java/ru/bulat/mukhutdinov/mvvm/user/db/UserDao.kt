@@ -6,6 +6,7 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Update
+import io.reactivex.Flowable
 
 @Dao
 interface UserDao {
@@ -14,7 +15,7 @@ interface UserDao {
     fun getAll(): LiveData<List<UserEntity>>
 
     @Query("SELECT * FROM ${UserEntity.TABLE_NAME} WHERE ${UserEntity.COLUMN_ID} = :id")
-    fun findById(id: String): LiveData<UserEntity>
+    fun findById(id: String): Flowable<UserEntity>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(user: UserEntity)

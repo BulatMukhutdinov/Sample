@@ -1,4 +1,4 @@
-package ru.bulat.mukhutdinov.mvvm.util
+package ru.bulat.mukhutdinov.mvvm.infrastructure.util
 
 import android.os.Bundle
 import android.view.View

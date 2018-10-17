@@ -1,4 +1,4 @@
-package ru.bulat.mukhutdinov.mvvm.common.di
+package ru.bulat.mukhutdinov.mvvm.infrastructure.common.di
 
 import android.content.Context
 import androidx.room.Room
@@ -9,8 +9,8 @@ import org.kodein.di.generic.bind
 import org.kodein.di.generic.instance
 import org.kodein.di.generic.singleton
 import ru.bulat.mukhutdinov.mvvm.BuildConfig
-import ru.bulat.mukhutdinov.mvvm.common.db.MvvmDatabase
-import ru.bulat.mukhutdinov.mvvm.util.DummyDataProvider
+import ru.bulat.mukhutdinov.mvvm.infrastructure.common.db.MvvmDatabase
+import ru.bulat.mukhutdinov.mvvm.infrastructure.util.DummyDataProvider
 
 object CommonInjectionModule {
     private const val DATABASE_NAME = "mvvm_db"

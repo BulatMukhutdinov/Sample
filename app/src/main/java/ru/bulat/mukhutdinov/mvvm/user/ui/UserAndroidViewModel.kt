@@ -1,27 +1,28 @@
 package ru.bulat.mukhutdinov.mvvm.user.ui
 
 import androidx.databinding.ObservableField
-import androidx.lifecycle.Observer
+import androidx.lifecycle.MutableLiveData
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
-import ru.bulat.mukhutdinov.mvvm.common.ui.BaseAndroidViewModel
+import ru.bulat.mukhutdinov.mvvm.infrastructure.common.ui.BaseAndroidViewModel
 import ru.bulat.mukhutdinov.mvvm.user.gateway.UserLocalGateway
 import ru.bulat.mukhutdinov.mvvm.user.model.User
-import ru.bulat.mukhutdinov.mvvm.user.ui.contract.UserView
-import ru.bulat.mukhutdinov.mvvm.user.ui.contract.UserViewModel
 import timber.log.Timber
 
-class UserAndroidViewModel(view: UserView, userId: String, private val userLocalGateway: UserLocalGateway)
-    : BaseAndroidViewModel<UserView>(view), UserViewModel {
+class UserAndroidViewModel(userId: String, private val userLocalGateway: UserLocalGateway)
+    : BaseAndroidViewModel(), UserViewModel {
 
-    override var user: ObservableField<User> = ObservableField()
+    override val user: ObservableField<User> = ObservableField()
 
-    private var liveUser = userLocalGateway.findById(userId)
+    override val onSaveClicked = MutableLiveData<Unit>()
 
     init {
-        liveUser.observe(view.lifecycleOwner, Observer { user ->
-            this.user.set(user)
-        })
+        compositeDisposable.add(userLocalGateway
+            .findById(userId)
+            .subscribe(
+                { this.user.set(it) },
+                { Timber.e(it) }
+            ))
     }
 
     override fun onSaveClicked() {
@@ -30,13 +31,9 @@ class UserAndroidViewModel(view: UserView, userId: String, private val userLocal
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
-                    { view.navigateUp() },
+                    { onSaveClicked.postValue(Unit) },
                     { Timber.e(it) }
                 ))
         }
-    }
-
-    companion object {
-        const val USER_ID_EXTRA = "USER_ID_EXTRA"
     }
 }

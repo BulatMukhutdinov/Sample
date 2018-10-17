@@ -6,7 +6,7 @@
 
         <variable
             name="usersListViewModel"
-            type="ru.bulat.mukhutdinov.mvvm.usersList.ui.border.UsersListViewModel" />
+            type="ru.bulat.mukhutdinov.mvvm.usersList.ui.UsersListViewModel" />
     </data>
 
     <androidx.recyclerview.widget.RecyclerView

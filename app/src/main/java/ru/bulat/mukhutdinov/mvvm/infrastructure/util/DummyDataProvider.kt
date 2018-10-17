@@ -1,7 +1,6 @@
-package ru.bulat.mukhutdinov.mvvm.util
+package ru.bulat.mukhutdinov.mvvm.infrastructure.util
 
 import io.reactivex.Completable
-import io.reactivex.schedulers.Schedulers
 import ru.bulat.mukhutdinov.mvvm.user.db.UserDao
 import ru.bulat.mukhutdinov.mvvm.user.db.UserEntity
 import java.util.UUID

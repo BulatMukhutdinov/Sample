@@ -1,4 +1,4 @@
-package ru.bulat.mukhutdinov.mvvm.common.di
+package ru.bulat.mukhutdinov.mvvm.infrastructure.common.di
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider

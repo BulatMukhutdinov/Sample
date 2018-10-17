@@ -10,10 +10,10 @@ import org.kodein.di.conf.ConfigurableKodein
 import org.kodein.di.generic.bind
 import org.kodein.di.generic.instance
 import org.kodein.di.generic.singleton
-import ru.bulat.mukhutdinov.mvvm.common.di.CommonInjectionModule
+import ru.bulat.mukhutdinov.mvvm.infrastructure.common.di.CommonInjectionModule
 import ru.bulat.mukhutdinov.mvvm.user.di.UserInjectionModule
 import ru.bulat.mukhutdinov.mvvm.usersList.di.UsersListInjectionModule
-import ru.bulat.mukhutdinov.mvvm.util.DummyDataProvider
+import ru.bulat.mukhutdinov.mvvm.infrastructure.util.DummyDataProvider
 
 class App : Application(), KodeinAware {
 

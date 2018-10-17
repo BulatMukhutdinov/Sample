@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import ru.bulat.mukhutdinov.mvvm.R
 import ru.bulat.mukhutdinov.mvvm.databinding.UsersItemBinding
 import ru.bulat.mukhutdinov.mvvm.user.model.User
-import ru.bulat.mukhutdinov.mvvm.usersList.ui.border.UsersListViewModel
+import ru.bulat.mukhutdinov.mvvm.usersList.ui.UsersListViewModel
 
 class UsersAdapter(private val usersListViewModel: UsersListViewModel) : RecyclerView.Adapter<UserViewHolder>() {
     val users: MutableList<User> = mutableListOf()

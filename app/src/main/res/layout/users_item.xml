@@ -9,7 +9,7 @@
 
         <variable
             name="usersListViewModel"
-            type="ru.bulat.mukhutdinov.mvvm.usersList.ui.border.UsersListViewModel" />
+            type="ru.bulat.mukhutdinov.mvvm.usersList.ui.UsersListViewModel" />
 
         <import type="android.view.View" />
     </data>
