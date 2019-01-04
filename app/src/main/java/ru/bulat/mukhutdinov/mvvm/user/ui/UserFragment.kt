@@ -9,28 +9,24 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import org.kodein.di.generic.factory2
 import ru.bulat.mukhutdinov.mvvm.R
-import ru.bulat.mukhutdinov.mvvm.databinding.UserWrapperBinding
+import ru.bulat.mukhutdinov.mvvm.databinding.UserBinding
 import ru.bulat.mukhutdinov.mvvm.infrastructure.common.ui.BaseFragment
-
 
 class UserFragment : BaseFragment<UserViewModel>() {
 
-    private val userId by lazy { arguments?.getString(USER_ID_EXTRA).orEmpty() }
+    private val userId by lazy { arguments?.let { UserFragmentArgs.fromBundle(it).userId } ?: "" }
     private val userViewModelFactory: (String, Fragment) -> UserViewModel by factory2()
 
     override val viewModel: UserViewModel by lazy { userViewModelFactory(userId, this) }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        val binding: UserWrapperBinding = DataBindingUtil.inflate(inflater, R.layout.user_wrapper, container, false)
-
+        val binding: UserBinding = DataBindingUtil.inflate(inflater, R.layout.user, container, false)
         binding.userViewModel = viewModel
 
-        viewModel.onSaveClicked.observe(this, Observer { navigateUp() })
+        viewModel.onSaveClicked.observe(viewLifecycleOwner, Observer { navigateUp() })
+
+        binding.icon.clipToOutline = true
 
         return binding.root
-    }
-
-    companion object {
-        const val USER_ID_EXTRA = "USER_ID_EXTRA"
     }
 }

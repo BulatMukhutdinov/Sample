@@ -7,64 +7,81 @@
     <data>
 
         <variable
-            name="user"
-            type="ru.bulat.mukhutdinov.mvvm.user.model.User" />
+            name="userViewModel"
+            type="ru.bulat.mukhutdinov.mvvm.user.ui.UserViewModel" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_height="wrap_content"
-        android:layout_width="match_parent">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/icon"
-            android:layout_height="@dimen/icon_size"
-            android:layout_marginStart="@dimen/size1x"
-            android:layout_marginTop="@dimen/size4x"
-            android:layout_width="@dimen/icon_size"
-            android:src="@{user.icon}"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:src="@tools:sample/avatars" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-        <com.google.android.material.textfield.TextInputLayout
-            style="@style/SizeEditText"
-            android:id="@+id/name"
-            android:layout_marginEnd="@dimen/size2x"
-            android:layout_marginStart="@dimen/size2x"
-            android:layout_marginTop="@dimen/size2x"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/icon">
+            <ImageView
+                android:id="@+id/icon"
+                android:layout_width="@dimen/icon_size"
+                android:layout_height="@dimen/icon_size"
+                android:layout_marginStart="@dimen/size1x"
+                android:layout_marginTop="@dimen/size4x"
+                android:background="@drawable/rounded_avatar"
+                android:src="@{userViewModel.user.icon}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:src="@tools:sample/avatars" />
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:hint="@string/name"
-                android:inputType="textPersonName"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/name"
+                style="@style/SizeEditText"
+                android:layout_marginStart="@dimen/size2x"
+                android:layout_marginTop="@dimen/size2x"
+                android:layout_marginEnd="@dimen/size2x"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/icon">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/name"
+                    android:inputType="textPersonName"
+                    android:maxLines="1"
+                    android:text="@={userViewModel.user.name}" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/description"
+                style="@style/SizeEditText"
+                android:layout_marginStart="@dimen/size2x"
+                android:layout_marginTop="@dimen/size2x"
+                android:layout_marginEnd="@dimen/size2x"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/name">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/description"
+                    android:inputType="textMultiLine"
+                    android:text="@={userViewModel.user.description}" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/save"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_width="match_parent"
-                android:maxLines="1"
-                android:text="@={user.name}" />
+                android:layout_marginTop="@dimen/size2x"
+                android:layout_marginEnd="@dimen/size2x"
+                android:onClick="@{() -> userViewModel.onSaveClicked()}"
+                android:text="@string/save"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/description" />
 
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            style="@style/SizeEditText"
-            android:id="@+id/description"
-            android:layout_marginEnd="@dimen/size2x"
-            android:layout_marginStart="@dimen/size2x"
-            android:layout_marginTop="@dimen/size2x"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/name">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:hint="@string/description"
-                android:inputType="textMultiLine"
-                android:layout_height="wrap_content"
-                android:layout_width="match_parent"
-                android:text="@={user.description}" />
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
 </layout>

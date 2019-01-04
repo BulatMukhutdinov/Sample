@@ -1,19 +1,19 @@
 package ru.bulat.mukhutdinov.mvvm.infrastructure.util
 
+import android.widget.ImageView
 import androidx.databinding.BindingAdapter
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
-import de.hdodenhof.circleimageview.CircleImageView
 import ru.bulat.mukhutdinov.mvvm.R
+import ru.bulat.mukhutdinov.mvvm.usersList.ui.UsersListViewModel
 import ru.bulat.mukhutdinov.mvvm.usersList.ui.adapter.UserDiffUtilCallback
 import ru.bulat.mukhutdinov.mvvm.usersList.ui.adapter.UsersAdapter
-import ru.bulat.mukhutdinov.mvvm.usersList.ui.UsersListViewModel
 
 @BindingAdapter("android:src")
-fun bind(view: CircleImageView, url: String?) {
+fun bind(view: ImageView, url: String?) {
     if (url.isNullOrBlank()) {
         view.setImageResource(R.color.gray)
     } else {
@@ -24,7 +24,6 @@ fun bind(view: CircleImageView, url: String?) {
             .noFade()
             .into(view)
     }
-
 }
 
 @BindingAdapter("app:usersListViewModel")

@@ -11,6 +11,8 @@ class UserViewHolder(private val binding: UsersItemBinding) :
     fun bindTo(user: User, usersListViewModel: UsersListViewModel) {
         binding.user = user
         binding.usersListViewModel = usersListViewModel
+        binding.icon.clipToOutline = true
+
         binding.executePendingBindings()
     }
 }

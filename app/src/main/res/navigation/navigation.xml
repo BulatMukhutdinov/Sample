@@ -8,11 +8,11 @@
 
     <fragment
         android:id="@+id/usersListFragment"
-        android:label="UserListFragment"
         android:name="ru.bulat.mukhutdinov.mvvm.usersList.ui.UsersListFragment"
+        android:label="UserListFragment"
         tools:layout="@layout/users_list">
         <action
-            android:id="@+id/action_usersListFragment_to_userFragment"
+            android:id="@+id/usersListFragment_to_userFragment"
             app:destination="@id/userFragment"
             app:enterAnim="@anim/nav_enter_anim"
             app:exitAnim="@anim/nav_exit_anim"
@@ -23,11 +23,13 @@
 
     <fragment
         android:id="@+id/userFragment"
-        android:label="UserFragment"
         android:name="ru.bulat.mukhutdinov.mvvm.user.ui.UserFragment"
-        tools:layout="@layout/user_wrapper" />
-    <argument
-        android:defaultValue=""
-        android:name="USER_ID_EXTRA"
-        app:argType="string" />
+        android:label="UserFragment"
+        tools:layout="@layout/user">
+
+        <argument
+            android:name="userId"
+            android:defaultValue=""
+            app:argType="string" />
+    </fragment>
 </navigation>
