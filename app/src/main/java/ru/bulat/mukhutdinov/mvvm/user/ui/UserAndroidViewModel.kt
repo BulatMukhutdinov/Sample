@@ -18,8 +18,6 @@ class UserAndroidViewModel(userId: String, private val userLocalGateway: UserLoc
 
     override val user: ObservableField<User> = ObservableField()
 
-    override val isProgressVisible: ObservableBoolean = ObservableBoolean(false)
-
     override val isSaveEnabled: ObservableBoolean = ObservableBoolean(true)
 
     override val onSaveClicked = MutableLiveData<Either<Nothing, MvvmException>>()
@@ -38,15 +36,15 @@ class UserAndroidViewModel(userId: String, private val userLocalGateway: UserLoc
         user.get()?.let {
             compositeDisposable.add(userLocalGateway.update(it)
                 .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
                 .doOnSubscribe {
-                    isProgressVisible.set(true)
+                    onSaveClicked.postValue(Either.Loading(true))
                     isSaveEnabled.set(false)
                 }
                 .doOnTerminate {
-                    isProgressVisible.set(false)
+                    onSaveClicked.postValue(Either.Loading(false))
                     isSaveEnabled.set(true)
                 }
+                .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
                     {
                         onSaveClicked.postValue(Either.Complete)

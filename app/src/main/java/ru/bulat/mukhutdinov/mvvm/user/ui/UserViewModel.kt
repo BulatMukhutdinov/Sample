@@ -12,8 +12,6 @@ interface UserViewModel : BaseViewModel {
 
     val user: ObservableField<User>
 
-    val isProgressVisible: ObservableBoolean
-
     val isSaveEnabled: ObservableBoolean
 
     val onSaveClicked: LiveData<Either<Nothing, MvvmException>>

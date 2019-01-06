@@ -2,13 +2,20 @@
 
     <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorPrimaryDark">@color/primaryDark</item>
+        <item name="colorAccent">@color/secondary</item>
     </style>
 
     <style name="SizeEditText" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="Toolbar" parent="AppTheme">
+        <item name="android:textColorPrimary">@color/onPrimary</item>
+        <item name="android:textColorSecondary">@color/onSecondary</item>
+        <item name="actionMenuTextColor">@color/onPrimary</item>
+        <item name="android:background">@color/primary</item>
     </style>
 </resources>

@@ -21,17 +21,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <ProgressBar
-                android:id="@+id/progress"
-                style="?android:attr/progressBarStyleHorizontal"
-                android:layout_width="0dp"
-                android:layout_height="12dp"
-                android:indeterminate="true"
-                android:visibility="@{userViewModel.isProgressVisible() ? View.VISIBLE : View.GONE}"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
             <ImageView
                 android:id="@+id/icon"
                 android:layout_width="@dimen/icon_size"
@@ -61,7 +50,8 @@
                     android:hint="@string/name"
                     android:inputType="textPersonName"
                     android:maxLines="1"
-                    android:text="@={userViewModel.user.name}" />
+                    android:text="@={userViewModel.user.name}"
+                    android:textColor="@color/onBackground" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -80,7 +70,8 @@
                     android:layout_height="wrap_content"
                     android:hint="@string/description"
                     android:inputType="textMultiLine"
-                    android:text="@={userViewModel.user.description}" />
+                    android:text="@={userViewModel.user.description}"
+                    android:textColor="@color/onBackground" />
 
             </com.google.android.material.textfield.TextInputLayout>
 

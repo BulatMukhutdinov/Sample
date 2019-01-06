@@ -8,6 +8,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import org.kodein.di.generic.factory2
+import ru.bulat.mukhutdinov.mvvm.MainActivity
 import ru.bulat.mukhutdinov.mvvm.R
 import ru.bulat.mukhutdinov.mvvm.databinding.UserBinding
 import ru.bulat.mukhutdinov.mvvm.infrastructure.common.ui.BaseFragment
@@ -32,6 +33,7 @@ class UserFragment : BaseFragment<UserViewModel>() {
             Observer<Either<Nothing, MvvmException>> { either ->
                 either?.either(
                     completeCallback = { navigateUp() },
+                    loadingCallback = { (activity as? MainActivity)?.setLoadingVisible(it) },
                     errorCallback = { context?.toast(R.string.common_exception) }
                 )
             }

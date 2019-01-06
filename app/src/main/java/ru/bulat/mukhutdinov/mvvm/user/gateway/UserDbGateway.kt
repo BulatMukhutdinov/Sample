@@ -25,6 +25,7 @@ class UserDbGateway(private val userDao: UserDao) : UserLocalGateway {
 
     override fun update(user: User): Completable =
         Completable.fromCallable { userDao.update(UserConverter.toDatabase(user)) }
-            .delay(3, TimeUnit.SECONDS)
+            // emulate processing delay
+            .delay(2, TimeUnit.SECONDS)
             .mapLocalExceptions()
 }
