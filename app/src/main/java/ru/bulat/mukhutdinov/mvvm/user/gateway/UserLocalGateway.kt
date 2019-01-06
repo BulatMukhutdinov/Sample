@@ -1,15 +1,15 @@
 package ru.bulat.mukhutdinov.mvvm.user.gateway
 
-import androidx.lifecycle.LiveData
 import io.reactivex.Completable
-import io.reactivex.Flowable
+import io.reactivex.Maybe
+import io.reactivex.Single
 import ru.bulat.mukhutdinov.mvvm.user.model.User
 
 interface UserLocalGateway {
 
-    fun getAll(): LiveData<List<User>>
+    fun getAll(): Single<List<User>>
 
-    fun findById(id: String): Flowable<User>
+    fun findById(id: String): Maybe<User>
 
     fun update(user: User): Completable
 }

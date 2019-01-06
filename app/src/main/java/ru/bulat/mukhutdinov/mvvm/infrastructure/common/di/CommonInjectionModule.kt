@@ -15,23 +15,23 @@ import ru.bulat.mukhutdinov.mvvm.infrastructure.util.DummyDataProvider
 object CommonInjectionModule {
     private const val DATABASE_NAME = "mvvm_db"
 
-    val module = Kodein.Module("CommonInjectionModule") {
+    val module = Kodein.Module(CommonInjectionModule::class.java.name) {
 
         bind<MvvmDatabase>() with singleton {
             return@singleton Room
-                    .databaseBuilder(
-                            instance(),
-                            MvvmDatabase::class.java,
-                            DATABASE_NAME)
-                    .fallbackToDestructiveMigration()
-                    .build()
+                .databaseBuilder(
+                    instance(),
+                    MvvmDatabase::class.java,
+                    DATABASE_NAME)
+                .fallbackToDestructiveMigration()
+                .build()
         }
 
         bind<Picasso>() with singleton {
             return@singleton Picasso.Builder(instance())
-                    .memoryCache(LruCache(instance<Context>()))
-                    .loggingEnabled(BuildConfig.DEBUG)
-                    .build()
+                .memoryCache(LruCache(instance<Context>()))
+                .loggingEnabled(BuildConfig.DEBUG)
+                .build()
         }
 
         bind<DummyDataProvider>() with singleton {

@@ -6,6 +6,8 @@
 
     <data>
 
+        <import type="android.view.View" />
+
         <variable
             name="userViewModel"
             type="ru.bulat.mukhutdinov.mvvm.user.ui.UserViewModel" />
@@ -18,6 +20,17 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+
+            <ProgressBar
+                android:id="@+id/progress"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="0dp"
+                android:layout_height="12dp"
+                android:indeterminate="true"
+                android:visibility="@{userViewModel.isProgressVisible() ? View.VISIBLE : View.GONE}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
                 android:id="@+id/icon"
@@ -77,6 +90,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/size2x"
                 android:layout_marginEnd="@dimen/size2x"
+                android:enabled="@{userViewModel.isSaveEnabled()}"
                 android:onClick="@{() -> userViewModel.onSaveClicked()}"
                 android:text="@string/save"
                 app:layout_constraintEnd_toEndOf="parent"

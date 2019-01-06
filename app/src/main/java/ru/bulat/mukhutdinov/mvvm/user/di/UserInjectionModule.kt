@@ -12,20 +12,20 @@ import ru.bulat.mukhutdinov.mvvm.infrastructure.common.db.MvvmDatabase
 import ru.bulat.mukhutdinov.mvvm.infrastructure.common.di.ViewModelFactory
 import ru.bulat.mukhutdinov.mvvm.user.db.UserDao
 import ru.bulat.mukhutdinov.mvvm.user.gateway.UserLocalGateway
-import ru.bulat.mukhutdinov.mvvm.user.gateway.UserRoomGateway
+import ru.bulat.mukhutdinov.mvvm.user.gateway.UserDbGateway
 import ru.bulat.mukhutdinov.mvvm.user.ui.UserAndroidViewModel
 import ru.bulat.mukhutdinov.mvvm.user.ui.UserViewModel
 
 object UserInjectionModule {
 
-    val module = Kodein.Module("UserInjectionModule") {
+    val module = Kodein.Module(UserInjectionModule::class.java.name) {
 
         bind<UserDao>() with singleton {
             return@singleton instance<MvvmDatabase>().userDao()
         }
 
         bind<UserLocalGateway>() with singleton {
-            return@singleton UserRoomGateway(instance())
+            return@singleton UserDbGateway(instance())
         }
 
         bind<UserViewModel>() with factory { userId: String, fragment: Fragment ->

@@ -16,14 +16,14 @@ import ru.bulat.mukhutdinov.mvvm.usersList.ui.UsersListViewModel
 
 object UsersListInjectionModule {
 
-    val module = Kodein.Module("UsersListInjectionModule") {
+    val module = Kodein.Module(UsersListInjectionModule::class.java.name) {
 
         bind<UsersListViewModel>() with scoped(AndroidLifecycleScope<Fragment>()).singleton {
             val usersListViewModel = ViewModelProviders
                 .of(context, UsersListViewModelFactory(instance()))
                 .get(UsersListAndroidViewModel::class.java)
 
-            usersListViewModel.lifecycleOwner = context
+            usersListViewModel.lifecycleOwner = context.viewLifecycleOwner
 
             return@singleton usersListViewModel
         }

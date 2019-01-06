@@ -11,6 +11,9 @@ import org.kodein.di.generic.factory2
 import ru.bulat.mukhutdinov.mvvm.R
 import ru.bulat.mukhutdinov.mvvm.databinding.UserBinding
 import ru.bulat.mukhutdinov.mvvm.infrastructure.common.ui.BaseFragment
+import ru.bulat.mukhutdinov.mvvm.infrastructure.exception.MvvmException
+import ru.bulat.mukhutdinov.mvvm.infrastructure.util.Either
+import ru.bulat.mukhutdinov.mvvm.infrastructure.util.toast
 
 class UserFragment : BaseFragment<UserViewModel>() {
 
@@ -21,9 +24,18 @@ class UserFragment : BaseFragment<UserViewModel>() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         val binding: UserBinding = DataBindingUtil.inflate(inflater, R.layout.user, container, false)
+
         binding.userViewModel = viewModel
 
-        viewModel.onSaveClicked.observe(viewLifecycleOwner, Observer { navigateUp() })
+        viewModel.onSaveClicked.observe(
+            viewLifecycleOwner,
+            Observer<Either<Nothing, MvvmException>> { either ->
+                either?.either(
+                    completeCallback = { navigateUp() },
+                    errorCallback = { context?.toast(R.string.common_exception) }
+                )
+            }
+        )
 
         binding.icon.clipToOutline = true
 

@@ -1,15 +1,15 @@
 package ru.bulat.mukhutdinov.mvvm.infrastructure.util
 
-sealed class Either<out ErrorType, out DataType> {
+sealed class Either<out DataType, out ErrorType> {
 
     /** * Represents the loading side of [Either]. */
     data class Loading(override val isLoading: Boolean) : Either<Nothing, Nothing>()
 
     /** * Represents the error side of [Either] class which by convention is a "Failure". */
-    data class Error<out ErrorType>(val error: ErrorType) : Either<ErrorType, Nothing>()
+    data class Error<out ErrorType>(val error: ErrorType) : Either<Nothing, ErrorType>()
 
     /** * Represents the data side of [Either] class which by convention is a "Success". */
-    data class Data<out DataType>(val data: DataType) : Either<Nothing, DataType>()
+    data class Data<out DataType>(val data: DataType) : Either<DataType, Nothing>()
 
     /** * Represents a completion of a task without any result". */
     object Complete : Either<Nothing, Nothing>()

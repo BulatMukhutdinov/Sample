@@ -39,7 +39,7 @@ class App : Application(), KodeinAware {
             addImport(CommonInjectionModule.module)
             addImport(UsersListInjectionModule.module)
 
-            addImport(Kodein.Module("AppInjection") {
+            addImport(Kodein.Module(App::class.java.name) {
                 bind<ContentResolver>() with singleton { this@App.contentResolver }
                 bind<Context>() with singleton { this@App }
                 bind<Application>() with singleton { this@App }
