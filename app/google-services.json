@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "173367472465",
+    "firebase_url": "https://mukhutdinov-sample.firebaseio.com",
+    "project_id": "mukhutdinov-sample",
+    "storage_bucket": "mukhutdinov-sample.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:173367472465:android:b98f57012e046723",
+        "android_client_info": {
+          "package_name": "ru.bulat.mukhutdinov.sample"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "173367472465-8au7fqjk6lkdc1tm4n21fhcaka0rva8c.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBrVa1m51JpVYhRvAJB6NQRHwmsX56jGJQ"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

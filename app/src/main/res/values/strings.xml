@@ -1,7 +1,9 @@
 <resources>
-    <string name="app_name">MVVM Sample</string>
+    <string name="app_name">Sample</string>
     <string name="name">Name</string>
     <string name="description">Description</string>
     <string name="save">Save</string>
     <string name="common_exception">Oops…something went wrong</string>
+    <string name="app_user_list">Users list app</string>
+    <string name="app_blog">Blog app</string>
 </resources>

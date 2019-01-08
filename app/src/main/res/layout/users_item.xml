@@ -5,11 +5,11 @@
 
         <variable
             name="user"
-            type="ru.bulat.mukhutdinov.mvvm.user.model.User" />
+            type="ru.bulat.mukhutdinov.sample.user.model.User" />
 
         <variable
             name="usersListViewModel"
-            type="ru.bulat.mukhutdinov.mvvm.usersList.ui.UsersListViewModel" />
+            type="ru.bulat.mukhutdinov.sample.userslist.ui.UsersListViewModel" />
 
         <import type="android.view.View" />
     </data>

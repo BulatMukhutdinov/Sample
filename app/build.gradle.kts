@@ -59,6 +59,10 @@ dependencies {
     kapt(Config.Libs.roomCompiler)
     implementation(Config.Libs.roomRxjava2)
 
+    // paging
+    implementation(Config.Libs.pagingRuntime)
+    implementation(Config.Libs.pagingRxjava2)
+
     // rx
     implementation(Config.Libs.rxandroid)
     implementation(Config.Libs.rxjava)
@@ -67,6 +71,14 @@ dependencies {
     implementation(Config.Libs.kodeinDiConfJvm)
     implementation(Config.Libs.kodeinDiFrameworkAndroidX)
     implementation(Config.Libs.kodeinDiGenericJvm)
+
+    // firebase
+    implementation(Config.Libs.firebaseCore)
+
+    // network
+    implementation(Config.Libs.retrofit)
+    implementation(Config.Libs.converterGson)
+    implementation(Config.Libs.loggingInterceptor)
 
     // utils
     implementation(Config.Libs.timber)

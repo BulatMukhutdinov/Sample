@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="mainViewModel"
+            type="ru.bulat.mukhutdinov.sample.main.ui.MainViewModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/users_list_app"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/app_list_item_height"
+            android:background="?android:attr/selectableItemBackground"
+            android:clickable="true"
+            android:focusable="true"
+            android:onClick="@{() -> mainViewModel.onUsersListAppClicked()}">
+
+            <ImageView
+                android:id="@+id/users_list_icon"
+                android:layout_width="@dimen/icon_thumbnail_size"
+                android:layout_height="@dimen/icon_thumbnail_size"
+                android:layout_marginStart="@dimen/size1x"
+                android:layout_marginTop="@dimen/size1x"
+                android:background="@drawable/rounded_avatar"
+                android:src="@drawable/users_list"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/users_list_title"
+                style="@style/TextAppearance.AppCompat.Title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/size2x"
+                android:text="@string/app_user_list"
+                android:textColor="@color/onBackground"
+                app:layout_constraintStart_toEndOf="@id/users_list_icon"
+                app:layout_constraintTop_toTopOf="@id/users_list_icon" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:background="@color/divider"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/blog_app"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/app_list_item_height"
+            android:background="?android:attr/selectableItemBackground"
+            android:clickable="true"
+            android:focusable="true"
+            android:onClick="@{() -> mainViewModel.onPostsListAppClicked()}">
+
+            <ImageView
+                android:id="@+id/blog_icon"
+                android:layout_width="@dimen/icon_thumbnail_size"
+                android:layout_height="@dimen/icon_thumbnail_size"
+                android:layout_marginStart="@dimen/size1x"
+                android:layout_marginTop="@dimen/size1x"
+                android:background="@drawable/rounded_avatar"
+                android:src="@drawable/blog"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/blog_title"
+                style="@style/TextAppearance.AppCompat.Title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/size2x"
+                android:text="@string/app_blog"
+                android:textColor="@color/onBackground"
+                app:layout_constraintStart_toEndOf="@id/blog_icon"
+                app:layout_constraintTop_toTopOf="@id/blog_icon" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:background="@color/divider"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
+</layout>

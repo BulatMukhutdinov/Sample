@@ -10,7 +10,7 @@
 
         <variable
             name="userViewModel"
-            type="ru.bulat.mukhutdinov.mvvm.user.ui.UserViewModel" />
+            type="ru.bulat.mukhutdinov.sample.user.ui.UserViewModel" />
     </data>
 
     <ScrollView

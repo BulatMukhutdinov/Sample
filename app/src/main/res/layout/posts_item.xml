@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="post"
+            type="ru.bulat.mukhutdinov.sample.post.model.Post" />
+
+        <variable
+            name="postsListViewModel"
+            type="ru.bulat.mukhutdinov.sample.postslist.ui.PostsListViewModel" />
+
+        <import type="android.view.View" />
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
+        style="@style/Widget.MaterialComponents.CardView"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_marginStart="@dimen/size2x"
+        android:layout_marginEnd="@dimen/size2x"
+        android:layout_marginBottom="@dimen/size2x"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:clickable="true"
+        android:focusable="true">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="@dimen/size1x">
+
+            <ImageView
+                android:id="@+id/icon"
+                android:layout_width="@dimen/icon_thumbnail_size"
+                android:layout_height="@dimen/icon_thumbnail_size"
+                android:background="@drawable/rounded_avatar"
+                android:src="@{post.avatar}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:src="@tools:sample/avatars" />
+
+            <TextView
+                android:id="@+id/content"
+                style="@style/TextAppearance.AppCompat.Title"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginStart="@dimen/size2x"
+                android:ellipsize="end"
+                android:text="@{post.login}"
+                android:textColor="@color/onBackground"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/icon"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="@tools:sample/full_names" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
+</layout>
