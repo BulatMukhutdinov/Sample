@@ -9,7 +9,7 @@ abstract class ViewModelFactory : ViewModelProvider.NewInstanceFactory() {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         val viewModel = viewModel()
         return when (modelClass) {
-            viewModel::class.java -> viewModel() as T
+            viewModel::class.java -> viewModel as T
             else -> throw RuntimeException("Failed to create ViewModel of class $modelClass. " +
                 "Actual class is ${viewModel::class.java} ")
         }

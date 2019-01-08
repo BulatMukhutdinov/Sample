@@ -12,12 +12,13 @@ import org.kodein.di.generic.singleton
 import ru.bulat.mukhutdinov.sample.infrastructure.common.di.ViewModelFactory
 import ru.bulat.mukhutdinov.sample.post.gateway.PostGateway
 import ru.bulat.mukhutdinov.sample.postslist.ui.PostsListAndroidViewModel
+import ru.bulat.mukhutdinov.sample.postslist.ui.PostsListViewModel
 
 object PostsListInjectionModule {
 
     val module = Kodein.Module(PostsListInjectionModule::class.java.name) {
 
-        bind<PostsListAndroidViewModel>() with scoped(AndroidLifecycleScope<Fragment>()).singleton {
+        bind<PostsListViewModel>() with scoped(AndroidLifecycleScope<Fragment>()).singleton {
             val postsListViewModel = ViewModelProviders
                 .of(context, PostsListViewModelFactory(instance()))
                 .get(PostsListAndroidViewModel::class.java)

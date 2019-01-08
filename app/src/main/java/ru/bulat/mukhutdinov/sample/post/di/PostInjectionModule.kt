@@ -24,7 +24,7 @@ object PostInjectionModule {
                 api = instance<Retrofit>().create(SampleApi::class.java),
                 db = instance(),
                 executor = Executors.newSingleThreadExecutor(),
-                networkPageSize = 30,
+                networkPageSize = 10,
                 postDao = instance()
             )
         }

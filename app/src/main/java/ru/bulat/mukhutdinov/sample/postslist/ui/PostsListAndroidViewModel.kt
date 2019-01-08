@@ -1,5 +1,7 @@
 package ru.bulat.mukhutdinov.sample.postslist.ui
 
+import androidx.databinding.ObservableBoolean
+import androidx.databinding.ObservableField
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -8,19 +10,22 @@ import androidx.paging.PagedList
 import ru.bulat.mukhutdinov.sample.infrastructure.common.model.Listing
 import ru.bulat.mukhutdinov.sample.infrastructure.common.model.NetworkState
 import ru.bulat.mukhutdinov.sample.infrastructure.common.ui.BaseAndroidViewModel
-import ru.bulat.mukhutdinov.sample.infrastructure.exception.SampleException
-import ru.bulat.mukhutdinov.sample.infrastructure.util.Either
 import ru.bulat.mukhutdinov.sample.post.gateway.PostGateway
 import ru.bulat.mukhutdinov.sample.post.model.Post
 
 class PostsListAndroidViewModel(postsGateway: PostGateway)
     : BaseAndroidViewModel(), PostsListViewModel {
 
-    private val postsListing = MutableLiveData<Listing<Post>>()
-        .also { it.value = postsGateway.getPaged(30) }
+    override val errorText = ObservableField<String>("")
 
-    override val posts: LiveData<Either<PagedList<Post>, SampleException>> =
-        Transformations.switchMap(postsListing) { it.pagedList }
+    override val isRefreshing = ObservableBoolean(false)
+
+    override val isRetryEnabled = ObservableBoolean(true)
+
+    private val postsListing = MutableLiveData<Listing<Post>>()
+        .also { it.value = postsGateway.getPaged(10) }
+
+    override val posts: LiveData<PagedList<Post>> = Transformations.switchMap(postsListing) { it.pagedList }
 
     override val networkState: LiveData<NetworkState> = Transformations.switchMap(postsListing) { it.networkState }
 
@@ -33,7 +38,6 @@ class PostsListAndroidViewModel(postsGateway: PostGateway)
     }
 
     override fun retry() {
-        val listing = postsListing.value
-        listing?.retry?.invoke()
+        postsListing.value?.retry?.invoke()
     }
 }

@@ -6,4 +6,5 @@
     <string name="common_exception">Oops…something went wrong</string>
     <string name="app_user_list">Users list app</string>
     <string name="app_blog">Blog app</string>
+    <string name="retry">Retry</string>
 </resources>

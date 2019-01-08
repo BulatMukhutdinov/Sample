@@ -4,7 +4,6 @@ import androidx.annotation.MainThread
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
-import androidx.paging.PagedList
 import androidx.paging.toLiveData
 import io.reactivex.Completable
 import io.reactivex.Maybe
@@ -15,9 +14,7 @@ import ru.bulat.mukhutdinov.sample.infrastructure.common.api.SampleApi
 import ru.bulat.mukhutdinov.sample.infrastructure.common.db.SampleDatabase
 import ru.bulat.mukhutdinov.sample.infrastructure.common.model.Listing
 import ru.bulat.mukhutdinov.sample.infrastructure.common.model.NetworkState
-import ru.bulat.mukhutdinov.sample.infrastructure.exception.SampleException
 import ru.bulat.mukhutdinov.sample.infrastructure.exception.mapLocalExceptions
-import ru.bulat.mukhutdinov.sample.infrastructure.util.Either
 import ru.bulat.mukhutdinov.sample.post.api.PostDto
 import ru.bulat.mukhutdinov.sample.post.db.PostDao
 import ru.bulat.mukhutdinov.sample.post.model.Post
@@ -42,7 +39,9 @@ class PostBoundaryGateway(
             networkPageSize = networkPageSize)
 
         val refreshTrigger = MutableLiveData<Unit>()
-        val refreshState = Transformations.switchMap(refreshTrigger) { refresh() }
+        val refreshState = Transformations.switchMap(refreshTrigger) {
+            refresh()
+        }
 
         val livePagedList = postDao.getAll()
             .map { PostConverter.fromDatabase(it) }
@@ -51,13 +50,8 @@ class PostBoundaryGateway(
                 boundaryCallback = boundaryCallback
             )
 
-        val eitherPagedList = Transformations.map(livePagedList) { pagedList ->
-            val either: Either<PagedList<Post>, SampleException> = Either.Data(pagedList)
-            either
-        }
-
         return Listing(
-            pagedList = eitherPagedList,
+            pagedList = livePagedList,
             networkState = boundaryCallback.networkState,
             retry = { boundaryCallback.helper.retryAllFailed() },
             refresh = { refreshTrigger.value = null },

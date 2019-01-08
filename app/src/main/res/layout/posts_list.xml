@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -9,15 +11,21 @@
             type="ru.bulat.mukhutdinov.sample.postslist.ui.PostsListViewModel" />
     </data>
 
-    <androidx.recyclerview.widget.RecyclerView
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:id="@+id/posts"
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/refresh"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        app:postsListViewModel="@{postsListViewModel}"
-        tools:listitem="@layout/posts_item">
+        app:onRefreshListener="@{() -> postsListViewModel.refresh()}"
+        app:refreshing="@{postsListViewModel.isRefreshing}"
+        android:layout_height="match_parent">
 
-    </androidx.recyclerview.widget.RecyclerView>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/posts"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            app:postsListViewModel="@{postsListViewModel}"
+            tools:listitem="@layout/posts_item" />
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+
 </layout>
