@@ -17,8 +17,4 @@
 .idea/misc.xml
 .idea/runConfigurations.xml
 .idea/vcs.xml
-app/libs/
-app/src/androidTest/
-app/src/main/java/ru/bulat/mukhutdinov/sample/post/ui/
-app/src/test/
 buildSrc/build/
