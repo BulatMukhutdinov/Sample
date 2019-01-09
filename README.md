@@ -3,3 +3,5 @@
 * Use activityResult for new entities creation
 * Use payloads in recyclerView
 * Use pretty animations
+* Add Stetho
+* Add Strict mode
