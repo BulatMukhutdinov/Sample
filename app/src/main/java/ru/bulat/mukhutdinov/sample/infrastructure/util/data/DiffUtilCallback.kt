@@ -17,7 +17,7 @@ class DiffUtilCallback<T : BaseModel>(private val oldList: List<T>, private val 
     override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
         val oldUser = oldList[oldItemPosition]
         val newUser = newList[newItemPosition]
-        return oldUser.id === newUser.id
+        return oldUser.id == newUser.id
     }
 
     override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {

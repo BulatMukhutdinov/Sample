@@ -31,7 +31,7 @@ object PostConverter {
             id = source.id,
             date = source.date,
             body = source.body,
-            tags = source.tags.joinToString(TAGS_SEPARATOR),
+            tags = source.tags.joinToString(TAGS_SEPARATOR) { it.substring(1) },
             title = source.title
         )
 
@@ -40,7 +40,8 @@ object PostConverter {
             id = source.id,
             date = source.date,
             body = source.body ?: "",
-            tags = source.tags.split(TAGS_SEPARATOR).map { it.trim() },
+            avatar = source.avatar ?: "",
+            tags = source.tags.split(TAGS_SEPARATOR).map { it.trim() }.filter { it.isNotEmpty() }.map { "#$it" },
             title = source.title ?: ""
         )
 
@@ -126,9 +127,4 @@ object PostConverter {
             }
             else -> throw UnsupportedOperationException("${source.javaClass.simpleName} type not supported yet")
         }
-
-    fun toDatabase(source: List<PostDto>) =
-        mutableListOf<PostEntity>().also {
-            source.forEach { post -> it.add(fromNetwork(post)) }
-        } as List<PostEntity>
 }

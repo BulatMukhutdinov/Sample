@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="post"
+            type="ru.bulat.mukhutdinov.sample.post.model.Post" />
+
+        <variable
+            name="postsListViewModel"
+            type="ru.bulat.mukhutdinov.sample.postslist.ui.PostsListViewModel" />
+
+        <import type="android.view.View" />
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
+        style="@style/Widget.MaterialComponents.CardView"
+        android:layout_width="match_parent"
+        android:layout_height="184dp"
+        android:layout_marginStart="@dimen/size2x"
+        android:layout_marginEnd="@dimen/size2x"
+        android:layout_marginBottom="@dimen/size2x"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?android:attr/selectableItemBackground">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="@dimen/size2x">
+
+            <TextView
+                android:id="@+id/date"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@{post.formattedDate}"
+                android:textColor="@color/onBackground"
+                android:textSize="12sp"
+                android:textStyle="italic"
+                app:layout_constraintEnd_toStartOf="@id/avatar"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="@tools:sample/date/hhmm" />
+
+            <ImageView
+                android:id="@+id/avatar"
+                android:layout_width="@dimen/icon_thumbnail_size"
+                android:layout_height="@dimen/icon_thumbnail_size"
+                android:background="@drawable/rounded_avatar"
+                android:src="@{post.avatar}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:src="@tools:sample/avatars" />
+
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/size1x"
+                android:layout_marginEnd="@dimen/size2x"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="@{post.title}"
+                android:textColor="@color/onBackground"
+                android:textSize="24sp"
+                app:layout_constraintEnd_toStartOf="@id/avatar"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/date"
+                tools:text="@tools:sample/lorem" />
+
+            <TextView
+                android:id="@+id/body"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/size_half"
+                android:layout_marginEnd="@dimen/size2x"
+                android:ellipsize="end"
+                android:maxLines="3"
+                android:text="@{post.formattedBody}"
+                android:textColor="@color/onBackground"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toStartOf="@id/avatar"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/title"
+                tools:text="@tools:sample/lorem/random" />
+
+            <androidx.constraintlayout.widget.Barrier
+                android:id="@+id/barrier"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:barrierDirection="bottom"
+                app:constraint_referenced_ids="body, avatar" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/tags"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/size1x"
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:listitem="@layout/posts_tag_item" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
+</layout>

@@ -14,17 +14,19 @@
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/refresh"
         android:layout_width="match_parent"
+        android:layout_height="match_parent"
         app:onRefreshListener="@{() -> postsListViewModel.refresh()}"
-        app:refreshing="@{postsListViewModel.isRefreshing}"
-        android:layout_height="match_parent">
+        app:refreshing="@{postsListViewModel.isRefreshing}">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/posts"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
+            android:paddingTop="@dimen/size2x"
+            android:clipToPadding="false"
             app:postsListViewModel="@{postsListViewModel}"
-            tools:listitem="@layout/posts_item" />
+            tools:listitem="@layout/posts_text_item" />
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
 

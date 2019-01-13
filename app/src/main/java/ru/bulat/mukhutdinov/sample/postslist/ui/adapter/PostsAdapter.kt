@@ -17,14 +17,14 @@ class PostsAdapter(private val postsListViewModel: PostsListViewModel)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder =
         when (viewType) {
-            R.layout.posts_item -> PostViewHolder.create(parent)
+            R.layout.posts_text_item -> PostTextViewHolder.create(parent)
             R.layout.posts_error_item -> NetworkErrorViewHolder.create(parent)
             else -> throw IllegalArgumentException("unknown view type $viewType")
         }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when (getItemViewType(position)) {
-            R.layout.posts_item -> (holder as PostViewHolder).bindTo(getItem(position), postsListViewModel)
+            R.layout.posts_text_item -> (holder as PostTextViewHolder).bindTo(getItem(position), postsListViewModel)
             R.layout.posts_error_item -> (holder as NetworkErrorViewHolder).bindTo(postsListViewModel)
         }
     }
@@ -35,7 +35,7 @@ class PostsAdapter(private val postsListViewModel: PostsListViewModel)
         return if (hasExtraRow() && position == itemCount - 1) {
             R.layout.posts_error_item
         } else {
-            R.layout.posts_item
+            R.layout.posts_text_item
         }
     }
 

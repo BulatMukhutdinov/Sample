@@ -18,13 +18,13 @@ interface PostDao {
     fun findById(id: String): Maybe<PostEntity>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insert(user: PostEntity)
+    fun insert(post: PostEntity)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertAll(user: List<PostEntity>)
+    fun insertAll(posts: List<PostEntity>)
 
     @Update
-    fun update(user: PostEntity)
+    fun update(post: PostEntity)
 
     @Query("DELETE FROM ${PostEntity.TABLE_NAME}")
     fun clear()

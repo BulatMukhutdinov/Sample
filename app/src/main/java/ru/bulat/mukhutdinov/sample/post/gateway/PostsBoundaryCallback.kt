@@ -31,8 +31,9 @@ class PostsBoundaryCallback(
             compositeDisposable.add(
                 Single
                     .fromCallable {
-                        val options = HashMap<String, Int>()
+                        val options = HashMap<String, Any>()
                         options["limit"] = networkPageSize
+                        options["type"] = "text"
 
                         jumblr.userDashboard(options)
                     }
@@ -59,6 +60,7 @@ class PostsBoundaryCallback(
                         val options = HashMap<String, Any>()
                         options["limit"] = networkPageSize
                         options["since_id"] = itemAtEnd.id
+                        options["type"] = "text"
 
                         jumblr.userDashboard(options)
                     }

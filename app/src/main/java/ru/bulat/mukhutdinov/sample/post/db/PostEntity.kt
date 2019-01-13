@@ -12,6 +12,8 @@ class PostEntity(
     var id: Long,
     @ColumnInfo(name = COLUMN_BODY)
     var body: String? = null,
+    @ColumnInfo(name = COLUMN_AVATAR)
+    var avatar: String? = null,
     @ColumnInfo(name = COLUMN_TITLE)
     var title: String? = null,
     @ColumnInfo(name = COLUMN_DATE)
@@ -23,6 +25,7 @@ class PostEntity(
         const val TABLE_NAME = "post"
         const val COLUMN_ID = "id"
         const val COLUMN_BODY = "body"
+        const val COLUMN_AVATAR = "avatar"
         const val COLUMN_TITLE = "title"
         const val COLUMN_DATE = "date"
         const val COLUMN_TAGS = "tags"

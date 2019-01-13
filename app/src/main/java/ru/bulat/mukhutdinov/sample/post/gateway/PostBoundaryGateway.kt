@@ -18,6 +18,7 @@ import ru.bulat.mukhutdinov.sample.infrastructure.exception.mapLocalExceptions
 import ru.bulat.mukhutdinov.sample.post.db.PostDao
 import ru.bulat.mukhutdinov.sample.post.model.Post
 import ru.bulat.mukhutdinov.sample.post.model.PostConverter
+import ru.bulat.mukhutdinov.sample.post.model.PostDto
 import java.util.concurrent.TimeUnit
 
 class PostBoundaryGateway(
@@ -35,7 +36,7 @@ class PostBoundaryGateway(
         val boundaryCallback = PostsBoundaryCallback(
             jumblr = jumblr,
             compositeDisposable = compositeDisposable,
-            handleResponse = { posts -> postDao.insertAll(PostConverter.toDatabase(posts)) },
+            handleResponse = { posts -> insertIntoDatabase(posts) },
             networkPageSize = networkPageSize)
 
         val refreshTrigger = MutableLiveData<Unit>()
@@ -74,17 +75,18 @@ class PostBoundaryGateway(
         compositeDisposable.add(
             Single
                 .fromCallable {
-                    val options = HashMap<String, Int>()
+                    val options = HashMap<String, Any>()
                     options["limit"] = networkPageSize
+                    options["type"] = "text"
 
                     jumblr.userDashboard(options)
                 }
                 .subscribeOn(Schedulers.io())
                 .subscribe(
-                    {
+                    { posts ->
                         db.runInTransaction {
                             postDao.clear()
-                            postDao.insertAll(PostConverter.toDatabase(it))
+                            insertIntoDatabase(posts)
                         }
                         networkState.postValue(NetworkState.Loaded)
                     },
@@ -92,6 +94,14 @@ class PostBoundaryGateway(
         )
 
         return networkState
+    }
+
+    private fun insertIntoDatabase(posts: List<PostDto>) {
+        posts.forEach { postDto ->
+            val postEntity = PostConverter.fromNetwork(postDto)
+            postEntity.avatar = jumblr.blogInfo("${postDto.blogName}.tumblr.com")?.avatar()
+            postDao.insert(postEntity)
+        }
     }
 
     override fun findById(id: String): Maybe<Post> =
