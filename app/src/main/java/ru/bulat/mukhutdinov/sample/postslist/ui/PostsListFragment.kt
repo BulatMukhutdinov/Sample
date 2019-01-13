@@ -5,9 +5,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
 import org.kodein.di.generic.instance
+import ru.bulat.mukhutdinov.sample.MainActivity
 import ru.bulat.mukhutdinov.sample.R
 import ru.bulat.mukhutdinov.sample.databinding.PostsListBinding
+import ru.bulat.mukhutdinov.sample.infrastructure.common.model.NetworkState
 import ru.bulat.mukhutdinov.sample.infrastructure.common.ui.BaseFragment
 
 class PostsListFragment : BaseFragment<PostsListViewModel>() {
@@ -21,17 +24,10 @@ class PostsListFragment : BaseFragment<PostsListViewModel>() {
 
         binding.postsListViewModel = viewModel
 
-//        initSwipeToRefresh()
+        viewModel.networkState.observe(this, Observer { networkState ->
+            (activity as MainActivity).setLoadingVisible(networkState == NetworkState.Loading)
+        })
 
         return binding.root
     }
-
-//    private fun initSwipeToRefresh() {
-//        model.refreshState.observe(this, Observer {
-//            swipe_refresh.isRefreshing = it == NetworkState.LOADING
-//        })
-//        swipe_refresh.setOnRefreshListener {
-//            model.refresh()
-//        }
-//    }
 }

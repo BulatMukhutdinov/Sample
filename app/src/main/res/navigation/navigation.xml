@@ -31,7 +31,11 @@
         android:id="@+id/postsListFragment"
         android:name="ru.bulat.mukhutdinov.sample.postslist.ui.PostsListFragment"
         android:label="PostsListFragment"
-        tools:layout="@layout/posts_list" />
+        tools:layout="@layout/posts_list" >
+        <deepLink
+            android:id="@+id/postsDeepLink"
+            app:uri="mukhutdinovsample.page.link/index" />
+    </fragment>
 
     <fragment
         android:id="@+id/usersListFragment"

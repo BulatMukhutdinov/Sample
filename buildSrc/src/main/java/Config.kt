@@ -60,6 +60,7 @@ object Config {
 
         // firebase
         val firebaseCore = "com.google.firebase:firebase-core:16.0.1"
+        val firebaseDynamicLinks = "com.google.firebase:firebase-dynamic-links:16.0.1"
 
         // network
         val retrofit = "com.squareup.retrofit2:retrofit:${Versions.retrofit}"

@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "173367472465-1lepf58doanqfmui714g8lldt06gb9nc.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "ru.bulat.mukhutdinov.sample",
+            "certificate_hash": "14d1557c1179d0a5ae497ec55177078fb71aa20c"
+          }
+        },
+        {
           "client_id": "173367472465-8au7fqjk6lkdc1tm4n21fhcaka0rva8c.apps.googleusercontent.com",
           "client_type": 3
         }
@@ -29,8 +37,13 @@
           "status": 1
         },
         "appinvite_service": {
-          "status": 1,
-          "other_platform_oauth_client": []
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "173367472465-8au7fqjk6lkdc1tm4n21fhcaka0rva8c.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         },
         "ads_service": {
           "status": 2

@@ -24,8 +24,6 @@ fun bind(recyclerView: RecyclerView, postsListViewModel: PostsListViewModel) {
             postsListViewModel.isRetryEnabled.set(true)
             postsListViewModel.errorText.set((it as NetworkState.Error).message)
         } else {
-            changeLoadingVisibility(it)
-
             postsListViewModel.isRetryEnabled.set(false)
             postsListViewModel.errorText.set("")
         }
@@ -39,13 +37,4 @@ fun bind(recyclerView: RecyclerView, postsListViewModel: PostsListViewModel) {
             postsListViewModel.isRefreshing.set(false)
         }
     })
-}
-
-// todo implement hiding or showing loading progress bar (in toolbar)
-private fun changeLoadingVisibility(networkState: NetworkState) {
-    if (networkState == NetworkState.Loading) {
-
-    } else {
-
-    }
 }

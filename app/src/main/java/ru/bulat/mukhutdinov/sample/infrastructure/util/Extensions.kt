@@ -1,6 +1,9 @@
 package ru.bulat.mukhutdinov.sample.infrastructure.util
 
 import android.content.Context
+import android.view.View
+import android.view.View.GONE
+import android.view.View.VISIBLE
 import android.widget.Toast
 import androidx.annotation.StringRes
 import androidx.lifecycle.LiveData
@@ -40,4 +43,12 @@ fun PagingRequestHelper.createStatusLiveData(): LiveData<NetworkState> {
         }
     }
     return liveData
+}
+
+fun View.show() {
+    this.visibility = VISIBLE
+}
+
+fun View.hide() {
+    this.visibility = GONE
 }
