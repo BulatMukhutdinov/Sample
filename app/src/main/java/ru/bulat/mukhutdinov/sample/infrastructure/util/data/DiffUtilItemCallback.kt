@@ -1,4 +1,4 @@
-package ru.bulat.mukhutdinov.sample.infrastructure.util
+package ru.bulat.mukhutdinov.sample.infrastructure.util.data
 
 import android.annotation.SuppressLint
 import androidx.recyclerview.widget.DiffUtil

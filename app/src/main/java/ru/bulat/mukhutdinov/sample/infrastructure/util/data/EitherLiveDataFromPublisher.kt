@@ -1,4 +1,4 @@
-package ru.bulat.mukhutdinov.sample.infrastructure.util
+package ru.bulat.mukhutdinov.sample.infrastructure.util.data
 
 import androidx.lifecycle.LiveData
 import org.reactivestreams.Publisher

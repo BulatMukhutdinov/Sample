@@ -1,4 +1,4 @@
-package ru.bulat.mukhutdinov.sample.infrastructure.util
+package ru.bulat.mukhutdinov.sample.infrastructure.util.data
 
 sealed class Either<out DataType, out ErrorType> {
 
@@ -15,8 +15,8 @@ sealed class Either<out DataType, out ErrorType> {
     object Complete : Either<Nothing, Nothing>()
 
     open val isLoading get() = this is Loading
-    val isData get() = this is Either.Data<DataType>
-    val isError get() = this is Either.Error<ErrorType>
+    val isData get() = this is Data<DataType>
+    val isError get() = this is Error<ErrorType>
 
     fun loading(isLoading: Boolean) = Loading(isLoading)
     fun <ErrorType> error(error: ErrorType) = Error(error)
@@ -29,8 +29,8 @@ sealed class Either<out DataType, out ErrorType> {
     ) {
         when (this) {
             is Loading -> loadingCallback?.invoke(isLoading)
-            is Either.Error -> errorCallback?.invoke(error)
-            is Either.Data -> dataCallback(data)
+            is Error -> errorCallback?.invoke(error)
+            is Data -> dataCallback(data)
         }
     }
 
@@ -40,9 +40,9 @@ sealed class Either<out DataType, out ErrorType> {
         noinline loadingCallback: ((Boolean) -> Unit)? = null
     ) {
         when (this) {
-            is Either.Loading -> loadingCallback?.invoke(isLoading)
-            is Either.Error -> errorCallback?.invoke(error)
-            is Either.Complete -> completeCallback()
+            is Loading -> loadingCallback?.invoke(isLoading)
+            is Error -> errorCallback?.invoke(error)
+            is Complete -> completeCallback()
         }
     }
 }

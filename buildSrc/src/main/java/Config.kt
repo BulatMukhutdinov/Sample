@@ -34,26 +34,30 @@ object Config {
         val coreKtx = "androidx.core:core-ktx:1.0.1"
         val constraintLayout = "androidx.constraintlayout:constraintlayout:1.1.3"
 
+        // navigation
         val navigationFragment = "android.arch.navigation:navigation-fragment:${Versions.navigatio}"
         val navigationUi = "android.arch.navigation:navigation-ui:${Versions.navigatio}"
         val navigationFragmentKtx = "android.arch.navigation:navigation-fragment-ktx:${Versions.navigatio}"
         val navigationUiKtx = "android.arch.navigation:navigation-ui-ktx:${Versions.navigatio}"
 
+        // lifecycle
         val lifecycleExtensions = "android.arch.lifecycle:extensions:${Versions.lifecycle}"
         val lifecycleCompiler = "android.arch.lifecycle:compiler:${Versions.lifecycle}"
 
+        // room
         val roomRuntime = "androidx.room:room-runtime:${Versions.room}"
         val roomCompiler = "androidx.room:room-compiler:${Versions.room}"
         val roomRxjava2 = "androidx.room:room-rxjava2:${Versions.room}"
 
+        // paging
         val pagingRuntime = "androidx.paging:paging-runtime-ktx:${Versions.paging}"
         val pagingRxjava2 = "androidx.paging:paging-rxjava2-ktx:${Versions.paging}"
 
-        //rxJava
+        // rxJava
         val rxandroid = "io.reactivex.rxjava2:rxandroid:${Versions.rxJava}"
         val rxjava = "io.reactivex.rxjava2:rxjava:${Versions.rxJava}"
 
-        //kodein
+        // kodein
         val kodeinDiGenericJvm = "org.kodein.di:kodein-di-generic-jvm:${Versions.kodein}"
         val kodeinDiFrameworkAndroidX = "org.kodein.di:kodein-di-framework-android-x:${Versions.kodein}"
         val kodeinDiConfJvm = "org.kodein.di:kodein-di-conf-jvm:${Versions.kodein}"
@@ -67,8 +71,9 @@ object Config {
         val converterGson = "com.squareup.retrofit2:converter-gson:${Versions.retrofit}"
         val loggingInterceptor = "com.squareup.okhttp3:logging-interceptor:3.9.0"
 
-        //utils
+        // utils
         val timber = "com.jakewharton.timber:timber:4.7.1"
+        val jumblr = "com.tumblr:jumblr:0.0.13"
         val picasso = "com.squareup.picasso:picasso:2.71828"
         val databindingCompiler = "com.android.databinding:compiler:3.1.4"
     }

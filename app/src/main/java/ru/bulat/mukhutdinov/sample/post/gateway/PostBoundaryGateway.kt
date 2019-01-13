@@ -5,37 +5,37 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import androidx.paging.toLiveData
+import com.tumblr.jumblr.JumblrClient
 import io.reactivex.Completable
 import io.reactivex.Maybe
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
-import ru.bulat.mukhutdinov.sample.infrastructure.common.api.SampleApi
+import io.reactivex.Single
+import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.schedulers.Schedulers
 import ru.bulat.mukhutdinov.sample.infrastructure.common.db.SampleDatabase
 import ru.bulat.mukhutdinov.sample.infrastructure.common.model.Listing
 import ru.bulat.mukhutdinov.sample.infrastructure.common.model.NetworkState
 import ru.bulat.mukhutdinov.sample.infrastructure.exception.mapLocalExceptions
-import ru.bulat.mukhutdinov.sample.post.api.PostDto
 import ru.bulat.mukhutdinov.sample.post.db.PostDao
 import ru.bulat.mukhutdinov.sample.post.model.Post
 import ru.bulat.mukhutdinov.sample.post.model.PostConverter
-import java.util.concurrent.Executor
 import java.util.concurrent.TimeUnit
 
 class PostBoundaryGateway(
     private val db: SampleDatabase,
     private val postDao: PostDao,
-    private val api: SampleApi,
-    private val executor: Executor,
+    private val jumblr: JumblrClient,
+    private val blogName: String, // should be used later to retrieve posts of given blog
     private val networkPageSize: Int
 ) : PostGateway {
+
+    private val compositeDisposable = CompositeDisposable()
 
     @MainThread
     override fun getPaged(pageSize: Int): Listing<Post> {
         val boundaryCallback = PostsBoundaryCallback(
-            api = api,
+            jumblr = jumblr,
+            compositeDisposable = compositeDisposable,
             handleResponse = { posts -> postDao.insertAll(PostConverter.toDatabase(posts)) },
-            executor = executor,
             networkPageSize = networkPageSize)
 
         val refreshTrigger = MutableLiveData<Unit>()
@@ -71,24 +71,24 @@ class PostBoundaryGateway(
         val networkState = MutableLiveData<NetworkState>()
         networkState.value = NetworkState.Loading
 
-        api.get(networkPageSize).enqueue(
-            object : Callback<List<PostDto>> {
-                override fun onFailure(call: Call<List<PostDto>>, throwable: Throwable) {
-                    // retrofit calls this on main thread so safe to call set value
-                    networkState.value = NetworkState.Error(throwable.message)
-                }
+        compositeDisposable.add(
+            Single
+                .fromCallable {
+                    val options = HashMap<String, Int>()
+                    options["limit"] = networkPageSize
 
-                override fun onResponse(call: Call<List<PostDto>>, response: Response<List<PostDto>>) {
-                    executor.execute {
+                    jumblr.userDashboard(options)
+                }
+                .subscribeOn(Schedulers.io())
+                .subscribe(
+                    {
                         db.runInTransaction {
                             postDao.clear()
-                            postDao.insertAll(PostConverter.toDatabase(response.body() ?: emptyList()))
+                            postDao.insertAll(PostConverter.toDatabase(it))
                         }
-                        // since we are in bg thread now, post the result.
                         networkState.postValue(NetworkState.Loaded)
-                    }
-                }
-            }
+                    },
+                    { networkState.postValue(NetworkState.Error(it.message)) })
         )
 
         return networkState
@@ -104,4 +104,8 @@ class PostBoundaryGateway(
             // emulate processing delay
             .delay(2, TimeUnit.SECONDS)
             .mapLocalExceptions()
+
+    override fun clearSubscriptions() {
+        compositeDisposable.clear()
+    }
 }

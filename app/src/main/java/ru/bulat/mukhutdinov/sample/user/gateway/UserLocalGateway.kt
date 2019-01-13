@@ -9,7 +9,7 @@ interface UserLocalGateway {
 
     fun getAll(): Single<List<User>>
 
-    fun findById(id: Int): Maybe<User>
+    fun findById(id: Long): Maybe<User>
 
     fun update(user: User): Completable
 }

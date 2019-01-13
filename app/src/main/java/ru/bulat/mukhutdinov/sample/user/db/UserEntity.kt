@@ -9,7 +9,7 @@ import ru.bulat.mukhutdinov.sample.user.db.UserEntity.Companion.TABLE_NAME
 class UserEntity(
     @PrimaryKey
     @ColumnInfo(name = COLUMN_ID)
-    var id: Int,
+    var id: Long,
     @ColumnInfo(name = COLUMN_NAME)
     var name: String,
     @ColumnInfo(name = COLUMN_ICON)

@@ -12,4 +12,6 @@ interface PostGateway {
     fun findById(id: String): Maybe<Post>
 
     fun update(post: Post): Completable
+
+    fun clearSubscriptions()
 }

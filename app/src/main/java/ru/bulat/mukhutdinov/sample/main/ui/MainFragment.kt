@@ -11,7 +11,7 @@ import ru.bulat.mukhutdinov.sample.R
 import ru.bulat.mukhutdinov.sample.databinding.MainBinding
 import ru.bulat.mukhutdinov.sample.infrastructure.common.ui.BaseFragment
 import ru.bulat.mukhutdinov.sample.infrastructure.exception.SampleException
-import ru.bulat.mukhutdinov.sample.infrastructure.util.Either
+import ru.bulat.mukhutdinov.sample.infrastructure.util.data.Either
 import ru.bulat.mukhutdinov.sample.infrastructure.util.toast
 
 class MainFragment : BaseFragment<MainViewModel>() {

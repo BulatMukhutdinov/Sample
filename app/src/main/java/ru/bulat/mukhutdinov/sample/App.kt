@@ -11,6 +11,7 @@ import org.kodein.di.generic.bind
 import org.kodein.di.generic.instance
 import org.kodein.di.generic.singleton
 import ru.bulat.mukhutdinov.sample.infrastructure.common.di.CommonInjectionModule
+import ru.bulat.mukhutdinov.sample.infrastructure.common.network.di.NetworkInjectionModule
 import ru.bulat.mukhutdinov.sample.infrastructure.util.DummyDataProvider
 import ru.bulat.mukhutdinov.sample.main.di.MainInjectionModule
 import ru.bulat.mukhutdinov.sample.post.di.PostInjectionModule
@@ -44,6 +45,7 @@ class App : Application(), KodeinAware {
             addImport(MainInjectionModule.module)
             addImport(PostsListInjectionModule.module)
             addImport(PostInjectionModule.module)
+            addImport(NetworkInjectionModule.module)
 
             addImport(Kodein.Module(ru.bulat.mukhutdinov.sample.App::class.java.name) {
                 bind<ContentResolver>() with singleton { this@App.contentResolver }

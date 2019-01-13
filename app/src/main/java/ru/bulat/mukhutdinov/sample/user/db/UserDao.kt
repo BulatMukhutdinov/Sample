@@ -15,7 +15,7 @@ interface UserDao {
     fun getAll(): Single<List<UserEntity>>
 
     @Query("SELECT * FROM ${UserEntity.TABLE_NAME} WHERE ${UserEntity.COLUMN_ID} = :id")
-    fun findById(id: Int): Maybe<UserEntity>
+    fun findById(id: Long): Maybe<UserEntity>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(user: UserEntity)

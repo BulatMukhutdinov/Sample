@@ -11,7 +11,7 @@ import java.util.concurrent.TimeUnit
 
 class UserDbGateway(private val userDao: UserDao) : UserLocalGateway {
 
-    override fun findById(id: Int): Maybe<User> =
+    override fun findById(id: Long): Maybe<User> =
         userDao.findById(id)
             .map { UserConverter.fromDatabase(it) }
             .mapLocalExceptions()

@@ -13,7 +13,7 @@ import ru.bulat.mukhutdinov.sample.infrastructure.common.ui.BaseAndroidViewModel
 import ru.bulat.mukhutdinov.sample.post.gateway.PostGateway
 import ru.bulat.mukhutdinov.sample.post.model.Post
 
-class PostsListAndroidViewModel(postsGateway: PostGateway)
+class PostsListAndroidViewModel(private val postsGateway: PostGateway)
     : BaseAndroidViewModel(), PostsListViewModel {
 
     override val errorText = ObservableField<String>("")
@@ -39,5 +39,10 @@ class PostsListAndroidViewModel(postsGateway: PostGateway)
 
     override fun retry() {
         postsListing.value?.retry?.invoke()
+    }
+
+    override fun onCleared() {
+        super.onCleared()
+        postsGateway.clearSubscriptions()
     }
 }

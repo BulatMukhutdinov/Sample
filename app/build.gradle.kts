@@ -77,13 +77,9 @@ dependencies {
     // firebase
     implementation(Config.Libs.firebaseCore)
 
-    // network
-    implementation(Config.Libs.retrofit)
-    implementation(Config.Libs.converterGson)
-    implementation(Config.Libs.loggingInterceptor)
-
     // utils
     implementation(Config.Libs.timber)
+    implementation(Config.Libs.jumblr)
     implementation(Config.Libs.picasso)
     implementation(Config.Libs.databindingCompiler)
 }

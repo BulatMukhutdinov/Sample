@@ -16,6 +16,8 @@ import io.reactivex.Single
 import ru.bulat.mukhutdinov.sample.infrastructure.common.model.NetworkState
 import ru.bulat.mukhutdinov.sample.infrastructure.exception.SampleException
 import ru.bulat.mukhutdinov.sample.infrastructure.exception.mapLocalException
+import ru.bulat.mukhutdinov.sample.infrastructure.util.data.Either
+import ru.bulat.mukhutdinov.sample.infrastructure.util.data.EitherLiveDataFromPublisher
 
 fun Completable.toEitherLiveData() = toFlowable<Nothing>().toEitherLiveData()
 fun <T> Maybe<T>.toEitherLiveData() = toFlowable().toEitherLiveData()

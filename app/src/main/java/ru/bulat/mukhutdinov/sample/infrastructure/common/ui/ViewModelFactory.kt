@@ -1,4 +1,4 @@
-package ru.bulat.mukhutdinov.sample.infrastructure.common.di
+package ru.bulat.mukhutdinov.sample.infrastructure.common.ui
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider

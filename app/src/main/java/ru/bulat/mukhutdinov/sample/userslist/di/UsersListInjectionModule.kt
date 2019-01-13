@@ -9,7 +9,7 @@ import org.kodein.di.generic.bind
 import org.kodein.di.generic.instance
 import org.kodein.di.generic.scoped
 import org.kodein.di.generic.singleton
-import ru.bulat.mukhutdinov.sample.infrastructure.common.di.ViewModelFactory
+import ru.bulat.mukhutdinov.sample.infrastructure.common.ui.ViewModelFactory
 import ru.bulat.mukhutdinov.sample.user.gateway.UserLocalGateway
 import ru.bulat.mukhutdinov.sample.userslist.ui.UsersListAndroidViewModel
 import ru.bulat.mukhutdinov.sample.userslist.ui.UsersListViewModel

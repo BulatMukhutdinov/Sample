@@ -8,12 +8,12 @@ import io.reactivex.schedulers.Schedulers
 import ru.bulat.mukhutdinov.sample.infrastructure.common.ui.BaseAndroidViewModel
 import ru.bulat.mukhutdinov.sample.infrastructure.exception.SampleException
 import ru.bulat.mukhutdinov.sample.infrastructure.exception.mapLocalException
-import ru.bulat.mukhutdinov.sample.infrastructure.util.Either
+import ru.bulat.mukhutdinov.sample.infrastructure.util.data.Either
 import ru.bulat.mukhutdinov.sample.user.gateway.UserLocalGateway
 import ru.bulat.mukhutdinov.sample.user.model.User
 import timber.log.Timber
 
-class UserAndroidViewModel(userId: Int, private val userLocalGateway: UserLocalGateway)
+class UserAndroidViewModel(userId: Long, private val userLocalGateway: UserLocalGateway)
     : BaseAndroidViewModel(), UserViewModel {
 
     override val user: ObservableField<User> = ObservableField()

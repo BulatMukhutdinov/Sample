@@ -24,9 +24,9 @@
         android:layout_marginStart="@dimen/size2x"
         android:layout_marginEnd="@dimen/size2x"
         android:layout_marginBottom="@dimen/size2x"
-        android:foreground="?android:attr/selectableItemBackground"
         android:clickable="true"
-        android:focusable="true">
+        android:focusable="true"
+        android:foreground="?android:attr/selectableItemBackground">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -38,7 +38,6 @@
                 android:layout_width="@dimen/icon_thumbnail_size"
                 android:layout_height="@dimen/icon_thumbnail_size"
                 android:background="@drawable/rounded_avatar"
-                android:src="@{post.avatar}"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:src="@tools:sample/avatars" />
@@ -50,7 +49,7 @@
                 android:layout_height="0dp"
                 android:layout_marginStart="@dimen/size2x"
                 android:ellipsize="end"
-                android:text="@{post.login}"
+                android:text="@{post.title}"
                 android:textColor="@color/onBackground"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"

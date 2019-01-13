@@ -59,8 +59,8 @@
 
         <argument
             android:name="userId"
-            android:defaultValue="0"
-            app:argType="integer" />
+            android:defaultValue="0L"
+            app:argType="long" />
     </fragment>
 
 </navigation>

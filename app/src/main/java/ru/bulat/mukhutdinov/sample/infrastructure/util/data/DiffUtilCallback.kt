@@ -1,4 +1,4 @@
-package ru.bulat.mukhutdinov.sample.infrastructure.util
+package ru.bulat.mukhutdinov.sample.infrastructure.util.data
 
 import androidx.recyclerview.widget.DiffUtil
 import ru.bulat.mukhutdinov.sample.infrastructure.common.model.BaseModel

@@ -7,8 +7,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import ru.bulat.mukhutdinov.sample.R
 import ru.bulat.mukhutdinov.sample.infrastructure.exception.SampleException
-import ru.bulat.mukhutdinov.sample.infrastructure.util.DiffUtilCallback
-import ru.bulat.mukhutdinov.sample.infrastructure.util.Either
+import ru.bulat.mukhutdinov.sample.infrastructure.util.data.DiffUtilCallback
+import ru.bulat.mukhutdinov.sample.infrastructure.util.data.Either
 import ru.bulat.mukhutdinov.sample.infrastructure.util.toast
 import ru.bulat.mukhutdinov.sample.user.model.User
 import ru.bulat.mukhutdinov.sample.userslist.ui.adapter.UsersAdapter

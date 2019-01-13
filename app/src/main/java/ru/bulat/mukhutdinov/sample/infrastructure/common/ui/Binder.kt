@@ -1,4 +1,4 @@
-package ru.bulat.mukhutdinov.sample.infrastructure.util
+package ru.bulat.mukhutdinov.sample.infrastructure.common.ui
 
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter

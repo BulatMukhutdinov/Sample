@@ -12,13 +12,13 @@ import ru.bulat.mukhutdinov.sample.R
 import ru.bulat.mukhutdinov.sample.databinding.UserBinding
 import ru.bulat.mukhutdinov.sample.infrastructure.common.ui.BaseFragment
 import ru.bulat.mukhutdinov.sample.infrastructure.exception.SampleException
-import ru.bulat.mukhutdinov.sample.infrastructure.util.Either
+import ru.bulat.mukhutdinov.sample.infrastructure.util.data.Either
 import ru.bulat.mukhutdinov.sample.infrastructure.util.toast
 
 class UserFragment : BaseFragment<UserViewModel>() {
 
     private val userId by lazy { arguments?.let { UserFragmentArgs.fromBundle(it).userId } ?: 0 }
-    private val userViewModelFactory: (Int, Fragment) -> UserViewModel by factory2()
+    private val userViewModelFactory: (Long, Fragment) -> UserViewModel by factory2()
 
     override val viewModel: UserViewModel by lazy { userViewModelFactory(userId, this) }
 

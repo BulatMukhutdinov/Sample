@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import ru.bulat.mukhutdinov.sample.R
 import ru.bulat.mukhutdinov.sample.infrastructure.common.model.NetworkState
 import ru.bulat.mukhutdinov.sample.infrastructure.common.model.Status
-import ru.bulat.mukhutdinov.sample.infrastructure.util.DiffUtilItemCallback
+import ru.bulat.mukhutdinov.sample.infrastructure.util.data.DiffUtilItemCallback
 import ru.bulat.mukhutdinov.sample.post.model.Post
 import ru.bulat.mukhutdinov.sample.postslist.ui.PostsListViewModel
 

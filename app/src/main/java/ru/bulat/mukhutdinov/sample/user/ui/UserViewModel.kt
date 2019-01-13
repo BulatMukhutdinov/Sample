@@ -5,7 +5,7 @@ import androidx.databinding.ObservableField
 import androidx.lifecycle.LiveData
 import ru.bulat.mukhutdinov.sample.infrastructure.common.ui.BaseViewModel
 import ru.bulat.mukhutdinov.sample.infrastructure.exception.SampleException
-import ru.bulat.mukhutdinov.sample.infrastructure.util.Either
+import ru.bulat.mukhutdinov.sample.infrastructure.util.data.Either
 import ru.bulat.mukhutdinov.sample.user.model.User
 
 interface UserViewModel : BaseViewModel {

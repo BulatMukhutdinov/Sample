@@ -2,8 +2,8 @@ package ru.bulat.mukhutdinov.sample.main.ui
 
 import ru.bulat.mukhutdinov.sample.infrastructure.common.ui.BaseAndroidViewModel
 import ru.bulat.mukhutdinov.sample.infrastructure.exception.SampleException
-import ru.bulat.mukhutdinov.sample.infrastructure.util.Either
-import ru.bulat.mukhutdinov.sample.infrastructure.util.SingleLiveEvent
+import ru.bulat.mukhutdinov.sample.infrastructure.util.data.Either
+import ru.bulat.mukhutdinov.sample.infrastructure.util.data.SingleLiveEvent
 
 class MainAndroidViewModel : BaseAndroidViewModel(), MainViewModel {
 

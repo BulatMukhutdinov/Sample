@@ -3,7 +3,7 @@ package ru.bulat.mukhutdinov.sample.main.ui
 import androidx.lifecycle.LiveData
 import ru.bulat.mukhutdinov.sample.infrastructure.common.ui.BaseViewModel
 import ru.bulat.mukhutdinov.sample.infrastructure.exception.SampleException
-import ru.bulat.mukhutdinov.sample.infrastructure.util.Either
+import ru.bulat.mukhutdinov.sample.infrastructure.util.data.Either
 
 interface MainViewModel : BaseViewModel {
 
