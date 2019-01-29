@@ -15,3 +15,4 @@
 * Add Stetho
 * Add Strict mode
 * Setup CI
+* Replace Kodein by Koin
