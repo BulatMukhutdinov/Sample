@@ -16,7 +16,7 @@ object PostInjectionModule {
                 jumblr = get(),
                 db = get(),
                 blogName = blogName,
-                networkPageSize = 10,
+                networkPageSize = 20,
                 postDao = get()
             )
         }

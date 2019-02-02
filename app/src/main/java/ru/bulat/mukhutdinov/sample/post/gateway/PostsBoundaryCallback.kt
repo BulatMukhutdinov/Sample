@@ -62,7 +62,7 @@ class PostsBoundaryCallback(
                     .fromCallable {
                         val options = HashMap<String, Any>()
                         options["limit"] = networkPageSize
-                        options["since_id"] = itemAtEnd.id
+                        options["before_id"] = itemAtEnd.id
                         options["type"] = "text"
 
                         jumblr.userDashboard(options)
