@@ -2,14 +2,13 @@ package ru.bulat.mukhutdinov.sample
 
 import android.annotation.SuppressLint
 import android.app.Application
-import android.content.ContentResolver
-import android.content.Context
-import org.kodein.di.Kodein
-import org.kodein.di.KodeinAware
-import org.kodein.di.conf.ConfigurableKodein
-import org.kodein.di.generic.bind
-import org.kodein.di.generic.instance
-import org.kodein.di.generic.singleton
+import android.os.StrictMode
+import com.facebook.stetho.Stetho
+import io.reactivex.Completable
+import io.reactivex.schedulers.Schedulers
+import org.koin.android.ext.android.inject
+import org.koin.android.ext.koin.androidContext
+import org.koin.core.context.startKoin
 import ru.bulat.mukhutdinov.sample.infrastructure.common.di.CommonInjectionModule
 import ru.bulat.mukhutdinov.sample.infrastructure.common.network.di.NetworkInjectionModule
 import ru.bulat.mukhutdinov.sample.infrastructure.util.DummyDataProvider
@@ -18,18 +17,22 @@ import ru.bulat.mukhutdinov.sample.post.di.PostInjectionModule
 import ru.bulat.mukhutdinov.sample.postslist.di.PostsListInjectionModule
 import ru.bulat.mukhutdinov.sample.user.di.UserInjectionModule
 import ru.bulat.mukhutdinov.sample.userslist.di.UsersListInjectionModule
+import timber.log.Timber
 
-class App : Application(), KodeinAware {
+class App : Application() {
 
-    override val kodein = ConfigurableKodein()
-
-    private val dummyDataProvider: DummyDataProvider by instance()
+    private val dummyDataProvider: DummyDataProvider by inject()
 
     @SuppressLint("CheckResult")
     override fun onCreate() {
         super.onCreate()
 
-        setupKodein()
+//        setupStrictMode()
+
+        setupKoin()
+
+        setupStetho()
+
 //        dummyDataProvider.generateUsersDummyData()
 //            .subscribeOn(Schedulers.io())
 //            .subscribe(
@@ -37,21 +40,48 @@ class App : Application(), KodeinAware {
 //                { Timber.e(it) })
     }
 
-    private fun setupKodein() {
-        kodein.apply {
-            addImport(UserInjectionModule.module)
-            addImport(CommonInjectionModule.module)
-            addImport(UsersListInjectionModule.module)
-            addImport(MainInjectionModule.module)
-            addImport(PostsListInjectionModule.module)
-            addImport(PostInjectionModule.module)
-            addImport(NetworkInjectionModule.module)
+    @SuppressLint("CheckResult")
+    private fun setupStetho() {
+        Completable.fromCallable { Stetho.initializeWithDefaults(this) }
+            .subscribeOn(Schedulers.io())
+            .subscribe(
+                { Timber.d("Stetho is initialized") },
+                { Timber.e(it) }
+            )
+    }
 
-            addImport(Kodein.Module(ru.bulat.mukhutdinov.sample.App::class.java.name) {
-                bind<ContentResolver>() with singleton { this@App.contentResolver }
-                bind<Context>() with singleton { this@App }
-                bind<Application>() with singleton { this@App }
-            })
+    private fun setupStrictMode() {
+        if (BuildConfig.DEBUG) {
+            StrictMode.setThreadPolicy(
+                StrictMode.ThreadPolicy.Builder()
+                    .detectAll()
+                    .penaltyLog()
+                    .penaltyDeath()
+                    .build()
+            )
+
+            StrictMode.setVmPolicy(StrictMode.VmPolicy.Builder()
+                .detectAll()
+                .penaltyLog()
+                .penaltyDeath()
+                .build()
+            )
+        }
+    }
+
+    private fun setupKoin() {
+        startKoin {
+            androidContext(this@App)
+
+            modules(
+                UserInjectionModule.module,
+                CommonInjectionModule.module,
+                UsersListInjectionModule.module,
+                MainInjectionModule.module,
+                PostInjectionModule.module,
+                PostsListInjectionModule.module,
+                NetworkInjectionModule.module
+            )
         }
     }
 }

@@ -5,10 +5,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import org.kodein.di.generic.factory2
-import org.kodein.di.generic.instance
+import org.koin.android.ext.android.inject
+import org.koin.androidx.viewmodel.ext.viewModel
+import org.koin.core.parameter.parametersOf
 import ru.bulat.mukhutdinov.sample.MainActivity
 import ru.bulat.mukhutdinov.sample.R
 import ru.bulat.mukhutdinov.sample.databinding.PostsListBinding
@@ -18,13 +18,10 @@ import ru.bulat.mukhutdinov.sample.postslist.di.PostsListInjectionModule
 
 class PostsListFragment : BaseFragment<PostsListViewModel>() {
 
-    override val viewModel by lazy {
-        viewModelFactory(this, myBlogName)
-    }
+    override val viewModel
+        by viewModel<PostsListAndroidViewModel> { parametersOf(this, myBlogName) }
 
-    private val viewModelFactory: (Fragment, String) -> PostsListViewModel by factory2()
-
-    private val myBlogName: String by instance(PostsListInjectionModule.MY_BLOG_TAG)
+    private val myBlogName: String by inject(PostsListInjectionModule.MY_BLOG_TAG)
 
     private lateinit var binding: PostsListBinding
 

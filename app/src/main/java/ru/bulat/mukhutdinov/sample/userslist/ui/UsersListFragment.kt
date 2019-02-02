@@ -6,18 +6,16 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
-import org.kodein.di.generic.instance
+import org.koin.androidx.viewmodel.ext.viewModel
+import org.koin.core.parameter.parametersOf
 import ru.bulat.mukhutdinov.sample.R
 import ru.bulat.mukhutdinov.sample.databinding.UsersListBinding
 import ru.bulat.mukhutdinov.sample.infrastructure.common.ui.BaseFragment
-import ru.bulat.mukhutdinov.sample.infrastructure.exception.SampleException
-import ru.bulat.mukhutdinov.sample.infrastructure.util.data.Either
-import ru.bulat.mukhutdinov.sample.infrastructure.util.toast
-import ru.bulat.mukhutdinov.sample.user.model.User
+import ru.bulat.mukhutdinov.sample.infrastructure.extension.toast
 
 class UsersListFragment : BaseFragment<UsersListViewModel>() {
 
-    override val viewModel: UsersListViewModel by instance()
+    override val viewModel by viewModel<UsersListAndroidViewModel> { parametersOf(this) }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         val binding: UsersListBinding = DataBindingUtil.inflate(inflater, R.layout.users_list, container, false)
@@ -25,7 +23,7 @@ class UsersListFragment : BaseFragment<UsersListViewModel>() {
         binding.usersListViewModel = viewModel
 
         viewModel.onUserClicked.observe(viewLifecycleOwner,
-            Observer<Either<User, SampleException>> { either ->
+            Observer { either ->
                 either?.either(
                     dataCallback = { user ->
                         val direction = UsersListFragmentDirections.usersListFragmentToUserFragment()

@@ -7,10 +7,12 @@ import com.tumblr.jumblr.JumblrClient
 import io.reactivex.Single
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
-import ru.bulat.mukhutdinov.sample.infrastructure.util.createStatusLiveData
+import ru.bulat.mukhutdinov.sample.infrastructure.common.gateway.Config
+import ru.bulat.mukhutdinov.sample.infrastructure.extension.createStatusLiveData
 import ru.bulat.mukhutdinov.sample.post.model.Post
 import ru.bulat.mukhutdinov.sample.post.model.PostDto
 import java.util.concurrent.Executors
+import java.util.concurrent.TimeUnit
 
 class PostsBoundaryCallback(
     private val jumblr: JumblrClient,
@@ -37,6 +39,7 @@ class PostsBoundaryCallback(
 
                         jumblr.userDashboard(options)
                     }
+                    .timeout(Config.TIMEOUT_SEC, TimeUnit.SECONDS)
                     .subscribeOn(Schedulers.io())
                     .subscribe(
                         { posts ->
@@ -64,6 +67,7 @@ class PostsBoundaryCallback(
 
                         jumblr.userDashboard(options)
                     }
+                    .timeout(Config.TIMEOUT_SEC, TimeUnit.SECONDS)
                     .subscribeOn(Schedulers.io())
                     .subscribe(
                         { posts ->

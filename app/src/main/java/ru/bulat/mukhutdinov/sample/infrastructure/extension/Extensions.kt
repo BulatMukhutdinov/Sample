@@ -1,4 +1,4 @@
-package ru.bulat.mukhutdinov.sample.infrastructure.util
+package ru.bulat.mukhutdinov.sample.infrastructure.extension
 
 import android.content.Context
 import android.view.View
@@ -29,10 +29,10 @@ fun Context.toast(@StringRes stringRes: Int): Toast = Toast
     .makeText(this, getString(stringRes), Toast.LENGTH_LONG)
     .apply { show() }
 
-private fun getErrorMessage(report: PagingRequestHelper.StatusReport): String {
+private fun getErrorMessage(report: PagingRequestHelper.StatusReport): String? {
     return PagingRequestHelper.RequestType.values().mapNotNull {
         report.getErrorFor(it)?.message
-    }.first()
+    }.firstOrNull()
 }
 
 fun PagingRequestHelper.createStatusLiveData(): LiveData<NetworkState> {

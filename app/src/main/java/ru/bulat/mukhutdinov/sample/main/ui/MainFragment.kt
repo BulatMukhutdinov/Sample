@@ -6,17 +6,15 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
-import org.kodein.di.generic.instance
+import org.koin.androidx.viewmodel.ext.viewModel
 import ru.bulat.mukhutdinov.sample.R
 import ru.bulat.mukhutdinov.sample.databinding.MainBinding
 import ru.bulat.mukhutdinov.sample.infrastructure.common.ui.BaseFragment
-import ru.bulat.mukhutdinov.sample.infrastructure.exception.SampleException
-import ru.bulat.mukhutdinov.sample.infrastructure.util.data.Either
-import ru.bulat.mukhutdinov.sample.infrastructure.util.toast
+import ru.bulat.mukhutdinov.sample.infrastructure.extension.toast
 
 class MainFragment : BaseFragment<MainViewModel>() {
 
-    override val viewModel: MainViewModel by instance()
+    override val viewModel by viewModel<MainAndroidViewModel>()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         val binding: MainBinding = DataBindingUtil.inflate(inflater, R.layout.main, container, false)
@@ -33,7 +31,7 @@ class MainFragment : BaseFragment<MainViewModel>() {
 
     private fun listenForClicks() {
         viewModel.onUsersListAppClicked.observe(viewLifecycleOwner,
-            Observer<Either<Unit, SampleException>> { either ->
+            Observer { either ->
                 either?.either(
                     completeCallback = {
                         val direction = MainFragmentDirections.mainFragmentToUsersListFragment()
@@ -44,7 +42,7 @@ class MainFragment : BaseFragment<MainViewModel>() {
             })
 
         viewModel.onPostsListAppClicked.observe(viewLifecycleOwner,
-            Observer<Either<Unit, SampleException>> { either ->
+            Observer { either ->
                 either?.either(
                     completeCallback = {
                         val direction = MainFragmentDirections.mainFragmentToPostsListFragment()

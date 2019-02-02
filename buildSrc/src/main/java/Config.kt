@@ -6,7 +6,7 @@ object Config {
         val lifecycle = "2.0.0."
         val room = "2.1.0-alpha03"
         val navigatio = "1.0.0-alpha09"
-        val kodein = "5.3.0"
+        val koin = "2.0.0-beta-1"
         val paging = "2.1.0-rc01"
         val retrofit = "2.5.0"
     }
@@ -57,10 +57,10 @@ object Config {
         val rxandroid = "io.reactivex.rxjava2:rxandroid:${Versions.rxJava}"
         val rxjava = "io.reactivex.rxjava2:rxjava:${Versions.rxJava}"
 
-        // kodein
-        val kodeinDiGenericJvm = "org.kodein.di:kodein-di-generic-jvm:${Versions.kodein}"
-        val kodeinDiFrameworkAndroidX = "org.kodein.di:kodein-di-framework-android-x:${Versions.kodein}"
-        val kodeinDiConfJvm = "org.kodein.di:kodein-di-conf-jvm:${Versions.kodein}"
+        // koin
+        val koin = "org.koin:koin-android:${Versions.koin}"
+        val koinViewModel = "org.koin:koin-androidx-viewmodel:${Versions.koin}"
+        val koinScope = "org.koin:koin-androidx-scope:${Versions.koin}"
 
         // firebase
         val firebaseCore = "com.google.firebase:firebase-core:16.0.1"
@@ -76,5 +76,6 @@ object Config {
         val jumblr = "com.tumblr:jumblr:0.0.13"
         val picasso = "com.squareup.picasso:picasso:2.71828"
         val databindingCompiler = "com.android.databinding:compiler:3.1.4"
+        val stetho = "com.facebook.stetho:stetho:1.5.0"
     }
 }

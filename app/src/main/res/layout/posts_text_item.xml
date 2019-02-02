@@ -10,10 +10,6 @@
             name="post"
             type="ru.bulat.mukhutdinov.sample.post.model.Post" />
 
-        <variable
-            name="postsListViewModel"
-            type="ru.bulat.mukhutdinov.sample.postslist.ui.PostsListViewModel" />
-
         <import type="android.view.View" />
     </data>
 

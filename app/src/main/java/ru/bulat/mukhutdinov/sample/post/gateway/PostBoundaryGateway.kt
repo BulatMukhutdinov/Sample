@@ -12,6 +12,7 @@ import io.reactivex.Single
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import ru.bulat.mukhutdinov.sample.infrastructure.common.db.SampleDatabase
+import ru.bulat.mukhutdinov.sample.infrastructure.common.gateway.Config.TIMEOUT_SEC
 import ru.bulat.mukhutdinov.sample.infrastructure.common.model.Listing
 import ru.bulat.mukhutdinov.sample.infrastructure.common.model.NetworkState
 import ru.bulat.mukhutdinov.sample.infrastructure.exception.mapLocalExceptions
@@ -82,6 +83,7 @@ class PostBoundaryGateway(
                     jumblr.userDashboard(options)
                 }
                 .subscribeOn(Schedulers.io())
+                .timeout(TIMEOUT_SEC, TimeUnit.SECONDS)
                 .subscribe(
                     { posts ->
                         db.runInTransaction {

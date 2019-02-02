@@ -69,10 +69,10 @@ dependencies {
     implementation(Config.Libs.rxandroid)
     implementation(Config.Libs.rxjava)
 
-    // kodein
-    implementation(Config.Libs.kodeinDiConfJvm)
-    implementation(Config.Libs.kodeinDiFrameworkAndroidX)
-    implementation(Config.Libs.kodeinDiGenericJvm)
+    // di
+    implementation(Config.Libs.koin)
+    implementation(Config.Libs.koinViewModel)
+    implementation(Config.Libs.koinScope)
 
     // firebase
     implementation(Config.Libs.firebaseCore)
@@ -82,4 +82,5 @@ dependencies {
     implementation(Config.Libs.jumblr)
     implementation(Config.Libs.picasso)
     implementation(Config.Libs.databindingCompiler)
+    implementation(Config.Libs.stetho)
 }
