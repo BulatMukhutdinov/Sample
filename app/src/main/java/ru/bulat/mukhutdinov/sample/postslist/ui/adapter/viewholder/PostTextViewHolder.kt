@@ -1,5 +1,6 @@
 package ru.bulat.mukhutdinov.sample.postslist.ui.adapter.viewholder
 
+import android.net.TrafficStats
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil

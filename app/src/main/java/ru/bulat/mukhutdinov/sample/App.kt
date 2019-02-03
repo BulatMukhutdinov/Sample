@@ -27,7 +27,7 @@ class App : Application() {
     override fun onCreate() {
         super.onCreate()
 
-//        setupStrictMode()
+        setupStrictMode()
 
         setupKoin()
 
@@ -59,9 +59,14 @@ class App : Application() {
                     .penaltyDeath()
                     .build()
             )
-
+            // todo use detectAll() after https://github.com/square/okhttp/issues/3537 will be fixed
             StrictMode.setVmPolicy(StrictMode.VmPolicy.Builder()
-                .detectAll()
+                .detectActivityLeaks()
+                .detectCleartextNetwork()
+                .detectFileUriExposure()
+                .detectLeakedClosableObjects()
+                .detectLeakedRegistrationObjects()
+                .detectLeakedSqlLiteObjects()
                 .penaltyLog()
                 .penaltyDeath()
                 .build()
@@ -69,19 +74,28 @@ class App : Application() {
         }
     }
 
+    @SuppressLint("CheckResult")
     private fun setupKoin() {
-        startKoin {
-            androidContext(this@App)
+        Completable
+            .fromCallable {
+                startKoin {
+                    androidContext(this@App)
 
-            modules(
-                UserInjectionModule.module,
-                CommonInjectionModule.module,
-                UsersListInjectionModule.module,
-                MainInjectionModule.module,
-                PostInjectionModule.module,
-                PostsListInjectionModule.module,
-                NetworkInjectionModule.module
+                    modules(
+                        UserInjectionModule.module,
+                        CommonInjectionModule.module,
+                        UsersListInjectionModule.module,
+                        MainInjectionModule.module,
+                        PostInjectionModule.module,
+                        PostsListInjectionModule.module,
+                        NetworkInjectionModule.module
+                    )
+                }
+            }
+            .subscribeOn(Schedulers.io())
+            .subscribe(
+                { Timber.d("Koin is initialized") },
+                { Timber.e(it) }
             )
-        }
     }
 }

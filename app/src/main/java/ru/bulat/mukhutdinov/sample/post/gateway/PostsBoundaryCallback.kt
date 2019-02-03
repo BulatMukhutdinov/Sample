@@ -24,6 +24,9 @@ class PostsBoundaryCallback(
     val helper = PagingRequestHelper(Executors.newSingleThreadExecutor())
     val networkState = helper.createStatusLiveData()
 
+    // todo delete when https://github.com/googlesamples/android-architecture-components/issues/547 will be solved
+    private var lastLoadedItem: com.tumblr.jumblr.types.Post? = null
+
     /**
      * Database returned 0 items. We should query the backend for more items.
      */
@@ -43,6 +46,7 @@ class PostsBoundaryCallback(
                     .subscribeOn(Schedulers.io())
                     .subscribe(
                         { posts ->
+                            lastLoadedItem = posts.last()
                             handleResponse(posts)
                             pagingHelperCallback.recordSuccess()
                         },
@@ -62,7 +66,7 @@ class PostsBoundaryCallback(
                     .fromCallable {
                         val options = HashMap<String, Any>()
                         options["limit"] = networkPageSize
-                        options["before_id"] = itemAtEnd.id
+                        options["before_id"] = lastLoadedItem?.id ?: ""
                         options["type"] = "text"
 
                         jumblr.userDashboard(options)
@@ -71,6 +75,7 @@ class PostsBoundaryCallback(
                     .subscribeOn(Schedulers.io())
                     .subscribe(
                         { posts ->
+                            lastLoadedItem = posts.last()
                             handleResponse(posts)
                             pagingHelperCallback.recordSuccess()
                         },

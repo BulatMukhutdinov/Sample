@@ -20,7 +20,7 @@ object CommonInjectionModule {
                 .build()
         }
 
-        single {
+        single(createdAtStart = true) {
             Picasso.Builder(get())
                 .memoryCache(LruCache(androidContext()))
                 .loggingEnabled(BuildConfig.DEBUG)

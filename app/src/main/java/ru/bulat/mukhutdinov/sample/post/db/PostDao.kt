@@ -11,7 +11,7 @@ import io.reactivex.Maybe
 @Dao
 interface PostDao {
 
-    @Query("SELECT * FROM ${PostEntity.TABLE_NAME}")
+    @Query("SELECT * FROM ${PostEntity.TABLE_NAME} ORDER BY ${PostEntity.COLUMN_DATE} DESC")
     fun getAll(): DataSource.Factory<Int, PostEntity>
 
     @Query("SELECT * FROM ${PostEntity.TABLE_NAME} WHERE ${PostEntity.COLUMN_ID} = :id")

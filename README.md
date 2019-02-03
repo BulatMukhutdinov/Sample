@@ -13,7 +13,7 @@
 * Use payloads in recyclerView
 * Use pretty animations
 * ~~Add Stetho~~
-* Add Strict mode
+* ~~Add Strict mode~~
 * Setup CI
 * ~~Replace Kodein by Koin~~
 * Use kotlin coroutines

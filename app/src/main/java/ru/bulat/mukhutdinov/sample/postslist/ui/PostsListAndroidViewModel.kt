@@ -29,7 +29,7 @@ class PostsListAndroidViewModel(private val postGateway: PostGateway)
     override val isRetryEnabled = ObservableBoolean(true)
 
     private val postsListing = MutableLiveData<Listing<Post>>()
-        .also { it.value = postGateway.getPaged(10) }
+        .also { it.value = postGateway.getPaged(20) }
 
     override val posts: LiveData<PagedList<Post>> = Transformations.switchMap(postsListing) { it.pagedList }
 

@@ -12,6 +12,8 @@ object NetworkInjectionModule {
         single {
             val apiProperties = get<ApiProperties>()
 
+            // workaround to satisfy strict mode https://github.com/square/okhttp/issues/3537
+
             val client = JumblrClient(apiProperties.consumerKey, apiProperties.consumerSecret)
             client.setToken(apiProperties.token, apiProperties.tokenSecret)
 
