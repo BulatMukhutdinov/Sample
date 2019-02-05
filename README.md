@@ -8,6 +8,7 @@
 * Databinding
 * Tumblr API
 * DI (Koin)
+* CI (Travis)
 
 # Todos
 * ~~Change github users api to api which allows get and create new entities~~
