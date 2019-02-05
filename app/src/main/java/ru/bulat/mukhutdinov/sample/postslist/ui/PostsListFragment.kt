@@ -5,14 +5,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.Observer
+import com.google.android.material.bottomsheet.BottomSheetBehavior
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.viewModel
 import org.koin.core.parameter.parametersOf
-import ru.bulat.mukhutdinov.sample.MainActivity
 import ru.bulat.mukhutdinov.sample.R
 import ru.bulat.mukhutdinov.sample.databinding.PostsListBinding
-import ru.bulat.mukhutdinov.sample.infrastructure.common.model.NetworkState
 import ru.bulat.mukhutdinov.sample.infrastructure.common.ui.BaseFragment
 import ru.bulat.mukhutdinov.sample.postslist.di.PostsListInjectionModule
 
@@ -30,8 +28,24 @@ class PostsListFragment : BaseFragment<PostsListViewModel>() {
 
         binding.postsListViewModel = viewModel
 
-        viewModel.networkState.observe(this, Observer { networkState ->
-            (activity as MainActivity).setLoadingVisible(networkState == NetworkState.Loading)
+        val bottomSheetBehavior = BottomSheetBehavior.from(binding.picker.picker)
+        bottomSheetBehavior.setBottomSheetCallback(object : BottomSheetBehavior.BottomSheetCallback() {
+            override fun onStateChanged(bottomSheet: View, newState: Int) {
+                when (newState) {
+                    BottomSheetBehavior.STATE_EXPANDED -> {
+
+                    }
+                    BottomSheetBehavior.STATE_COLLAPSED -> {
+
+                    }
+                    BottomSheetBehavior.STATE_HIDDEN -> {
+
+                    }
+                }
+            }
+
+            override fun onSlide(bottomSheet: View, slideOffset: Float) {
+            }
         })
 
         return binding.root

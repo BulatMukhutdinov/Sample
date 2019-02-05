@@ -47,6 +47,13 @@ class PostsListAndroidViewModel(private val postGateway: PostGateway)
         postsListing.value?.retry?.invoke()
     }
 
+    override fun onMenuClick() {
+    }
+
+    override fun onAddClick() {
+
+    }
+
     override fun onCleared() {
         super.onCleared()
         postGateway.clearSubscriptions()

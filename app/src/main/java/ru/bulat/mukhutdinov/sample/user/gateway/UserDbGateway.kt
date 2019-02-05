@@ -7,7 +7,6 @@ import ru.bulat.mukhutdinov.sample.infrastructure.exception.mapLocalExceptions
 import ru.bulat.mukhutdinov.sample.user.db.UserDao
 import ru.bulat.mukhutdinov.sample.user.model.User
 import ru.bulat.mukhutdinov.sample.user.model.UserConverter
-import java.util.concurrent.TimeUnit
 
 class UserDbGateway(private val userDao: UserDao) : UserLocalGateway {
 
@@ -25,7 +24,5 @@ class UserDbGateway(private val userDao: UserDao) : UserLocalGateway {
 
     override fun update(user: User): Completable =
         Completable.fromCallable { userDao.update(UserConverter.toDatabase(user)) }
-            // emulate processing delay
-            .delay(2, TimeUnit.SECONDS)
             .mapLocalExceptions()
 }

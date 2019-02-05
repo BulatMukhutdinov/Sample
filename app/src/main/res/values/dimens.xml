@@ -8,4 +8,12 @@
     <dimen name="size1x">8dp</dimen>
     <dimen name="size2x">16dp</dimen>
     <dimen name="size4x">32dp</dimen>
+
+    <dimen name="picker_header">54dp</dimen>
+
+    <dimen name="elevation_small">4dp</dimen>
+    <dimen name="elevation_medium">8dp</dimen>
+    <dimen name="elevation_large">16dp</dimen>
+
+    <dimen name="text_medium">16sp</dimen>
 </resources>

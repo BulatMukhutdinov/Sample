@@ -29,7 +29,6 @@ class UserFragment : BaseFragment<UserViewModel>() {
             Observer { either ->
                 either?.either(
                     completeCallback = { navigateUp() },
-                    loadingCallback = { (activity as? ru.bulat.mukhutdinov.sample.MainActivity)?.setLoadingVisible(it) },
                     errorCallback = { context?.toast(R.string.common_exception) }
                 )
             }

@@ -7,4 +7,13 @@
     <string name="app_user_list">Users list app</string>
     <string name="app_blog">Blog app</string>
     <string name="retry">Retry</string>
+
+    <string name="add_menu_text">Text</string>
+    <string name="add_menu_image">Image</string>
+    <string name="add_menu_video">Video</string>
+    <string name="add_menu_audio">Audio</string>
+    <string name="add_menu_link">Link</string>
+    <string name="add_menu_quote">Quote</string>
+
+    <string name="picker_header">Add new post</string>
 </resources>

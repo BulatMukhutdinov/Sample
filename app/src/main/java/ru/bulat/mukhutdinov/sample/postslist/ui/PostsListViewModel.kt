@@ -28,4 +28,8 @@ interface PostsListViewModel : BaseViewModel {
     fun refresh()
 
     fun retry()
+
+    fun onMenuClick()
+
+    fun onAddClick()
 }

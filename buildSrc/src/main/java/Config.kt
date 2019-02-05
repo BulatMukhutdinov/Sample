@@ -1,7 +1,7 @@
 object Config {
     object Versions {
         val androidPlugin = "3.4.0-alpha10"
-        val kotlin = "1.3.11"
+        val kotlin = "1.3.20"
         val rxJava = "2.1.0"
         val lifecycle = "2.0.0."
         val room = "2.1.0-alpha03"
@@ -29,8 +29,8 @@ object Config {
 
     object Libs {
         val kotlinStdlib = "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${Versions.kotlin}"
-        val appcompat = "androidx.appcompat:appcompat:1.0.2"
-        val material = "com.google.android.material:material:1.1.0-alpha01"
+        val appcompat = "androidx.appcompat:appcompat:1.1.0-alpha1"
+        val material = "com.google.android.material:material:1.1.0-alpha03"
         val coreKtx = "androidx.core:core-ktx:1.0.1"
         val constraintLayout = "androidx.constraintlayout:constraintlayout:1.1.3"
 

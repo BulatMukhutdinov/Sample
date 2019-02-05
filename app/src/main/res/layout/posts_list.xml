@@ -11,23 +11,32 @@
             type="ru.bulat.mukhutdinov.sample.postslist.ui.PostsListViewModel" />
     </data>
 
-    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-        android:id="@+id/refresh"
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:onRefreshListener="@{() -> postsListViewModel.refresh()}"
-        app:refreshing="@{postsListViewModel.isRefreshing}">
+        android:layout_height="match_parent">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/posts"
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/refresh"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:paddingTop="@dimen/size2x"
-            android:clipToPadding="false"
-            app:postsListViewModel="@{postsListViewModel}"
-            tools:listitem="@layout/posts_text_item" />
-    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+            app:onRefreshListener="@{() -> postsListViewModel.refresh()}"
+            app:refreshing="@{postsListViewModel.isRefreshing}">
 
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/posts"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:clipToPadding="false"
+                android:orientation="vertical"
+                android:paddingTop="@dimen/size2x"
+                app:postsListViewModel="@{postsListViewModel}"
+                tools:listitem="@layout/posts_text_item" />
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+        <include
+            android:id="@+id/picker"
+            layout="@layout/posts_create_picker"/>
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
 </layout>

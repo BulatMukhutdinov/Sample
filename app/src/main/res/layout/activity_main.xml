@@ -9,32 +9,6 @@
     tools:context=".MainActivity">
 
 
-    <FrameLayout
-        android:id="@+id/appbar"
-        android:layout_width="0dp"
-        android:layout_height="?attr/actionBarSize"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:theme="@style/Toolbar"
-            app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
-
-        <ProgressBar
-            android:id="@+id/loading"
-            style="?android:attr/progressBarStyleHorizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
-            android:layout_marginBottom="-6dp"
-            android:indeterminate="true"
-            android:visibility="gone" />
-    </FrameLayout>
-
     <fragment
         android:id="@+id/navHostFragment"
         android:name="androidx.navigation.fragment.NavHostFragment"
@@ -44,6 +18,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/appbar"
+        app:layout_constraintTop_toTopOf="parent"
         app:navGraph="@navigation/navigation" />
 </androidx.constraintlayout.widget.ConstraintLayout>
