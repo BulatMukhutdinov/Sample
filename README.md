@@ -5,7 +5,7 @@
 * RxJava 2
 * Databinding
 * Tumblr API
-* DI (Kodein)
+* DI (Koin)
 
 # Todos
 * ~~Change github users api to api which allows get and create new entities~~
