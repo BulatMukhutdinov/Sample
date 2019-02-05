@@ -81,9 +81,6 @@ dependencies {
     implementation(Config.Libs.timber)
     implementation(Config.Libs.jumblr)
     implementation(Config.Libs.picasso)
-    implementation(Config.Libs.databindingCompiler) {
-        exclude(group = "com.google.guava")
-    }
 
     implementation(Config.Libs.stetho)
 }

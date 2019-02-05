@@ -75,7 +75,6 @@ object Config {
         val timber = "com.jakewharton.timber:timber:4.7.1"
         val jumblr = "com.tumblr:jumblr:0.0.13"
         val picasso = "com.squareup.picasso:picasso:2.71828"
-        val databindingCompiler = "com.android.databinding:compiler:3.1.4"
         val stetho = "com.facebook.stetho:stetho:1.5.0"
     }
 }

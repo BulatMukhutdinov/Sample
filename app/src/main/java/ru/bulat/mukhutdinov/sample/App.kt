@@ -33,11 +33,11 @@ class App : Application() {
 
         setupStetho()
 
-//        dummyDataProvider.generateUsersDummyData()
-//            .subscribeOn(Schedulers.io())
-//            .subscribe(
-//                { Timber.d("Dummy users data is generated") },
-//                { Timber.e(it) })
+//                    dummyDataProvider.generateUsersDummyData()
+//                        .subscribeOn(Schedulers.io())
+//                        .subscribe(
+//                            { Timber.d("Dummy users data is generated") },
+//                            { Timber.e(it) })
     }
 
     @SuppressLint("CheckResult")
@@ -90,6 +90,7 @@ class App : Application() {
                         PostsListInjectionModule.module,
                         NetworkInjectionModule.module
                     )
+
                 }
             }
             .subscribeOn(Schedulers.io())
