@@ -16,6 +16,7 @@
 * Use pretty animations
 * ~~Add Stetho~~
 * ~~Add Strict mode~~
-* Setup CI
+* ~~Setup CI~~
 * ~~Replace Kodein by Koin~~
 * Use kotlin coroutines
+* Run tests and upload apk to Beta using CI
