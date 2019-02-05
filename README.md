@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.com/BulatMukhutdinov/Sample.svg?branch=master)](https://travis-ci.com/BulatMukhutdinov/Sample)
+
 # Used technologies and principles
 * MVVM architecture
 * Kotlin DSL for gradle
