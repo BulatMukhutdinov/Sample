@@ -10,20 +10,39 @@
         app:behavior_peekHeight="@dimen/picker_header"
         app:layout_behavior="@string/bottom_sheet_behavior">
 
-        <TextView
-            android:id="@+id/pickerHeader"
+
+        <View
+            android:id="@+id/headerBackground"
             android:layout_width="0dp"
             android:layout_height="@dimen/picker_header"
             android:background="@color/primary"
-            android:drawableEnd="@drawable/ic_keyboard_arrow_up"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/pickerHeader"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:gravity="center"
             android:text="@string/picker_header"
             android:textColor="@color/onPrimary"
             android:textSize="@dimen/text_medium"
             android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@id/headerBackground"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="@id/headerBackground" />
+
+        <ImageView
+            android:id="@+id/arrow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/size1x"
+            android:scaleType="fitCenter"
+            app:layout_constraintStart_toEndOf="@id/pickerHeader"
+            app:layout_constraintTop_toTopOf="@id/pickerHeader"
+            app:srcCompat="@drawable/anim_arrow_transitions" />
 
         <com.google.android.material.navigation.NavigationView
             android:layout_width="0dp"
@@ -31,7 +50,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/pickerHeader"
+            app:layout_constraintTop_toBottomOf="@id/headerBackground"
             app:menu="@menu/menu_drawer" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

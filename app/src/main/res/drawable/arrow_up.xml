@@ -1,0 +1,31 @@
+<vector
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+
+    <group
+        android:name="chevron"
+        android:translateX="12"
+        android:translateY="9">
+        <group
+            android:name="leftBar"
+            android:rotation="135">
+            <group android:translateY="-3">
+                <path
+                    android:fillColor="@android:color/white"
+                    android:pathData="@string/path_arrow_up_down" />
+            </group>
+        </group>
+        <group
+            android:name="rightBar"
+            android:rotation="45">
+            <group android:translateY="3">
+                <path
+                    android:fillColor="@android:color/white"
+                    android:pathData="@string/path_arrow_up_down" />
+            </group>
+        </group>
+    </group>
+</vector>

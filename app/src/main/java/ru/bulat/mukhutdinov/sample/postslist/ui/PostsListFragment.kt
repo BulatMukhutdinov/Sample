@@ -1,5 +1,6 @@
 package ru.bulat.mukhutdinov.sample.postslist.ui
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -28,18 +29,25 @@ class PostsListFragment : BaseFragment<PostsListViewModel>() {
 
         binding.postsListViewModel = viewModel
 
+        setupBottomSheetBehavior()
+
+        return binding.root
+    }
+
+    private fun setupBottomSheetBehavior() {
         val bottomSheetBehavior = BottomSheetBehavior.from(binding.picker.picker)
+
         bottomSheetBehavior.setBottomSheetCallback(object : BottomSheetBehavior.BottomSheetCallback() {
+            @SuppressLint("SwitchIntDef")
             override fun onStateChanged(bottomSheet: View, newState: Int) {
                 when (newState) {
                     BottomSheetBehavior.STATE_EXPANDED -> {
-
+                        val stateSet = intArrayOf(android.R.attr.state_active)
+                        binding.picker.arrow.setImageState(stateSet, true)
                     }
                     BottomSheetBehavior.STATE_COLLAPSED -> {
-
-                    }
-                    BottomSheetBehavior.STATE_HIDDEN -> {
-
+                        val stateSet = intArrayOf(android.R.attr.state_active * -1)
+                        binding.picker.arrow.setImageState(stateSet, true)
                     }
                 }
             }
@@ -47,7 +55,5 @@ class PostsListFragment : BaseFragment<PostsListViewModel>() {
             override fun onSlide(bottomSheet: View, slideOffset: Float) {
             }
         })
-
-        return binding.root
     }
 }

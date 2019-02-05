@@ -32,12 +32,6 @@ class App : Application() {
         setupKoin()
 
         setupStetho()
-
-//                    dummyDataProvider.generateUsersDummyData()
-//                        .subscribeOn(Schedulers.io())
-//                        .subscribe(
-//                            { Timber.d("Dummy users data is generated") },
-//                            { Timber.e(it) })
     }
 
     @SuppressLint("CheckResult")
@@ -95,8 +89,20 @@ class App : Application() {
             }
             .subscribeOn(Schedulers.io())
             .subscribe(
-                { Timber.d("Koin is initialized") },
+                {
+//                    initDummyData()
+                    Timber.d("Koin is initialized")
+                },
                 { Timber.e(it) }
             )
+    }
+
+    @SuppressLint("CheckResult")
+    private fun initDummyData() {
+        dummyDataProvider.generateUsersDummyData()
+            .subscribeOn(Schedulers.io())
+            .subscribe(
+                { Timber.d("Dummy users data is generated") },
+                { Timber.e(it) })
     }
 }
