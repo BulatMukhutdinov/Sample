@@ -5,12 +5,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.Observer
 import org.koin.androidx.viewmodel.ext.viewModel
 import org.koin.core.parameter.parametersOf
 import ru.bulat.mukhutdinov.sample.R
 import ru.bulat.mukhutdinov.sample.databinding.UserBinding
 import ru.bulat.mukhutdinov.sample.infrastructure.common.ui.BaseFragment
+import ru.bulat.mukhutdinov.sample.infrastructure.extension.observeViewState
 import ru.bulat.mukhutdinov.sample.infrastructure.extension.toast
 
 class UserFragment : BaseFragment<UserViewModel>() {
@@ -24,14 +24,10 @@ class UserFragment : BaseFragment<UserViewModel>() {
 
         binding.userViewModel = viewModel
 
-        viewModel.onSaveClicked.observe(
-            viewLifecycleOwner,
-            Observer { either ->
-                either?.either(
-                    completeCallback = { navigateUp() },
-                    errorCallback = { context?.toast(R.string.common_exception) }
-                )
-            }
+        viewModel.onSaveClicked.observeViewState(
+            owner = viewLifecycleOwner,
+            completeCallback = { navigateUp() },
+            errorCallback = { context?.toast(R.string.common_exception) }
         )
 
         binding.icon.clipToOutline = true

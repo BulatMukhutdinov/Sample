@@ -23,3 +23,6 @@ inline fun <reified T> Flowable<T>.mapLocalExceptions(): Flowable<T> =
 
 fun Throwable.mapLocalException(): SampleException =
     this as? SampleException ?: SampleException.UnknownException(this)
+
+fun Throwable.mapExceptionToSampleException(): SampleException =
+    this as? SampleException ?: SampleException.UnknownException(this)

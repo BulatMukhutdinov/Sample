@@ -5,13 +5,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.Observer
 import org.koin.androidx.viewmodel.ext.viewModel
 import org.koin.core.parameter.parametersOf
 import ru.bulat.mukhutdinov.sample.R
 import ru.bulat.mukhutdinov.sample.databinding.UsersListBinding
 import ru.bulat.mukhutdinov.sample.infrastructure.common.ui.BaseFragment
-import ru.bulat.mukhutdinov.sample.infrastructure.extension.toast
+import ru.bulat.mukhutdinov.sample.infrastructure.extension.observeViewState
 
 class UsersListFragment : BaseFragment<UsersListViewModel>() {
 
@@ -22,16 +21,12 @@ class UsersListFragment : BaseFragment<UsersListViewModel>() {
 
         binding.usersListViewModel = viewModel
 
-        viewModel.onUserClicked.observe(viewLifecycleOwner,
-            Observer { either ->
-                either?.either(
-                    dataCallback = { user ->
-                        val direction = UsersListFragmentDirections.usersListFragmentToUserFragment()
-                        direction.userId = user.id
-                        navigateTo(direction)
-                    },
-                    errorCallback = { context?.toast(R.string.common_exception) }
-                )
+        viewModel.onUserClicked.observeViewState(
+            owner = viewLifecycleOwner,
+            dataCallback = { user ->
+                val direction = UsersListFragmentDirections.usersListFragmentToUserFragment()
+                direction.userId = user.id
+                navigateTo(direction)
             })
 
         return binding.root
