@@ -29,9 +29,17 @@ class App : Application() {
 
         setupStrictMode()
 
+        setupTimber()
+
         setupKoin()
 
         setupStetho()
+    }
+
+    private fun setupTimber() {
+        if (BuildConfig.DEBUG) {
+            Timber.plant(Timber.DebugTree())
+        }
     }
 
     @SuppressLint("CheckResult")
@@ -90,7 +98,7 @@ class App : Application() {
             .subscribeOn(Schedulers.io())
             .subscribe(
                 {
-//                    initDummyData()
+                    //                    initDummyData()
                     Timber.d("Koin is initialized")
                 },
                 { Timber.e(it) }

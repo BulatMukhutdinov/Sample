@@ -1,6 +1,5 @@
 package ru.bulat.mukhutdinov.sample.postslist.di
 
-import androidx.fragment.app.Fragment
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.parameter.parametersOf
 import org.koin.dsl.module
@@ -11,10 +10,8 @@ object PostsListInjectionModule {
 
     val module = module {
 
-        viewModel { (fragment: Fragment, blogName: String) ->
-            val viewModel = PostsListAndroidViewModel(get { parametersOf(blogName) })
-            viewModel.lifecycleOwner = fragment.viewLifecycleOwner
-            return@viewModel viewModel
+        viewModel { (blogName: String) ->
+            return@viewModel PostsListAndroidViewModel(get { parametersOf(blogName) })
         }
 
         single(MY_BLOG_TAG) { "biggybcool.tumblr.com" }

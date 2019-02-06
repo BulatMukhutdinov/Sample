@@ -3,29 +3,21 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <data>
-
-        <variable
-            name="mainViewModel"
-            type="ru.bulat.mukhutdinov.sample.main.ui.MainViewModel" />
-    </data>
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/users_list_app"
+            android:id="@+id/usersListApp"
             android:layout_width="match_parent"
             android:layout_height="@dimen/app_list_item_height"
             android:background="?android:attr/selectableItemBackground"
             android:clickable="true"
-            android:focusable="true"
-            android:onClick="@{() -> mainViewModel.onUsersListAppClicked()}">
+            android:focusable="true">
 
             <ImageView
-                android:id="@+id/users_list_icon"
+                android:id="@+id/usersListIcon"
                 android:layout_width="@dimen/icon_thumbnail_size"
                 android:layout_height="@dimen/icon_thumbnail_size"
                 android:layout_marginStart="@dimen/size1x"
@@ -36,15 +28,15 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/users_list_title"
+                android:id="@+id/usersListTitle"
                 style="@style/TextAppearance.AppCompat.Title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/size2x"
                 android:text="@string/app_user_list"
                 android:textColor="@color/onBackground"
-                app:layout_constraintStart_toEndOf="@id/users_list_icon"
-                app:layout_constraintTop_toTopOf="@id/users_list_icon" />
+                app:layout_constraintStart_toEndOf="@id/usersListIcon"
+                app:layout_constraintTop_toTopOf="@id/usersListIcon" />
 
             <View
                 android:layout_width="0dp"
@@ -56,16 +48,15 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/blog_app"
+            android:id="@+id/blogApp"
             android:layout_width="match_parent"
             android:layout_height="@dimen/app_list_item_height"
             android:background="?android:attr/selectableItemBackground"
             android:clickable="true"
-            android:focusable="true"
-            android:onClick="@{() -> mainViewModel.onPostsListAppClicked()}">
+            android:focusable="true">
 
             <ImageView
-                android:id="@+id/blog_icon"
+                android:id="@+id/blogIcon"
                 android:layout_width="@dimen/icon_thumbnail_size"
                 android:layout_height="@dimen/icon_thumbnail_size"
                 android:layout_marginStart="@dimen/size1x"
@@ -76,15 +67,15 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/blog_title"
+                android:id="@+id/blogTitle"
                 style="@style/TextAppearance.AppCompat.Title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/size2x"
                 android:text="@string/app_blog"
                 android:textColor="@color/onBackground"
-                app:layout_constraintStart_toEndOf="@id/blog_icon"
-                app:layout_constraintTop_toTopOf="@id/blog_icon" />
+                app:layout_constraintStart_toEndOf="@id/blogIcon"
+                app:layout_constraintTop_toTopOf="@id/blogIcon" />
 
             <View
                 android:layout_width="0dp"

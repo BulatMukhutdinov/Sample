@@ -1,42 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout
+<androidx.coordinatorlayout.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
-    <data>
-
-        <variable
-            name="postsListViewModel"
-            type="ru.bulat.mukhutdinov.sample.postslist.ui.PostsListViewModel" />
-    </data>
-
-    <androidx.coordinatorlayout.widget.CoordinatorLayout
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/refresh"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-            android:id="@+id/refresh"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/posts"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:onRefreshListener="@{() -> postsListViewModel.refresh()}"
-            app:refreshing="@{postsListViewModel.isRefreshing}">
+            android:clipToPadding="false"
+            android:paddingTop="@dimen/size2x"
+            android:paddingBottom="@dimen/picker_header"
+            tools:listitem="@layout/posts_text_item" />
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/posts"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:clipToPadding="false"
-                android:orientation="vertical"
-                android:paddingTop="@dimen/size2x"
-                app:postsListViewModel="@{postsListViewModel}"
-                tools:listitem="@layout/posts_text_item" />
-        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+    <include layout="@layout/posts_create_picker" />
 
-        <include
-            android:id="@+id/picker"
-            layout="@layout/posts_create_picker"/>
-
-    </androidx.coordinatorlayout.widget.CoordinatorLayout>
-
-</layout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
