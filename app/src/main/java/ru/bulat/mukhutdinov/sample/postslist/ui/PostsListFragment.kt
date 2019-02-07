@@ -1,15 +1,21 @@
 package ru.bulat.mukhutdinov.sample.postslist.ui
 
 import android.annotation.SuppressLint
+import android.app.Activity.RESULT_OK
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.bottomsheet.BottomSheetBehavior
+import com.google.android.material.navigation.NavigationView
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.posts_create_picker.arrow
+import kotlinx.android.synthetic.main.posts_create_picker.navigationView
 import kotlinx.android.synthetic.main.posts_create_picker.picker
 import kotlinx.android.synthetic.main.posts_list.posts
 import kotlinx.android.synthetic.main.posts_list.refresh
@@ -19,14 +25,17 @@ import org.koin.core.parameter.parametersOf
 import ru.bulat.mukhutdinov.sample.R
 import ru.bulat.mukhutdinov.sample.infrastructure.common.model.NetworkState
 import ru.bulat.mukhutdinov.sample.infrastructure.common.ui.BaseFragment
+import ru.bulat.mukhutdinov.sample.post.model.PostType
+import ru.bulat.mukhutdinov.sample.post.ui.PostCreateActivity
+import ru.bulat.mukhutdinov.sample.post.ui.PostCreateActivity.Companion.POST_TYPE
 import ru.bulat.mukhutdinov.sample.postslist.di.PostsListInjectionModule
 import ru.bulat.mukhutdinov.sample.postslist.ui.adapter.PostsAdapter
 import timber.log.Timber
 
-class PostsListFragment : BaseFragment<PostsListViewModel>() {
+class PostsListFragment : BaseFragment<PostsListViewModel>(), NavigationView.OnNavigationItemSelectedListener {
 
     override val viewModel
-        by viewModel<PostsListAndroidViewModel> { parametersOf(myBlogName) }
+        by viewModel<PostsListAndroidViewModel> { parametersOf(myBlogName, PAGE_SIZE) }
 
     private val picasso: Picasso by inject()
 
@@ -34,11 +43,15 @@ class PostsListFragment : BaseFragment<PostsListViewModel>() {
 
     private lateinit var adapter: PostsAdapter
 
+    private lateinit var bottomSheetBehavior: BottomSheetBehavior<ConstraintLayout>
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View =
         inflater.inflate(R.layout.posts_list, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        navigationView.setNavigationItemSelectedListener(this)
 
         setupRefresh()
 
@@ -74,7 +87,7 @@ class PostsListFragment : BaseFragment<PostsListViewModel>() {
     }
 
     private fun setupBottomSheetBehavior() {
-        val bottomSheetBehavior = BottomSheetBehavior.from(picker)
+        bottomSheetBehavior = BottomSheetBehavior.from(picker)
 
         bottomSheetBehavior.setBottomSheetCallback(object : BottomSheetBehavior.BottomSheetCallback() {
             @SuppressLint("SwitchIntDef")
@@ -94,5 +107,35 @@ class PostsListFragment : BaseFragment<PostsListViewModel>() {
             override fun onSlide(bottomSheet: View, slideOffset: Float) {
             }
         })
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        if (requestCode == REQUEST_POST_CREATE && resultCode == RESULT_OK) {
+            bottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
+        }
+    }
+
+    override fun onNavigationItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.menu_text -> startPostCreateActivity(PostType.TEXT)
+            R.id.menu_audio -> startPostCreateActivity(PostType.ANSWER)
+            R.id.menu_image -> startPostCreateActivity(PostType.IMAGE)
+            R.id.menu_link -> startPostCreateActivity(PostType.LINK)
+            R.id.menu_quote -> startPostCreateActivity(PostType.QUOTE)
+            R.id.menu_video -> startPostCreateActivity(PostType.VIDEO)
+            else -> Timber.e("Unknown create post picker item is clicked")
+        }
+        return true
+    }
+
+    private fun startPostCreateActivity(type: PostType) {
+        val intent = Intent(context, PostCreateActivity::class.java)
+        intent.putExtra(POST_TYPE, type)
+        startActivityForResult(intent, REQUEST_POST_CREATE)
+    }
+
+    companion object {
+        private const val REQUEST_POST_CREATE = 101
+        private const val PAGE_SIZE = 10
     }
 }

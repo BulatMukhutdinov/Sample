@@ -17,20 +17,20 @@ class PostsAdapter(
     private val picasso: Picasso,
     private val postsListViewModel: PostsListViewModel,
     private val clickListener: ((Int) -> Unit)
-) : PagedListAdapter<Post, BaseViewHolder<Post>>(DiffUtilItemCallback<Post>()) {
+) : PagedListAdapter<Post, BaseViewHolder<*>>(DiffUtilItemCallback<Post>()) {
 
     private var networkState: NetworkState? = null
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder<Post> =
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder<*> =
         when (viewType) {
             R.layout.posts_text_item -> PostTextViewHolder(picasso, parent, clickListener)
             R.layout.posts_error_item -> PostNetworkErrorViewHolder(parent)
             else -> throw IllegalArgumentException("unknown view type $viewType")
         }
 
-    override fun onBindViewHolder(holder: BaseViewHolder<Post>, position: Int) {
+    override fun onBindViewHolder(holder: BaseViewHolder<*>, position: Int) {
         when (getItemViewType(position)) {
-            R.layout.posts_text_item -> holder.bindTo(getItem(position))
+            R.layout.posts_text_item -> (holder as PostTextViewHolder).bindTo(getItem(position))
             R.layout.posts_error_item -> (holder as PostNetworkErrorViewHolder).bindTo(postsListViewModel)
         }
     }
@@ -68,7 +68,7 @@ class PostsAdapter(
         return super.getItemCount() + if (hasExtraRow()) 1 else 0
     }
 
-    override fun onViewRecycled(holder: BaseViewHolder<Post>) {
+    override fun onViewRecycled(holder: BaseViewHolder<*>) {
         super.onViewRecycled(holder)
         holder.onViewRecycled()
     }

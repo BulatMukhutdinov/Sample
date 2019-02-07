@@ -20,6 +20,7 @@ import ru.bulat.mukhutdinov.sample.post.db.PostDao
 import ru.bulat.mukhutdinov.sample.post.model.Post
 import ru.bulat.mukhutdinov.sample.post.model.PostConverter
 import ru.bulat.mukhutdinov.sample.post.model.PostDto
+import ru.bulat.mukhutdinov.sample.post.model.PostText
 import java.util.concurrent.TimeUnit
 
 class PostBoundaryGateway(
@@ -33,7 +34,7 @@ class PostBoundaryGateway(
     private val compositeDisposable = CompositeDisposable()
 
     @MainThread
-    override fun getPaged(pageSize: Int): Listing<Post> {
+    override fun getPaged(): Listing<Post> {
         val boundaryCallback = PostsBoundaryCallback(
             jumblr = jumblr,
             compositeDisposable = compositeDisposable,
@@ -48,7 +49,7 @@ class PostBoundaryGateway(
         val livePagedList = postDao.getAll()
             .map { PostConverter.fromDatabase(it) }
             .toLiveData(
-                pageSize = pageSize,
+                pageSize = networkPageSize,
                 boundaryCallback = boundaryCallback
             )
 
@@ -86,6 +87,7 @@ class PostBoundaryGateway(
                 .timeout(TIMEOUT_SEC, TimeUnit.SECONDS)
                 .subscribe(
                     { posts ->
+                        posts[0].type
                         db.runInTransaction {
                             postDao.clear()
                             insertIntoDatabase(posts)
@@ -112,7 +114,13 @@ class PostBoundaryGateway(
             .mapLocalExceptions()
 
     override fun update(post: Post): Completable =
-        Completable.fromCallable { postDao.update(PostConverter.toDatabase(post)) }
+        Completable
+            .fromCallable {
+                // todo remove if clause and implement each type to entity converting
+                if (post is PostText) {
+                    postDao.update(PostConverter.toDatabase(post))
+                }
+            }
             // emulate processing delay
             .delay(2, TimeUnit.SECONDS)
             .mapLocalExceptions()

@@ -10,8 +10,8 @@ object PostsListInjectionModule {
 
     val module = module {
 
-        viewModel { (blogName: String) ->
-            return@viewModel PostsListAndroidViewModel(get { parametersOf(blogName) })
+        viewModel { (blogName: String, pageSize: Int) ->
+            return@viewModel PostsListAndroidViewModel(get { parametersOf(blogName, pageSize) })
         }
 
         single(MY_BLOG_TAG) { "biggybcool.tumblr.com" }

@@ -11,12 +11,12 @@ object PostInjectionModule {
         single { get<SampleDatabase>().postDao() }
 
         // todo use multiton
-        single<PostGateway> { (blogName: String) ->
+        single<PostGateway> { (blogName: String, pageSize: Int) ->
             PostBoundaryGateway(
                 jumblr = get(),
                 db = get(),
                 blogName = blogName,
-                networkPageSize = 20,
+                networkPageSize = pageSize,
                 postDao = get()
             )
         }

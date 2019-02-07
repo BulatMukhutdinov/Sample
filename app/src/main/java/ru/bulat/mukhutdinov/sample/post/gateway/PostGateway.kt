@@ -7,7 +7,7 @@ import ru.bulat.mukhutdinov.sample.post.model.Post
 
 interface PostGateway {
 
-    fun getPaged(pageSize: Int): Listing<Post>
+    fun getPaged(): Listing<Post>
 
     fun findById(id: String): Maybe<Post>
 

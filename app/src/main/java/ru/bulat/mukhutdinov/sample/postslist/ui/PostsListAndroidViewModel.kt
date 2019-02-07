@@ -15,7 +15,7 @@ class PostsListAndroidViewModel(private val postGateway: PostGateway)
     : BaseAndroidViewModel(), PostsListViewModel {
 
     private val postsListing = MutableLiveData<Listing<Post>>()
-        .also { it.value = postGateway.getPaged(20) }
+        .also { it.value = postGateway.getPaged() }
 
     override val posts: LiveData<PagedList<Post>> = Transformations.switchMap(postsListing) { it.pagedList }
 

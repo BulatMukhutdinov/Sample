@@ -26,19 +26,36 @@ object PostConverter {
 
     private const val TAGS_SEPARATOR = ","
 
-    fun toDatabase(source: Post) =
+    fun toDatabase(source: PostText) =
         PostEntity(
             id = source.id,
             date = source.date,
             body = source.body,
+            blogName = source.blogName,
             tags = source.tags.joinToString(TAGS_SEPARATOR) { it.substring(1) },
-            title = source.title
+            title = source.title,
+            type = PostType.TEXT
         )
 
-    fun fromDatabase(source: PostEntity) =
-        Post(
+    fun fromDatabase(source: PostEntity): Post =
+        when (source.type) {
+            PostType.TEXT -> createTextPost(source)
+            PostType.IMAGE -> TODO()
+            PostType.QUOTE -> TODO()
+            PostType.LINK -> TODO()
+            PostType.CHAT -> TODO()
+            PostType.AUDIO -> TODO()
+            PostType.VIDEO -> TODO()
+            PostType.ANSWER -> TODO()
+            PostType.POSTCARD -> TODO()
+            PostType.UNKNOWN -> TODO()
+        }
+
+    private fun createTextPost(source: PostEntity) =
+        PostText(
             id = source.id,
             date = source.date,
+            blogName = source.blogName,
             body = source.body ?: "",
             avatar = source.avatar ?: "",
             tags = source.tags.split(TAGS_SEPARATOR).map { it.trim() }.filter { it.isNotEmpty() }.map { "#$it" },
@@ -53,8 +70,10 @@ object PostConverter {
                     id = textPost.id,
                     date = textPost.dateGMT,
                     body = textPost.body,
+                    blogName = source.blogName,
                     tags = textPost.tags.joinToString(TAGS_SEPARATOR),
-                    title = textPost.title
+                    title = textPost.title,
+                    type = PostType.TEXT
                 )
             }
             ANSWER -> {
@@ -62,7 +81,9 @@ object PostConverter {
                 PostEntity(
                     id = answerPost.id,
                     date = answerPost.dateGMT,
-                    tags = answerPost.tags.joinToString(TAGS_SEPARATOR)
+                    blogName = answerPost.blogName,
+                    tags = answerPost.tags.joinToString(TAGS_SEPARATOR),
+                    type = PostType.ANSWER
                 )
             }
             AUDIO -> {
@@ -70,7 +91,9 @@ object PostConverter {
                 PostEntity(
                     id = audioPost.id,
                     date = audioPost.dateGMT,
-                    tags = audioPost.tags.joinToString(TAGS_SEPARATOR)
+                    blogName = audioPost.blogName,
+                    tags = audioPost.tags.joinToString(TAGS_SEPARATOR),
+                    type = PostType.AUDIO
                 )
             }
             CHAT -> {
@@ -79,8 +102,10 @@ object PostConverter {
                     id = chatPost.id,
                     date = chatPost.dateGMT,
                     body = chatPost.body,
+                    blogName = chatPost.blogName,
                     tags = chatPost.tags.joinToString(TAGS_SEPARATOR),
-                    title = chatPost.title
+                    title = chatPost.title,
+                    type = PostType.CHAT
                 )
             }
             LINK -> {
@@ -88,8 +113,10 @@ object PostConverter {
                 PostEntity(
                     id = linkPost.id,
                     date = linkPost.dateGMT,
+                    blogName = linkPost.blogName,
                     tags = linkPost.tags.joinToString(TAGS_SEPARATOR),
-                    title = linkPost.title
+                    title = linkPost.title,
+                    type = PostType.LINK
                 )
             }
             PHOTO -> {
@@ -97,7 +124,9 @@ object PostConverter {
                 PostEntity(
                     id = photoPost.id,
                     date = photoPost.dateGMT,
-                    tags = photoPost.tags.joinToString(TAGS_SEPARATOR)
+                    blogName = photoPost.blogName,
+                    tags = photoPost.tags.joinToString(TAGS_SEPARATOR),
+                    type = PostType.IMAGE
                 )
             }
             POSTCARD -> {
@@ -106,7 +135,9 @@ object PostConverter {
                     id = postcardPost.id,
                     date = postcardPost.dateGMT,
                     body = postcardPost.body,
-                    tags = postcardPost.tags.joinToString(TAGS_SEPARATOR)
+                    blogName = postcardPost.blogName,
+                    tags = postcardPost.tags.joinToString(TAGS_SEPARATOR),
+                    type = PostType.POSTCARD
                 )
             }
             QUOTE -> {
@@ -114,7 +145,9 @@ object PostConverter {
                 PostEntity(
                     id = quotePost.id,
                     date = quotePost.dateGMT,
-                    tags = quotePost.tags.joinToString(TAGS_SEPARATOR)
+                    blogName = quotePost.blogName,
+                    tags = quotePost.tags.joinToString(TAGS_SEPARATOR),
+                    type = PostType.QUOTE
                 )
             }
             VIDEO -> {
@@ -122,9 +155,11 @@ object PostConverter {
                 PostEntity(
                     id = videoPost.id,
                     date = videoPost.dateGMT,
-                    tags = videoPost.tags.joinToString(TAGS_SEPARATOR)
+                    blogName = videoPost.blogName,
+                    tags = videoPost.tags.joinToString(TAGS_SEPARATOR),
+                    type = PostType.VIDEO
                 )
             }
-            else -> throw UnsupportedOperationException("${source.javaClass.simpleName} type not supported yet")
+            else -> throw UnsupportedOperationException("${source.type} type not supported yet")
         }
 }

@@ -42,11 +42,12 @@
         app:srcCompat="@drawable/anim_arrow_transitions" />
 
     <com.google.android.material.navigation.NavigationView
+        android:id="@+id/navigationView"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/headerBackground"
-        app:menu="@menu/menu_drawer" />
+        app:menu="@menu/create_post_picker_menu" />
 </androidx.constraintlayout.widget.ConstraintLayout>
