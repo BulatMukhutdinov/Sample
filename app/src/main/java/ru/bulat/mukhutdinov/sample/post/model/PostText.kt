@@ -5,15 +5,23 @@ import android.text.Spanned
 import java.text.SimpleDateFormat
 import java.util.Locale
 
-data class PostText constructor(
-    override val id: Long,
-    override var avatar: String,
-    override var title: String,
-    override var blogName: String,
-    var body: String,
-    var date: String,
-    var tags: List<String>
-) : Post(id = id, avatar = avatar, title = title, blogName = blogName) {
+class PostText(
+    id: Long,
+    avatar: String,
+    date: String,
+    tags: List<String>,
+    blogName: String,
+    isLiked: Boolean,
+    val body: String,
+    val title: String
+) : Post(
+    id = id,
+    avatar = avatar,
+    date = date,
+    tags = tags,
+    blogName = blogName,
+    isLiked = isLiked
+) {
 
     val formattedBody: Spanned = Html.fromHtml(body, Html.FROM_HTML_MODE_COMPACT)
 

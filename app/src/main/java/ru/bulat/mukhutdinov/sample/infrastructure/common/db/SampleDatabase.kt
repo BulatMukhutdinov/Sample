@@ -13,7 +13,7 @@ import ru.bulat.mukhutdinov.sample.user.db.UserEntity
         UserEntity::class,
         PostEntity::class
     ],
-    version = 7,
+    version = 8,
     exportSchema = true)
 @TypeConverters(Converters::class)
 abstract class SampleDatabase : RoomDatabase() {

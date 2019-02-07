@@ -70,6 +70,7 @@ dependencies {
     // rx
     implementation(Config.Libs.rxandroid)
     implementation(Config.Libs.rxjava)
+    implementation(Config.Libs.rxbinding)
 
     // di
     implementation(Config.Libs.koin)

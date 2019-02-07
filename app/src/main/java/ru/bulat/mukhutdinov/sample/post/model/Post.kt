@@ -4,7 +4,9 @@ import ru.bulat.mukhutdinov.sample.infrastructure.common.model.BaseModel
 
 open class Post(
     override val id: Long,
-    open var avatar: String,
-    open var title: String,
-    open var blogName: String
+    open val avatar: String,
+    open val date: String,
+    open val tags: List<String>,
+    open val blogName: String,
+    open var isLiked: Boolean
 ) : BaseModel(id)

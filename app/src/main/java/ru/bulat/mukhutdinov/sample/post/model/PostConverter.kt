@@ -34,7 +34,9 @@ object PostConverter {
             blogName = source.blogName,
             tags = source.tags.joinToString(TAGS_SEPARATOR) { it.substring(1) },
             title = source.title,
-            type = PostType.TEXT
+            type = PostType.TEXT,
+            avatar = source.avatar,
+            isLiked = source.isLiked
         )
 
     fun fromDatabase(source: PostEntity): Post =
@@ -54,12 +56,13 @@ object PostConverter {
     private fun createTextPost(source: PostEntity) =
         PostText(
             id = source.id,
-            date = source.date,
-            blogName = source.blogName,
-            body = source.body ?: "",
-            avatar = source.avatar ?: "",
+            date = source.date.orEmpty(),
+            blogName = source.blogName.orEmpty(),
+            body = source.body.orEmpty(),
+            avatar = source.avatar.orEmpty(),
             tags = source.tags.split(TAGS_SEPARATOR).map { it.trim() }.filter { it.isNotEmpty() }.map { "#$it" },
-            title = source.title ?: ""
+            title = source.title.orEmpty(),
+            isLiked = source.isLiked ?: false
         )
 
     fun fromNetwork(source: PostDto) =
@@ -70,10 +73,11 @@ object PostConverter {
                     id = textPost.id,
                     date = textPost.dateGMT,
                     body = textPost.body,
-                    blogName = source.blogName,
-                    tags = textPost.tags.joinToString(TAGS_SEPARATOR),
+                    blogName = textPost.blogName,
+                    tags = textPost.tags.joinToString(TAGS_SEPARATOR) { it.substring(1) },
                     title = textPost.title,
-                    type = PostType.TEXT
+                    type = PostType.TEXT,
+                    isLiked = textPost.isLiked
                 )
             }
             ANSWER -> {

@@ -13,12 +13,12 @@
         android:state_active="true" />
 
     <transition
-        android:drawable="@drawable/anim_arrow_down_to_up"
+        android:drawable="@drawable/arrow_anim_down_to_up"
         android:fromId="@id/arrow_down"
         android:toId="@id/arrow_up" />
 
     <transition
-        android:drawable="@drawable/anim_arrow_up_to_down"
+        android:drawable="@drawable/arrow_anim_up_to_down"
         android:fromId="@id/arrow_up"
         android:toId="@id/arrow_down" />
 

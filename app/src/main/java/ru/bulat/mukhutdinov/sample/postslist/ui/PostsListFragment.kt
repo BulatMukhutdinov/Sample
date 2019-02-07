@@ -141,6 +141,6 @@ class PostsListFragment : BaseFragment<PostsListViewModel>(), NavigationView.OnN
 
     companion object {
         private const val REQUEST_POST_CREATE = 101
-        private const val PAGE_SIZE = 10
+        private const val PAGE_SIZE = 5
     }
 }

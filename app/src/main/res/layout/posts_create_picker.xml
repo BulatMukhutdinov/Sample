@@ -39,7 +39,7 @@
         android:scaleType="fitCenter"
         app:layout_constraintStart_toEndOf="@id/pickerHeader"
         app:layout_constraintTop_toTopOf="@id/pickerHeader"
-        app:srcCompat="@drawable/anim_arrow_transitions" />
+        app:srcCompat="@drawable/arrow_anim_selector" />
 
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/navigationView"

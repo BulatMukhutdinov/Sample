@@ -56,6 +56,7 @@ object Config {
         // rxJava
         val rxandroid = "io.reactivex.rxjava2:rxandroid:${Versions.rxJava}"
         val rxjava = "io.reactivex.rxjava2:rxjava:${Versions.rxJava}"
+        val rxbinding = "com.jakewharton.rxbinding3:rxbinding:3.0.0-alpha2"
 
         // koin
         val koin = "org.koin:koin-android:${Versions.koin}"
