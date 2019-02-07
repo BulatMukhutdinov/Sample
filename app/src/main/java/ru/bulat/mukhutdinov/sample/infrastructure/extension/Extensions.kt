@@ -50,8 +50,8 @@ fun <DataType> LiveData<DataState<DataType>>.observeViewState(
     loadingCallback: ((Boolean) -> Unit)? = null
 ) {
     this.observe(owner,
-        Observer { viewState ->
-            viewState?.either(dataCallback, errorCallback, completeCallback, loadingCallback)
+        Observer { dataState ->
+            dataState?.either(dataCallback, errorCallback, completeCallback, loadingCallback)
         })
 }
 

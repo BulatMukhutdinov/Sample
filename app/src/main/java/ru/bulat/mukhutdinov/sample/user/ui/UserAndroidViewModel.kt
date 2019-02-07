@@ -7,11 +7,11 @@ import io.reactivex.schedulers.Schedulers
 import ru.bulat.mukhutdinov.sample.infrastructure.common.ui.BaseAndroidViewModel
 import ru.bulat.mukhutdinov.sample.infrastructure.exception.mapLocalException
 import ru.bulat.mukhutdinov.sample.infrastructure.util.data.DataStateLiveData
-import ru.bulat.mukhutdinov.sample.user.gateway.UserLocalGateway
+import ru.bulat.mukhutdinov.sample.user.gateway.UserGateway
 import ru.bulat.mukhutdinov.sample.user.model.User
 import timber.log.Timber
 
-class UserAndroidViewModel(userId: Long, private val userLocalGateway: UserLocalGateway)
+class UserAndroidViewModel(userId: Long, private val userGateway: UserGateway)
     : BaseAndroidViewModel(), UserViewModel {
 
     override val user: ObservableField<User> = ObservableField()
@@ -21,7 +21,7 @@ class UserAndroidViewModel(userId: Long, private val userLocalGateway: UserLocal
     override val onSaveClicked = DataStateLiveData<Unit>()
 
     init {
-        userLocalGateway
+        userGateway
             .findById(userId)
             .subscribeOn(Schedulers.io())
             .subscribe(
@@ -33,7 +33,7 @@ class UserAndroidViewModel(userId: Long, private val userLocalGateway: UserLocal
 
     override fun onSaveClicked() {
         user.get()?.let {
-            userLocalGateway.update(it)
+            userGateway.update(it)
                 .subscribeOn(Schedulers.io())
                 .doOnSubscribe {
                     onSaveClicked.onStart()

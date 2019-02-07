@@ -12,13 +12,13 @@ import ru.bulat.mukhutdinov.sample.infrastructure.common.ui.BaseAndroidViewModel
 import ru.bulat.mukhutdinov.sample.infrastructure.extension.observeViewState
 import ru.bulat.mukhutdinov.sample.infrastructure.extension.postToViewStateLiveData
 import ru.bulat.mukhutdinov.sample.infrastructure.extension.toast
-import ru.bulat.mukhutdinov.sample.infrastructure.util.data.DiffUtilCallback
+import ru.bulat.mukhutdinov.sample.userslist.usecase.GetAllUsersUseCase
 import ru.bulat.mukhutdinov.sample.infrastructure.util.data.DataStateLiveData
-import ru.bulat.mukhutdinov.sample.user.gateway.UserLocalGateway
+import ru.bulat.mukhutdinov.sample.infrastructure.util.data.DiffUtilCallback
 import ru.bulat.mukhutdinov.sample.user.model.User
 import ru.bulat.mukhutdinov.sample.userslist.ui.adapter.UsersAdapter
 
-class UsersListAndroidViewModel(userLocalGateway: UserLocalGateway)
+class UsersListAndroidViewModel(getAllUsersUseCase: GetAllUsersUseCase)
     : BaseAndroidViewModel(), UsersListViewModel {
 
     override val onUserClicked = DataStateLiveData.createForSingle<User>()
@@ -28,7 +28,7 @@ class UsersListAndroidViewModel(userLocalGateway: UserLocalGateway)
     override val users = DataStateLiveData<List<User>>()
 
     init {
-        userLocalGateway.getAll()
+        getAllUsersUseCase.execute()
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .postToViewStateLiveData(users)

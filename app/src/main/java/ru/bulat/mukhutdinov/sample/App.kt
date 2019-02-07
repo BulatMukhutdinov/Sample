@@ -98,7 +98,7 @@ class App : Application() {
             .subscribeOn(Schedulers.io())
             .subscribe(
                 {
-                    //                    initDummyData()
+                    initDummyData()
                     Timber.d("Koin is initialized")
                 },
                 { Timber.e(it) }

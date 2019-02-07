@@ -1,7 +1,7 @@
 package ru.bulat.mukhutdinov.sample.postslist.ui
 
 import android.annotation.SuppressLint
-import android.app.Activity.RESULT_OK
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -110,8 +110,13 @@ class PostsListFragment : BaseFragment<PostsListViewModel>(), NavigationView.OnN
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        if (requestCode == REQUEST_POST_CREATE && resultCode == RESULT_OK) {
+        if (requestCode == REQUEST_POST_CREATE) {
             bottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
+        }
+
+        if (resultCode == Activity.RESULT_CANCELED) {
+            Timber.w("Failed to create new post")
+            // todo show some error message to user
         }
     }
 

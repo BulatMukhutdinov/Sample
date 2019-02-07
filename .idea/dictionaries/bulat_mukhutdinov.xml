@@ -2,6 +2,7 @@
   <dictionary name="bulat_mukhutdinov">
     <words>
       <w>firebase</w>
+      <w>interactor</w>
       <w>kodein</w>
       <w>koin</w>
       <w>stetho</w>

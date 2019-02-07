@@ -3,6 +3,8 @@ package ru.bulat.mukhutdinov.sample.postslist.di
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.parameter.parametersOf
 import org.koin.dsl.module
+import ru.bulat.mukhutdinov.sample.postslist.usecase.GetPagedPostsInteractor
+import ru.bulat.mukhutdinov.sample.postslist.usecase.GetPagedPostsUseCase
 import ru.bulat.mukhutdinov.sample.postslist.ui.PostsListAndroidViewModel
 
 object PostsListInjectionModule {
@@ -15,5 +17,9 @@ object PostsListInjectionModule {
         }
 
         single(MY_BLOG_TAG) { "biggybcool.tumblr.com" }
+
+        factory<GetPagedPostsUseCase> { (blogName: String, pageSize: Int) ->
+            GetPagedPostsInteractor(get { parametersOf(blogName, pageSize) })
+        }
     }
 }

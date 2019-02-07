@@ -8,14 +8,14 @@ import ru.bulat.mukhutdinov.sample.infrastructure.common.model.Listing
 import ru.bulat.mukhutdinov.sample.infrastructure.common.model.NetworkState
 import ru.bulat.mukhutdinov.sample.infrastructure.common.model.Status
 import ru.bulat.mukhutdinov.sample.infrastructure.common.ui.BaseAndroidViewModel
-import ru.bulat.mukhutdinov.sample.post.gateway.PostGateway
+import ru.bulat.mukhutdinov.sample.postslist.usecase.GetPagedPostsUseCase
 import ru.bulat.mukhutdinov.sample.post.model.Post
 
-class PostsListAndroidViewModel(private val postGateway: PostGateway)
+class PostsListAndroidViewModel(private val useCase: GetPagedPostsUseCase)
     : BaseAndroidViewModel(), PostsListViewModel {
 
     private val postsListing = MutableLiveData<Listing<Post>>()
-        .also { it.value = postGateway.getPaged() }
+        .also { it.value = useCase.execute() }
 
     override val posts: LiveData<PagedList<Post>> = Transformations.switchMap(postsListing) { it.pagedList }
 
@@ -45,6 +45,6 @@ class PostsListAndroidViewModel(private val postGateway: PostGateway)
 
     override fun onCleared() {
         super.onCleared()
-        postGateway.clearSubscriptions()
+        useCase.cancel()
     }
 }

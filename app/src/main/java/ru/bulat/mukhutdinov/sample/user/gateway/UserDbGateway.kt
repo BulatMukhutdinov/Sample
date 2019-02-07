@@ -8,7 +8,7 @@ import ru.bulat.mukhutdinov.sample.user.db.UserDao
 import ru.bulat.mukhutdinov.sample.user.model.User
 import ru.bulat.mukhutdinov.sample.user.model.UserConverter
 
-class UserDbGateway(private val userDao: UserDao) : UserLocalGateway {
+class UserDbGateway(private val userDao: UserDao) : UserGateway {
 
     override fun findById(id: Long): Maybe<User> =
         userDao.findById(id)

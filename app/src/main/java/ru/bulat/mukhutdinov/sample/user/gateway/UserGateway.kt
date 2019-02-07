@@ -5,7 +5,7 @@ import io.reactivex.Maybe
 import io.reactivex.Single
 import ru.bulat.mukhutdinov.sample.user.model.User
 
-interface UserLocalGateway {
+interface UserGateway {
 
     fun getAll(): Single<List<User>>
 

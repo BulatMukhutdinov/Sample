@@ -13,13 +13,16 @@ class PostCreateActivity : AppCompatActivity() {
         setContentView(R.layout.post_create_activity)
 
         val type = intent.getSerializableExtra(POST_TYPE) as PostType
-        createPost(type)
+    }
 
+    fun returnOkResult() {
         setResult(Activity.RESULT_OK)
         finish()
     }
 
-    private fun createPost(type: PostType) {
+    fun returnCanceledResult() {
+        setResult(Activity.RESULT_CANCELED)
+        finish()
     }
 
     companion object {
