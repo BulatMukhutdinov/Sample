@@ -39,6 +39,7 @@ class PostsBoundaryCallback(
                         val options = HashMap<String, Any>()
                         options["limit"] = networkPageSize
                         options["type"] = "text"
+                        options["filter"] = "text"
 
                         jumblr.userDashboard(options)
                     }
@@ -68,6 +69,7 @@ class PostsBoundaryCallback(
                         options["limit"] = networkPageSize
                         options["before_id"] = lastLoadedItem?.id ?: ""
                         options["type"] = "text"
+                        options["filter"] = "text"
 
                         jumblr.userDashboard(options)
                     }

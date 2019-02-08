@@ -23,7 +23,7 @@ class PostText(
     isLiked = isLiked
 ) {
 
-    val formattedBody: Spanned = Html.fromHtml(body, Html.FROM_HTML_MODE_COMPACT)
+    val formattedBody: String = body.replace("\n\n","\n")
 
     val formattedDate: String = formatDate()
 

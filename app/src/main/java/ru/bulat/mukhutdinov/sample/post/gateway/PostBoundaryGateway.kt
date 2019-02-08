@@ -80,6 +80,7 @@ class PostBoundaryGateway(
                     val options = HashMap<String, Any>()
                     options["limit"] = networkPageSize
                     options["type"] = "text"
+                    options["filter"] = "text"
 
                     jumblr.userDashboard(options)
                 }
@@ -87,7 +88,6 @@ class PostBoundaryGateway(
                 .timeout(TIMEOUT_SEC, TimeUnit.SECONDS)
                 .subscribe(
                     { posts ->
-                        posts[0].type
                         db.runInTransaction {
                             postDao.clear()
                             insertIntoDatabase(posts)

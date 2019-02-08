@@ -4,7 +4,7 @@
     <color name="primaryDark">#3700b3</color>
     <color name="secondary">#03dac6</color>
     <color name="secondaryDark">#018786</color>
-    <color name="background">#ffffff</color>
+    <color name="background">#fafafa</color>
     <color name="surface">#ffffff</color>
     <color name="error">#b00020</color>
     <color name="onPrimary">#ffffff</color>
