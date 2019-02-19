@@ -1,8 +1,9 @@
 [![Build Status](https://travis-ci.com/BulatMukhutdinov/Sample.svg?branch=master)](https://travis-ci.com/BulatMukhutdinov/Sample)
 
-# Used technologies and principles
+# Used main technologies and principles
 * Clean architecture (MVVM for presentation layer)
 * Kotlin DSL for gradle
+* Custom android account shared among 2 apps
 * Android Architecture Components (Room, Paging, Lifecycle, Navigation)
 * RxJava 2
 * Databinding
