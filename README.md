@@ -3,7 +3,7 @@
 # Used main technologies and principles
 * Clean architecture (MVVM for presentation layer)
 * Kotlin DSL for gradle
-* Custom android account shared among 2 apps
+* Custom android account shared among 2 apps (OAuth2)
 * Android Architecture Components (Room, Paging, Lifecycle, Navigation)
 * RxJava 2
 * Databinding
