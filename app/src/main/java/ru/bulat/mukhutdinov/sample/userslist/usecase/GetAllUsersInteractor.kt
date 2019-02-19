@@ -1,4 +1,4 @@
-package ru.bulat.mukhutdinov.sample.userslist.interactor
+package ru.bulat.mukhutdinov.sample.userslist.usecase
 
 import io.reactivex.Single
 import ru.bulat.mukhutdinov.sample.userslist.usecase.GetAllUsersUseCase

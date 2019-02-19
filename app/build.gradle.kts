@@ -12,7 +12,7 @@ plugins {
 android {
     compileSdkVersion(Config.Android.compileSdk)
     defaultConfig {
-        applicationId = Config.Android.applicationId
+        applicationId = "${Config.Android.applicationId}.sample"
         versionCode = Config.Android.versionCode
         versionName = Config.Android.versionName
 

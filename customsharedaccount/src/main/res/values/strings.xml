@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Custom shared account</string>
+    <string name="shared_account">%1$s, you have shared custom account!</string>
+    <string name="no_shared_account">No custom account yet. Add one through Sample app</string>
+</resources>

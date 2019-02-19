@@ -1,6 +1,6 @@
 object Config {
     object Versions {
-        val androidPlugin = "3.4.0-alpha10"
+        val androidPlugin = "3.5.0-alpha04"
         val kotlin = "1.3.20"
         val rxJava = "2.1.0"
         val lifecycle = "2.0.0."
@@ -9,6 +9,7 @@ object Config {
         val koin = "2.0.0-beta-1"
         val paging = "2.1.0-rc01"
         val retrofit = "2.5.0"
+        val gms = "15.0.1"
     }
 
     object BuildPlugins {
@@ -19,7 +20,7 @@ object Config {
     }
 
     object Android {
-        val applicationId = "ru.bulat.mukhutdinov.sample"
+        val applicationId = "ru.bulat.mukhutdinov"
         val compileSdk = 28
         val minSdk = 24
         val targetSdk = 28
@@ -71,6 +72,9 @@ object Config {
         val retrofit = "com.squareup.retrofit2:retrofit:${Versions.retrofit}"
         val converterGson = "com.squareup.retrofit2:converter-gson:${Versions.retrofit}"
         val loggingInterceptor = "com.squareup.okhttp3:logging-interceptor:3.9.0"
+
+        // google services
+        val playServicesAuth = "com.google.android.gms:play-services-auth_activity:${Versions.gms}"
 
         // utils
         val timber = "com.jakewharton.timber:timber:4.7.1"

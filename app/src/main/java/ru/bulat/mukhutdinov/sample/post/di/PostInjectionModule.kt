@@ -10,14 +10,13 @@ object PostInjectionModule {
     val module = module {
         single { get<SampleDatabase>().postDao() }
 
-        // todo use multiton
         single<PostGateway> { (blogName: String, pageSize: Int) ->
             PostBoundaryGateway(
-                jumblr = get(),
-                db = get(),
-                blogName = blogName,
-                networkPageSize = pageSize,
-                postDao = get()
+                    jumblr = get(),
+                    db = get(),
+                    blogName = blogName,
+                    networkPageSize = pageSize,
+                    postDao = get()
             )
         }
     }

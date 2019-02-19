@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <LinearLayout
@@ -76,6 +75,45 @@
                 android:textColor="@color/onBackground"
                 app:layout_constraintStart_toEndOf="@id/blogIcon"
                 app:layout_constraintTop_toTopOf="@id/blogIcon" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:background="@color/divider"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/customAccountApp"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/app_list_item_height"
+            android:background="?android:attr/selectableItemBackground"
+            android:clickable="true"
+            android:focusable="true">
+
+            <ImageView
+                android:id="@+id/customAccountIcon"
+                android:layout_width="@dimen/icon_thumbnail_size"
+                android:layout_height="@dimen/icon_thumbnail_size"
+                android:layout_marginStart="@dimen/size1x"
+                android:layout_marginTop="@dimen/size1x"
+                android:background="@drawable/rounded_avatar"
+                android:src="@drawable/custom_account"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/customAccountTitle"
+                style="@style/TextAppearance.AppCompat.Title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/size2x"
+                android:text="@string/app_custom_account"
+                android:textColor="@color/onBackground"
+                app:layout_constraintStart_toEndOf="@id/customAccountIcon"
+                app:layout_constraintTop_toTopOf="@id/customAccountIcon" />
 
             <View
                 android:layout_width="0dp"

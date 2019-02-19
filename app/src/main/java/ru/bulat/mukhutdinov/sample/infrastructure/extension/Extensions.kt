@@ -35,7 +35,7 @@ fun <T> Single<T>.postToViewStateLiveData(targetLiveData: DataStateLiveData<T>):
             { error -> targetLiveData.onError(error) }
         )
 
-fun Completable.postToViewStateLiveData(targetLiveData: DataStateLiveData<Nothing>): Disposable =
+fun Completable.postToViewStateLiveData(targetLiveData: DataStateLiveData<Unit>): Disposable =
     doOnSubscribe { targetLiveData.onStart() }
         .subscribe(
             { targetLiveData.onComplete() },

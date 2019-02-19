@@ -6,6 +6,7 @@
     <string name="common_exception">Oops…something went wrong</string>
     <string name="app_user_list">Users list app</string>
     <string name="app_blog">Blog app</string>
+    <string name="app_custom_account">Custom account app</string>
     <string name="retry">Retry</string>
 
     <string name="add_menu_text">Text</string>
@@ -14,6 +15,13 @@
     <string name="add_menu_audio">Audio</string>
     <string name="add_menu_link">Link</string>
     <string name="add_menu_quote">Quote</string>
+
+    <string name="auth_login_text">Login to your account</string>
+    <string name="auth_username">Username</string>
+    <string name="auth_password">Password</string>
+    <string name="auth_sign_in">Sign in</string>
+    <string name="auth_current_account">Your current account is: %1$s. You can check that it is also visible to the Custom shared account app</string>
+    <string name="auth_no_current_account">You have not connected your account yet. To connect one go to the system Settings -> Accounts -> Add account. Then choose Sample\nOr add a new account explicitly below</string>
 
     <string name="picker_header">Add new post</string>
 </resources>
