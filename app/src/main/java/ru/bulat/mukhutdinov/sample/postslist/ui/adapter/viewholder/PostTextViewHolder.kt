@@ -16,7 +16,7 @@ import ru.bulat.mukhutdinov.sample.infrastructure.common.ui.BaseViewHolder
 import ru.bulat.mukhutdinov.sample.infrastructure.extension.hide
 import ru.bulat.mukhutdinov.sample.infrastructure.extension.show
 import ru.bulat.mukhutdinov.sample.post.model.Post
-import ru.bulat.mukhutdinov.sample.post.model.PostText
+import ru.bulat.mukhutdinov.sample.post.model.TextPost
 import ru.bulat.mukhutdinov.sample.postslist.ui.adapter.TagsAdapter
 import java.util.concurrent.TimeUnit
 
@@ -34,7 +34,7 @@ class PostTextViewHolder(private val picasso: Picasso, parent: ViewGroup, clickL
 
     override fun bindTo(item: Post?) {
         super.bindTo(item)
-        if (item is PostText) {
+        if (item is TextPost) {
             setupTags(item)
             showIfNotEmpty(title, item.title)
             showIfNotEmpty(body, item.formattedBody)

@@ -11,14 +11,12 @@ import android.view.ViewGroup
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.navigation.NavigationView
 import com.squareup.picasso.Picasso
-import kotlinx.android.synthetic.main.posts_create_picker.arrow
-import kotlinx.android.synthetic.main.posts_create_picker.navigationView
-import kotlinx.android.synthetic.main.posts_create_picker.picker
-import kotlinx.android.synthetic.main.posts_list.posts
-import kotlinx.android.synthetic.main.posts_list.refresh
+import kotlinx.android.synthetic.main.posts_create_picker.*
+import kotlinx.android.synthetic.main.posts_list.*
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.viewModel
 import org.koin.core.parameter.parametersOf
@@ -35,7 +33,7 @@ import timber.log.Timber
 class PostsListFragment : BaseFragment<PostsListViewModel>(), NavigationView.OnNavigationItemSelectedListener {
 
     override val viewModel
-        by viewModel<PostsListAndroidViewModel> { parametersOf(myBlogName, PAGE_SIZE) }
+            by viewModel<PostsListAndroidViewModel> { parametersOf(myBlogName, PAGE_SIZE) }
 
     private val picasso: Picasso by inject()
 
@@ -45,8 +43,10 @@ class PostsListFragment : BaseFragment<PostsListViewModel>(), NavigationView.OnN
 
     private lateinit var bottomSheetBehavior: BottomSheetBehavior<ConstraintLayout>
 
+    private var shouldScrollToTop = false
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View =
-        inflater.inflate(R.layout.posts_list, container, false)
+            inflater.inflate(R.layout.posts_list, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -84,6 +84,15 @@ class PostsListFragment : BaseFragment<PostsListViewModel>(), NavigationView.OnN
             viewModel.updateNetworkState(it)
             adapter.updateNetworkState(it)
         })
+
+        adapter.registerAdapterDataObserver(object : RecyclerView.AdapterDataObserver() {
+            override fun onItemRangeInserted(positionStart: Int, itemCount: Int) {
+                if (shouldScrollToTop) {
+                    posts.layoutManager?.scrollToPosition(0)
+                    shouldScrollToTop = false
+                }
+            }
+        })
     }
 
     private fun setupBottomSheetBehavior() {
@@ -112,6 +121,7 @@ class PostsListFragment : BaseFragment<PostsListViewModel>(), NavigationView.OnN
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if (requestCode == REQUEST_POST_CREATE) {
             bottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
+            shouldScrollToTop = true
         }
 
         if (resultCode == Activity.RESULT_CANCELED) {

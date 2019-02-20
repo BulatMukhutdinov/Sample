@@ -16,17 +16,17 @@ import com.tumblr.jumblr.types.Post.PostType.TEXT
 import com.tumblr.jumblr.types.Post.PostType.VIDEO
 import com.tumblr.jumblr.types.PostcardPost
 import com.tumblr.jumblr.types.QuotePost
-import com.tumblr.jumblr.types.TextPost
 import com.tumblr.jumblr.types.VideoPost
 import ru.bulat.mukhutdinov.sample.post.db.PostEntity
 
 typealias PostDto = com.tumblr.jumblr.types.Post
+typealias TextPostDto = com.tumblr.jumblr.types.TextPost
 
 object PostConverter {
 
     private const val TAGS_SEPARATOR = ","
 
-    fun toDatabase(source: PostText) =
+    fun toDatabase(source: TextPost) =
         PostEntity(
             id = source.id,
             date = source.date,
@@ -54,21 +54,21 @@ object PostConverter {
         }
 
     private fun createTextPost(source: PostEntity) =
-        PostText(
-            id = source.id,
-            date = source.date.orEmpty(),
-            blogName = source.blogName.orEmpty(),
-            body = source.body.orEmpty(),
-            avatar = source.avatar.orEmpty(),
-            tags = source.tags.split(TAGS_SEPARATOR).map { it.trim() }.filter { it.isNotEmpty() }.map { "#$it" },
-            title = source.title.orEmpty(),
-            isLiked = source.isLiked ?: false
-        )
+            TextPost(
+                    id = source.id,
+                    date = source.date.orEmpty(),
+                    blogName = source.blogName.orEmpty(),
+                    body = source.body.orEmpty(),
+                    avatar = source.avatar.orEmpty(),
+                    tags = source.tags.split(TAGS_SEPARATOR).map { it.trim() }.filter { it.isNotEmpty() }.map { "#$it" },
+                    title = source.title.orEmpty(),
+                    isLiked = source.isLiked ?: false
+            )
 
     fun fromNetwork(source: PostDto) =
         when (source.type) {
             TEXT -> {
-                val textPost = source as TextPost
+                val textPost = source as TextPostDto
                 PostEntity(
                     id = textPost.id,
                     date = textPost.dateGMT,

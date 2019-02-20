@@ -23,5 +23,10 @@
     <string name="auth_current_account">Your current account is: %1$s. You can check that it is also visible to the Custom shared account app</string>
     <string name="auth_no_current_account">You have not connected your account yet. To connect one go to the system Settings -> Accounts -> Add account. Then choose Sample\nOr add a new account explicitly below</string>
 
+    <string name="create_post_title">Title</string>
+    <string name="create_post_body">Enter text</string>
+    <string name="create_post_post">Post</string>
+
+
     <string name="picker_header">Add new post</string>
 </resources>

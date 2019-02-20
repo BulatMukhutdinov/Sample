@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import ru.bulat.mukhutdinov.sample.R
 import ru.bulat.mukhutdinov.sample.post.model.PostType
+import ru.bulat.mukhutdinov.sample.post.ui.textcreate.TextPostCreateFragment
 
 class PostCreateActivity : AppCompatActivity() {
 
@@ -13,6 +14,13 @@ class PostCreateActivity : AppCompatActivity() {
         setContentView(R.layout.post_create_activity)
 
         val type = intent.getSerializableExtra(POST_TYPE) as PostType
+        val transaction = supportFragmentManager.beginTransaction()
+        when (type) {
+            PostType.TEXT -> transaction.replace(R.id.container, TextPostCreateFragment())
+            else -> returnOkResult()
+        }
+
+        transaction.commit()
     }
 
     fun returnOkResult() {

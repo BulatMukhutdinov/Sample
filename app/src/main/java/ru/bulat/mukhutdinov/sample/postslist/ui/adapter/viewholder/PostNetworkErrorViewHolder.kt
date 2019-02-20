@@ -7,11 +7,11 @@ import kotlinx.android.synthetic.main.posts_error_item.view.retry
 import ru.bulat.mukhutdinov.sample.R
 import ru.bulat.mukhutdinov.sample.infrastructure.common.model.NetworkState
 import ru.bulat.mukhutdinov.sample.infrastructure.common.ui.BaseViewHolder
-import ru.bulat.mukhutdinov.sample.post.model.PostText
+import ru.bulat.mukhutdinov.sample.post.model.TextPost
 import ru.bulat.mukhutdinov.sample.postslist.ui.PostsListViewModel
 
 class PostNetworkErrorViewHolder(parent: ViewGroup)
-    : BaseViewHolder<PostText>(parent, R.layout.posts_error_item) {
+    : BaseViewHolder<TextPost>(parent, R.layout.posts_error_item) {
 
     private val description = itemView.description
     private val retry = itemView.retry
