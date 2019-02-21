@@ -14,7 +14,7 @@
 
 # Todos
 * ~~Change github users api to api which allows get and create new entities~~
-* Use activityResult for new entities creation
+* ~~Use activityResult for new entities creation~~
 * Use payloads in recyclerView
 * ~~Use drawable animations~~
 * ~~Add Stetho~~
