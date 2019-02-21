@@ -14,19 +14,19 @@ import ru.bulat.mukhutdinov.sample.postslist.ui.adapter.viewholder.PostNetworkEr
 import ru.bulat.mukhutdinov.sample.postslist.ui.adapter.viewholder.PostTextViewHolder
 
 class PostsAdapter(
-    private val picasso: Picasso,
-    private val postsListViewModel: PostsListViewModel,
-    private val clickListener: ((Int) -> Unit)
+        private val picasso: Picasso,
+        private val postsListViewModel: PostsListViewModel,
+        private val clickListener: ((Int) -> Unit)
 ) : PagedListAdapter<Post, BaseViewHolder<*>>(DiffUtilItemCallback<Post>()) {
 
     private var networkState: NetworkState? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder<*> =
-        when (viewType) {
-            R.layout.posts_text_item -> PostTextViewHolder(picasso, parent, clickListener)
-            R.layout.posts_error_item -> PostNetworkErrorViewHolder(parent)
-            else -> throw IllegalArgumentException("unknown view type $viewType")
-        }
+            when (viewType) {
+                R.layout.posts_text_item -> PostTextViewHolder(picasso, parent, clickListener)
+                R.layout.posts_error_item -> PostNetworkErrorViewHolder(parent)
+                else -> throw IllegalArgumentException("unknown view type $viewType")
+            }
 
     override fun onBindViewHolder(holder: BaseViewHolder<*>, position: Int) {
         when (getItemViewType(position)) {
@@ -46,7 +46,7 @@ class PostsAdapter(
     }
 
     fun getItemAt(index: Int) =
-        getItem(index)
+            getItem(index)
 
     fun updateNetworkState(newNetworkState: NetworkState) {
         val previousState = this.networkState
@@ -71,5 +71,9 @@ class PostsAdapter(
     override fun onViewRecycled(holder: BaseViewHolder<*>) {
         super.onViewRecycled(holder)
         holder.onViewRecycled()
+    }
+
+    override fun getItemId(position: Int): Long {
+        return getItem(position)?.id ?: -1
     }
 }

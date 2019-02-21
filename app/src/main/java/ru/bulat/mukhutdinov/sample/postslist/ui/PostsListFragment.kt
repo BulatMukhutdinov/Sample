@@ -12,6 +12,7 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.SimpleItemAnimator
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.navigation.NavigationView
 import com.squareup.picasso.Picasso
@@ -29,6 +30,7 @@ import ru.bulat.mukhutdinov.sample.post.ui.PostCreateActivity.Companion.POST_TYP
 import ru.bulat.mukhutdinov.sample.postslist.di.PostsListInjectionModule
 import ru.bulat.mukhutdinov.sample.postslist.ui.adapter.PostsAdapter
 import timber.log.Timber
+
 
 class PostsListFragment : BaseFragment<PostsListViewModel>(), NavigationView.OnNavigationItemSelectedListener {
 
@@ -71,6 +73,12 @@ class PostsListFragment : BaseFragment<PostsListViewModel>(), NavigationView.OnN
     private fun setupPosts() {
         adapter = PostsAdapter(picasso, viewModel) { index ->
             Timber.d("Item ${adapter.getItemAt(index)} was clicked")
+        }
+        adapter.setHasStableIds(true)
+
+        val animator = posts.itemAnimator
+        if (animator is SimpleItemAnimator) {
+            animator.supportsChangeAnimations = false
         }
 
         posts.adapter = adapter

@@ -72,6 +72,6 @@
             android:background="@color/divider"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@id/name"
-            app:layout_constraintTop_toBottomOf="@id/icon" />
+            app:layout_constraintTop_toBottomOf="@id/description" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
