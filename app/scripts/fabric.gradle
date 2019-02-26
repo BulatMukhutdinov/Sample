@@ -1,0 +1,8 @@
+apply plugin: 'com.android.application'
+
+android {
+    buildTypes {
+        ext.betaDistributionReleaseNotesFilePath = "app/release_notes.txt"
+        ext.betaDistributionGroupAliases="mainsampletesters"
+    }
+}

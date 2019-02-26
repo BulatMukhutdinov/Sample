@@ -1,6 +1,9 @@
+import org.gradle.kotlin.dsl.android
+
 plugins {
     id("com.android.application")
     id("androidx.navigation.safeargs")
+    id("io.fabric")
 
     kotlin("android")
     kotlin("android.extensions")
@@ -8,6 +11,9 @@ plugins {
 
     id("com.google.gms.google-services")
 }
+
+apply(from = rootProject.file("app/scripts/fabric.gradle"))
+apply(from = rootProject.file("app/scripts/signing.gradle"))
 
 android {
     compileSdkVersion(Config.Android.compileSdk)
@@ -26,7 +32,7 @@ android {
 
     buildTypes {
         getByName("release") {
-            isMinifyEnabled = false
+            isMinifyEnabled = true
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }
     }
@@ -80,10 +86,14 @@ dependencies {
     // firebase
     implementation(Config.Libs.firebaseCore)
 
+    // crashlytics
+    implementation(Config.Libs.crashlytics) {
+        isTransitive = true
+    }
+
     // utils
     implementation(Config.Libs.timber)
     implementation(Config.Libs.jumblr)
     implementation(Config.Libs.picasso)
-
     implementation(Config.Libs.stetho)
 }

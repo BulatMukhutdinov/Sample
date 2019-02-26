@@ -1,6 +1,6 @@
 object Config {
     object Versions {
-        val androidPlugin = "3.5.0-alpha04"
+        val androidPlugin = "3.5.0-alpha05"
         val kotlin = "1.3.20"
         val rxJava = "2.1.0"
         val lifecycle = "2.0.0."
@@ -17,6 +17,7 @@ object Config {
         val kotlinGradlePlugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlin}"
         val navigationSafeArgsGradlePlugin = "android.arch.navigation:navigation-safe-args-gradle-plugin:1.0.0-alpha09"
         val googleServices = "com.google.gms:google-services:4.0.1"
+        val fabricGradlePlugin = "io.fabric.tools:gradle:1.27.1"
     }
 
     object Android {
@@ -75,6 +76,9 @@ object Config {
 
         // google services
         val playServicesAuth = "com.google.android.gms:play-services-auth_activity:${Versions.gms}"
+
+        // fabric
+        val crashlytics = "com.crashlytics.sdk.android:crashlytics:2.9.9@aar"
 
         // utils
         val timber = "com.jakewharton.timber:timber:4.7.1"
