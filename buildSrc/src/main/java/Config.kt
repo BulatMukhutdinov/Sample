@@ -1,6 +1,6 @@
 object Config {
     object Versions {
-        val androidPlugin = "3.5.0-alpha05"
+        val androidPlugin = "3.5.0-alpha06"
         val kotlin = "1.3.20"
         val rxJava = "2.1.0"
         val lifecycle = "2.0.0."
@@ -10,6 +10,8 @@ object Config {
         val paging = "2.1.0-rc01"
         val retrofit = "2.5.0"
         val gms = "15.0.1"
+        val mockk = "1.9.1"
+        val androidTestRunners = "1.1.0"
     }
 
     object BuildPlugins {
@@ -85,5 +87,17 @@ object Config {
         val jumblr = "com.tumblr:jumblr:0.0.13"
         val picasso = "com.squareup.picasso:picasso:2.71828"
         val stetho = "com.facebook.stetho:stetho:1.5.0"
+
+        // unit tests
+        val jUnit = "org.junit.jupiter:junit-jupiter:5.4.0"
+        val mockk = "io.mockk:mockk:${Versions.mockk}"
+
+        // instrumented tests
+        val espresso = "androidx.test.espresso:espresso-core:3.1.0"
+        val testRunner = "androidx.test:runner:${Versions.androidTestRunners}"
+        val testRules = "androidx.test:rules:${Versions.androidTestRunners}"
+        val extJunit = "androidx.test.ext:junit:${Versions.androidTestRunners}"
+        val fragmentTesting = "androidx.fragment:fragment-testing:1.1.0-alpha04"
+        val mockkAndroid = "io.mockk:mockk-android:${Versions.mockk}"
     }
 }

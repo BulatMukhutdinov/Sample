@@ -1,5 +1,3 @@
-import org.gradle.kotlin.dsl.android
-
 plugins {
     id("com.android.application")
     id("androidx.navigation.safeargs")
@@ -27,7 +25,7 @@ android {
 
         vectorDrawables.useSupportLibrary = true
 
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner = "ru.bulat.mukhutdinov.sample.SampleAndroidTestRunner"
     }
 
     buildTypes {
@@ -45,8 +43,15 @@ android {
     dataBinding {
         isEnabled = true
     }
-}
 
+    packagingOptions {
+        exclude("META-INF/LICENSE.md")
+        exclude("META-INF/LICENSE-notice.md")
+    }
+}
+tasks.withType<Test>().configureEach {
+    useJUnitPlatform()
+}
 dependencies {
     implementation(Config.Libs.kotlinStdlib)
     implementation(Config.Libs.appcompat)
@@ -96,4 +101,17 @@ dependencies {
     implementation(Config.Libs.jumblr)
     implementation(Config.Libs.picasso)
     implementation(Config.Libs.stetho)
+
+    // unit tests
+    testImplementation(Config.Libs.jUnit)
+    testImplementation(Config.Libs.mockk)
+
+    // instrumented tests
+    androidTestImplementation(Config.Libs.espresso)
+    androidTestImplementation(Config.Libs.testRunner)
+    androidTestImplementation(Config.Libs.testRules)
+    androidTestImplementation(Config.Libs.extJunit)
+    androidTestImplementation(Config.Libs.mockkAndroid)
+    androidTestImplementation(Config.Libs.jUnit)
+    debugImplementation(Config.Libs.fragmentTesting)
 }

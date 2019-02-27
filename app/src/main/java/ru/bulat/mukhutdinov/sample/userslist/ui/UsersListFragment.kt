@@ -22,12 +22,12 @@ class UsersListFragment : BaseFragment<UsersListViewModel>() {
         binding.usersListViewModel = viewModel
 
         viewModel.onUserClicked.observeViewState(
-            owner = viewLifecycleOwner,
-            dataCallback = { user ->
-                val direction = UsersListFragmentDirections.usersListFragmentToUserFragment()
-                direction.userId = user.id
-                navigateTo(direction)
-            })
+                owner = viewLifecycleOwner,
+                dataCallback = { user ->
+                    val direction = UsersListFragmentDirections.usersListFragmentToUserFragment()
+                    direction.userId = user.id
+                    navigateTo(direction)
+                })
 
         return binding.root
     }
