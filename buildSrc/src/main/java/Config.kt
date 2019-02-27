@@ -5,7 +5,7 @@ object Config {
         val rxJava = "2.1.0"
         val lifecycle = "2.0.0."
         val room = "2.1.0-alpha03"
-        val navigatio = "1.0.0-alpha09"
+        val navigation = "1.0.0-alpha09"
         val koin = "2.0.0-beta-1"
         val paging = "2.1.0-rc01"
         val retrofit = "2.5.0"
@@ -39,10 +39,10 @@ object Config {
         val constraintLayout = "androidx.constraintlayout:constraintlayout:1.1.3"
 
         // navigation
-        val navigationFragment = "android.arch.navigation:navigation-fragment:${Versions.navigatio}"
-        val navigationUi = "android.arch.navigation:navigation-ui:${Versions.navigatio}"
-        val navigationFragmentKtx = "android.arch.navigation:navigation-fragment-ktx:${Versions.navigatio}"
-        val navigationUiKtx = "android.arch.navigation:navigation-ui-ktx:${Versions.navigatio}"
+        val navigationFragment = "android.arch.navigation:navigation-fragment:${Versions.navigation}"
+        val navigationUi = "android.arch.navigation:navigation-ui:${Versions.navigation}"
+        val navigationFragmentKtx = "android.arch.navigation:navigation-fragment-ktx:${Versions.navigation}"
+        val navigationUiKtx = "android.arch.navigation:navigation-ui-ktx:${Versions.navigation}"
 
         // lifecycle
         val lifecycleExtensions = "android.arch.lifecycle:extensions:${Versions.lifecycle}"

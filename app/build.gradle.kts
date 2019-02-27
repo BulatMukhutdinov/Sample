@@ -49,9 +49,11 @@ android {
         exclude("META-INF/LICENSE-notice.md")
     }
 }
+
 tasks.withType<Test>().configureEach {
     useJUnitPlatform()
 }
+
 dependencies {
     implementation(Config.Libs.kotlinStdlib)
     implementation(Config.Libs.appcompat)
