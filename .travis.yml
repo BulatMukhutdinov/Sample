@@ -16,8 +16,9 @@ cache:
     - $HOME/.android/build-cache
 # Emulator Management: Create, Start and Wait
 before_script:
+  - android list sdk -a -e
   - android list targets
-  - echo no | android create avd --force -n myEmulator -t "android-28"
+  - echo no | android create avd --force -n myEmulator -t "android-28" --abi
   - emulator -avd myEmulator -no-skin -no-audio -no-window &
   - android-wait-for-emulator
   - adb shell input keyevent 82 &
