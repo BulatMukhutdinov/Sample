@@ -13,7 +13,7 @@ class TextPostCreateAndroidViewModel(
         private val createTextPostUseCase: CreateTextPostUseCase
 ) : BaseAndroidViewModel(), TextPostCreateViewModel {
 
-    override val isPostEnabled: DataStateLiveData<Boolean> = DataStateLiveData()
+    override val isPostEnabled: DataStateLiveData<Boolean> = DataStateLiveData.create()
 
     private var title = ""
     private var body = ""
