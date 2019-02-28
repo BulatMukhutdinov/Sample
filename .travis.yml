@@ -17,7 +17,7 @@ cache:
 # Emulator Management: Create, Start and Wait
 before_script:
   - android list targets
-  - echo no | android create avd --force -n myEmulator -t "android-28" --abi arm64-v8a
+  - echo no | android create avd --force -n myEmulator -t "android-28" --abi armeabi
   - emulator -avd myEmulator -no-skin -no-audio -no-window &
   - android-wait-for-emulator
   - adb shell input keyevent 82 &
