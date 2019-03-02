@@ -22,5 +22,5 @@
 * ~~Setup CI~~
 * ~~Replace Kodein by Koin~~
 * Use kotlin coroutines
-* Write unit and UI tests
+* ~~Write unit and UI tests~~
 * Run tests and upload apk to Beta using CI
