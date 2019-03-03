@@ -1,3 +1,7 @@
+addons:
+  apt:
+    packages:
+      - lynx
 language: android
 sudo: required
 jdk: oraclejdk8
@@ -45,6 +49,6 @@ before_script:
   - emulator -avd test -no-skin -no-window &
   - android-wait-for-emulator
   - adb shell input keyevent 82 &
-
 after_failure:
+  - if [ -f /home/travis/build/leandroBorgesFerreira/MoreCLoseButton/app/build/outputs/lint-results-debug.html ]; then lynx -dump /home/travis/build/leandroBorgesFerreira/MoreCLoseButton/app/build/outputs/lint-results-debug.html; fi
   - cat index.html
