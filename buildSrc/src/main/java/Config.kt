@@ -11,6 +11,7 @@ object Config {
         val retrofit = "2.5.0"
         val gms = "15.0.1"
         val mockk = "1.9.1"
+        val coroutines = "1.1.1"
         val androidTestRunners = "1.1.0"
     }
 
@@ -81,6 +82,11 @@ object Config {
 
         // fabric
         val crashlytics = "com.crashlytics.sdk.android:crashlytics:2.9.9@aar"
+
+        // coroutines
+        val coroutinesCore = "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.coroutines}"
+        val coroutinesAndroid = "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.coroutines}"
+        val coroutinesRx = "org.jetbrains.kotlinx:kotlinx-coroutines-rx2:${Versions.coroutines}"
 
         // utils
         val timber = "com.jakewharton.timber:timber:4.7.1"

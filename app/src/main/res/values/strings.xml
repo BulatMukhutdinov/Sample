@@ -7,6 +7,7 @@
     <string name="app_user_list">Users list app</string>
     <string name="app_blog">Blog app</string>
     <string name="app_custom_account">Custom account app</string>
+    <string name="app_diary">Diary app</string>
     <string name="retry">Retry</string>
 
     <string name="add_menu_text">Text</string>
@@ -27,6 +28,9 @@
     <string name="create_post_body">Enter text</string>
     <string name="create_post_post">Post</string>
 
+    <string name="diary_title">My Diary</string>
+    <string name="create_note_title">Create new note</string>
+    <string name="create_note_hint">Note…</string>
 
     <string name="picker_header">Add new post</string>
 </resources>

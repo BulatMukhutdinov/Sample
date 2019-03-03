@@ -8,6 +8,7 @@
     <dimen name="size1x">8dp</dimen>
     <dimen name="size2x">16dp</dimen>
     <dimen name="size4x">32dp</dimen>
+    <dimen name="size5x">40dp</dimen>
 
     <dimen name="picker_header">54dp</dimen>
 

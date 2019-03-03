@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+<navigation
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
@@ -27,6 +28,13 @@
         <action
             android:id="@+id/mainFragment_to_authFragment"
             app:destination="@id/authFragment"
+            app:enterAnim="@anim/nav_enter_anim"
+            app:exitAnim="@anim/nav_exit_anim"
+            app:popEnterAnim="@anim/nav_pop_enter_anim"
+            app:popExitAnim="@anim/nav_pop_exit_anim" />
+        <action
+            android:id="@+id/mainFragment_to_diaryFragment"
+            app:destination="@id/diaryFragment"
             app:enterAnim="@anim/nav_enter_anim"
             app:exitAnim="@anim/nav_exit_anim"
             app:popEnterAnim="@anim/nav_pop_enter_anim"
@@ -74,5 +82,11 @@
         android:name="ru.bulat.mukhutdinov.sample.auth.ui.AuthFragment"
         android:label="AuthFragment"
         tools:layout="@layout/auth" />
+
+    <fragment
+        android:id="@+id/diaryFragment"
+        android:name="ru.bulat.mukhutdinov.sample.diary.ui.DiaryFragment"
+        android:label="DiaryFragment"
+        tools:layout="@layout/diary" />
 
 </navigation>

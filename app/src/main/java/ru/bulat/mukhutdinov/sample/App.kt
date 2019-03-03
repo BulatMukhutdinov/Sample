@@ -15,6 +15,7 @@ import org.koin.android.ext.android.inject
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 import ru.bulat.mukhutdinov.sample.auth.di.AuthInjectionModule
+import ru.bulat.mukhutdinov.sample.diary.di.DiaryInjectionModule
 import ru.bulat.mukhutdinov.sample.infrastructure.common.di.CommonInjectionModule
 import ru.bulat.mukhutdinov.sample.infrastructure.common.network.di.NetworkInjectionModule
 import ru.bulat.mukhutdinov.sample.infrastructure.util.DummyDataProvider
@@ -133,7 +134,8 @@ class App : Application() {
                         PostInjectionModule.module,
                         PostsListInjectionModule.module,
                         NetworkInjectionModule.module,
-                        AuthInjectionModule.module
+                        AuthInjectionModule.module,
+                        DiaryInjectionModule.module
                     )
 
                 }

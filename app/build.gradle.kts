@@ -98,6 +98,11 @@ dependencies {
         isTransitive = true
     }
 
+    // coroutines
+    implementation(Config.Libs.coroutinesCore)
+    implementation(Config.Libs.coroutinesAndroid)
+    implementation(Config.Libs.coroutinesRx)
+
     // utils
     implementation(Config.Libs.timber)
     implementation(Config.Libs.jumblr)
