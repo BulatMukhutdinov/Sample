@@ -1,10 +1,11 @@
-[![Build Status](https://travis-ci.com/BulatMukhutdinov/Sample.svg?branch=master)](https://travis-ci.com/BulatMukhutdinov/Sample)
+[![Build Status](https://travis-ci.org/BulatMukhutdinov/Sample.svg?branch=master)](https://travis-ci.com/BulatMukhutdinov/Sample)
 
 # Used main technologies and principles
 * Clean architecture (MVVM for presentation layer)
 * Kotlin DSL for gradle
 * Custom android account shared among 2 apps (OAuth2)
 * Android Architecture Components (Room, Paging, Lifecycle, Navigation)
+* Kotlin Coroutines
 * RxJava 2
 * Databinding
 * Tumblr API
@@ -21,6 +22,6 @@
 * ~~Add Strict mode~~
 * ~~Setup CI~~
 * ~~Replace Kodein by Koin~~
-* Use kotlin coroutines
+* ~~Use kotlin coroutines~~
 * ~~Write unit and UI tests~~
 * Run tests and upload apk to Beta using CI
