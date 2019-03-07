@@ -3,9 +3,9 @@ object Config {
         val androidPlugin = "3.5.0-alpha06"
         val kotlin = "1.3.20"
         val rxJava = "2.1.0"
-        val lifecycle = "2.0.0."
+        val lifecycle = "2.1.0-alpha02"
         val room = "2.1.0-alpha03"
-        val navigation = "1.0.0-alpha09"
+        val navigation = "2.0.0-rc02"
         val koin = "2.0.0-beta-1"
         val paging = "2.1.0-rc01"
         val retrofit = "2.5.0"
@@ -18,7 +18,7 @@ object Config {
     object BuildPlugins {
         val androidGradlePlugin = "com.android.tools.build:gradle:${Versions.androidPlugin}"
         val kotlinGradlePlugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlin}"
-        val navigationSafeArgsGradlePlugin = "android.arch.navigation:navigation-safe-args-gradle-plugin:1.0.0-alpha09"
+        val navigationSafeArgsGradlePlugin = "androidx.navigation:navigation-safe-args-gradle-plugin:${Versions.navigation}"
         val googleServices = "com.google.gms:google-services:4.0.1"
         val fabricGradlePlugin = "io.fabric.tools:gradle:1.27.1"
     }
@@ -40,14 +40,13 @@ object Config {
         val constraintLayout = "androidx.constraintlayout:constraintlayout:1.1.3"
 
         // navigation
-        val navigationFragment = "android.arch.navigation:navigation-fragment:${Versions.navigation}"
-        val navigationUi = "android.arch.navigation:navigation-ui:${Versions.navigation}"
-        val navigationFragmentKtx = "android.arch.navigation:navigation-fragment-ktx:${Versions.navigation}"
-        val navigationUiKtx = "android.arch.navigation:navigation-ui-ktx:${Versions.navigation}"
+        val navigationFragment = "androidx.navigation:navigation-fragment-ktx:${Versions.navigation}"
+        val navigationUi = "androidx.navigation:navigation-ui:${Versions.navigation}"
 
         // lifecycle
-        val lifecycleExtensions = "android.arch.lifecycle:extensions:${Versions.lifecycle}"
-        val lifecycleCompiler = "android.arch.lifecycle:compiler:${Versions.lifecycle}"
+        val lifecycleExtensions = "androidx.lifecycle:lifecycle-extensions:${Versions.lifecycle}"
+        val lifecycleCompiler = "androidx.lifecycle:lifecycle-compiler:${Versions.lifecycle}"
+        val lifecycleViewModel = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.lifecycle}"
 
         // room
         val roomRuntime = "androidx.room:room-runtime:${Versions.room}"

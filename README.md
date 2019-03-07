@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/BulatMukhutdinov/Sample.svg?branch=master)](https://travis-ci.com/BulatMukhutdinov/Sample)
+[![Build Status](https://travis-ci.org/BulatMukhutdinov/Sample.svg?branch=master)](https://travis-ci.org/BulatMukhutdinov/Sample)
 
 # Used main technologies and principles
 * Clean architecture (MVVM for presentation layer)

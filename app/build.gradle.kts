@@ -30,8 +30,8 @@ android {
 
     buildTypes {
         getByName("release") {
-            isMinifyEnabled = true
-            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+            isMinifyEnabled = false
+            proguardFiles(getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro")
         }
     }
 
@@ -64,11 +64,10 @@ dependencies {
     // navigation
     implementation(Config.Libs.navigationFragment)
     implementation(Config.Libs.navigationUi)
-    implementation(Config.Libs.navigationFragmentKtx)
-    implementation(Config.Libs.navigationUiKtx)
 
     // lifecycle
     implementation(Config.Libs.lifecycleExtensions)
+    implementation(Config.Libs.lifecycleViewModel)
     kapt(Config.Libs.lifecycleCompiler)
 
     // room
